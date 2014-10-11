@@ -1,0 +1,35 @@
+Objetivo:
+
+Observar os valores frequentes e os tipos de distribuições estatísticas
+("curva normal" ou de "cauda longa") para monitoramento de métricas de
+vulnerabilidade a partir da análise estática de código-fonte de projetos de
+software livre.
+
+#Determinar uma referência de distribuição estatística (normal/normalizável 
+#ou de cauda longa) mais informativa para auxiliar no monitoramento das 
+#métricas de vulnerabilidade de código fonte de "softwares críticos" livres.
+
+Hipótese:
+
+Os tipos de distribuições das métricas de vulnerabilidades irão indicar que
+os valores desses métricas em seus módulos (em C e/ou C++) e ao longo do
+tempo tem um comportamente de "cauda longa", ou seja, a média não é um
+valor representativo para ser observado.
+
+#As métricas de vulnerabilidade devem se comportar com algo parecido com
+#as distribuições estatísticas de cauda longa.
+
+Metodologia:
+
+1 - Definir de um estudo de caso (kernel do linux)
+2 - Coletar das métricas (determinar o tamanho do espaço amostral)
+3 - Modelar um ambiente de aprendizado de máquina
+4 - Desenvolver o modelo definido
+5 - Treinar o modelo com a massa de dados coletada
+6 - Testar com outro "software crítico" (a ser definido)
+7 - Avaliar os dados obtidos
+
+
+Obs.: "software crítico" acredito que não seja o termo correto, precisa
+ser revisado
+
