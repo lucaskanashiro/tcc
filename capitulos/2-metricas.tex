@@ -1,3 +1,53 @@
 \chapter{Métricas de Software}
 
-Métricas de Software
+Por volta dos anos 70, o desenvolvimento de software estava se tornando caótico. A demanda por novos softwares aumentava,
+entretanto não existiam técnicas que apoiassem o desenvolvimento, com isso, os softwares desenvolvidos estavam passando
+a ter uma qualidade cada vez pior, sendo qualidade o conjunto de propriedades do produto ou serviço, que lhe conferem 
+aptidões para satisfazer as necessidades explícitas ou implícitas ~\cite{iso:8402}. Tendo isso em vista, o cenário de
+desenvolvimento de software era comumente caracterizado da seguinte forma:
+
+\begin{itemize}
+  \item Cronograma e estimativas de custo grosseiramente imprecisas,
+  \item Software de má qualidade, e
+  \item Um índice de produtividade crescendo mais lentamente do que a demanda por software.
+\end{itemize}
+
+Esse cenário descrito acima foi referenciado como a "Crise do Software" ~\cite{arthur85}.
+
+Para solucionar a "Crise do Software"  se via necessário um melhor gerenciamento do processo de desenvolvimento de software
+e do software produzido, o método utilizado até então não se mostrava eficaz diante desse cenário caótico, as formas de medir 
+e estimar não estavam atendendo as reais necessidades. Viu-se então as peculiaridades e complexidade do desenvolvimento de 
+software. Levando em consideração que uma métrica é a composição de procedimentos para a definição de escalas e métodos para 
+medidas ~\cite{iso:9126-1}, e a partir dessas dificuldades se definiu qual seria o real objetivo de uma métrica de software: 
+identificação e medição dos parâmetros essenciais que afetam o desenvolvimento de software ~\cite{mills88}.
+
+Portanto, as métricas de software possuem papel fundamental para o acompanhamento da qualidade tanto do processo de
+desenvolvimento de software, quanto do produto. Para isso, é necessário a definição de boas métricas, o que facilitará
+e servirá de insumo para um acompanhamento mais preciso. São consideradas boas métricas aquelas que facilitam a medição dos 
+parâmetros de qualidade definidos para um determinado software ~\cite{mills88}. É importante tentar limitar a quantidade
+de métricas utilizadas, até porque o tratamento de um grande volume de dados pode ser humanamente impossível 
+~\cite{meirelles2013}, e para isso é importante definir e justificar os critérios adotados para a escolha das métricas.
+É interessante que as métricas possuam as seguintes características \cite{fenton&pfleenger98,mills88}:
+
+\begin{itemize}
+  \item o que a métrica se propõe a medir deve ser claro;
+  \item a métrica deve ser formalmente definida, seu valor deve estar atrelado ao objeto medido, independente de quem (ou 
+    qual ferramenta) o obtenha;
+  \item deve ser possível obter seu valor rapidamente e a baixo custo;
+  \item a métrica deve medir efetivamente o proposto por ela;
+  \item pequenas mudanças no software, por exemplo, não podem causar grandes mudanças no valor obtido;
+  \item deve haver formas de mapeamento das métricas para o entendimento do comportamento das entidades analisadas através 
+    da manipulação dos números obtidos e
+  \item o resultado da métrica deve ser independente da linguagem de programação utilizada.
+\end{itemize}
+
+Além disso, as métricas de software podem ser classificadas quanto ao âmbito da sua aplicação, quanto ao critério utilizado 
+na sua definição e quanto ao método de obtenção da medida ~\cite{meirelles2013}. Em resumo, uma métrica de software deve
+ser válida, confiável e prática.
+
+As métricas de software são divididas em algumas categorias. Elas podem ser divididas pelo método de obtenção, onde podem
+ser \textit{primitivas} ou \textit{compostas}; método como serão determinadas, onde podem ser \textit{objetivas} ou 
+\textit{subjetivas}; e também pode variar a sua escala, onde podem ser \textit{nominal}, \textit{ordinal}, \textit{intervalo}
+ou \textit{racional}.
+
+
