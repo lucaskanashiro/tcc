@@ -26,7 +26,7 @@ EDITAVEIS_FILES = $(addprefix $(EDITAVEIS_DIR)/, $(EDITAVEIS_SOURCES))
 
 CAPITULOS_DIR = capitulos
 CAPITULOS_SOURCES = 1-introducao.tex  2-metricas.tex  \
-										3-metricasvulnerabilidade.tex  4-softwarelivre.tex  \
+										3-metodologia.tex  4-softwarelivre.tex  \
 										5-estudodecaso.tex 6-ferramentas.tex 7-conclusao.tex
 
 CAPITULOS_FILES = $(addprefix $(CAPITULOS_DIR)/, $(CAPITULOS_SOURCES))
@@ -41,7 +41,7 @@ SOURCES = $(FIXOS_FILES) $(EDITAVEIS_FILES) $(CAPITULOS_FILES)
 
 .PHONY: all clean dist-clean
 
-all: 
+all: clean 
 	@make $(TARGET)
      
 $(TARGET): $(MAIN_FILE) $(SOURCES) bibliografia.bib
