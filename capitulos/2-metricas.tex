@@ -1,4 +1,6 @@
-\chapter{Métricas de Software}
+\chapter{Métricas}
+
+\section{Métricas de Software}
 
 Por volta dos anos 70, o desenvolvimento de software estava se tornando caótico. A demanda por novos softwares aumentava,
 entretanto não existiam técnicas que apoiassem o desenvolvimento, com isso, os softwares desenvolvidos estavam passando
@@ -50,4 +52,106 @@ ser \textit{primitivas} ou \textit{compostas}; método como serão determinadas,
 \textit{subjetivas}; e também pode variar a sua escala, onde podem ser \textit{nominal}, \textit{ordinal}, \textit{intervalo}
 ou \textit{racional}.
 
+As métricas primitivas podem ser obtidas a partir da própria entidade, por leitura direta, possuem apenas uma medida, já as
+métricas compostas são calculadas a partir de uma ou mais medidas, sendo essas métricas primitivas, logo, as métricas compostas
+são derivadas de métricas primitivas. 
+
+A forma de determinar uma métrica pode depender da avaliação de quem está interpretando-a e não somente dos dados em si, nesse
+caso, chama-se de métrica subjetiva, dependendo de quem está avaliando o resultado final pode diferenciar ou não. Agora quando
+existem regras claras e bem definidas para determinar a valoração de uma métrica, chamamos a mesma de métrica objetiva, não
+dependendo da opinião de terceiros.
+
+As metricas de software precisam ser coletadas em um modelo de dados específico que pode envolver cálculos ou análise 
+estatística subjetiva ~\cite{meirelles2013}. Segundo \cite{fenton&pfleenger98}, existem quatro tipos de dados de medidas
+reconhecidos para métricas de software. Abaixo serão apresentados os quatro tipos de escalas de métricas de software 
+~\cite{meirelles2013}:
+
+\begin{itemize}
+  \item \textbf{Nominal}: existe um nome ou um valor para um atributo; no entanto, a ordem dos valores não tem nenhum 
+    significado para a sua interpretação;
+  \item \textbf{Ordinal}: os resultados estão em uma determinada ordem (ascendente ou descendente), mas a distância entre os 
+    pontos dessa escala não tem significado;
+  \item \textbf{Intervalo}: preserva a importância da ordem dos resultados e possui informações sobre o tamanho dos intervalos
+    que separaram os pontos da escala, mas a relação entre os valores não são necessariamente válidas.
+  \item \textbf{Racional}: semelhante a escala de intervalo, mas representando também as proporções entre as entidades e
+    possuindo um zero absoluto. 
+\end{itemize}
+
+Geralmente, a escala racional é preferível as outras, já que a mesma possibilita de maneira mais eficiente a aplicação de 
+operações matemáticas ~\cite{meirelles2013}.
+
+No momento de definição de uma métrica de software é necessário pensar na classificação da mesma levando em consideração
+todas as dimensões apresentadas, deve-se definir a forma de obtenção, valoração e escala.
+
+Neste trabalho, serão trabalhadas em geral com métricas objetivas; primitivas e derivadas; e racional. Tendo em vista que o 
+foco são métricas de código fonte que serão coletadas de forma automatizada por ferramentas especializadas.
+
+\section{Métricas de Design de Código Fonte}
+
+Métricas de design de software devem ser compreendidas como um conjunto de métricas que medem atributos do código-fonte que 
+permitam a avaliação de produtos de software ~\cite{arthur&carlos2014}. A utilização correta de métricas de design no ciclo
+de desenvolvimento de software oportuniza além da aferição da qualidade do produto, a refatoração. Na refatoração, a forma que
+foi implementada determinada funcionalidade é repensada e reimplementada, de forma que melhore alguns atributos dos software,
+como manutenibilidade, testabilidade, a própria qualidade interna do software. Abaixo serão apresentadas as principais métricas
+de design que são possíveis de obter com o uso de ferramentas automatizadas para análise estática de código fonte 
+~\cite{arthur&carlos2014,meirelles2013}:
+
+\begin{itemize}
+  \item \textbf{LOC (Lines of Codes - Linhas de Código)}: LOC calcula o número de linhas executáveis, desconsiderando linhas 
+    em branco e comentários. Esta é a métrica de tamanho mais comum. Entretanto, deve ser cuidadosamente usada e composta, pois
+    os parâmetros de comparação não devem ser os mesmos quando se varia a linguagem e estilo de programação.
+  \item \textbf{(Total Number of Modules or Classes - Número Total de Módulos ou Classes)}: Esta métrica mensura o 
+    tamanho do software baseados na quantidade de módulos e classes, sendo menos sensível por linguagens de programação, nível 
+    de desenvolvedores e estilo de codificação.
+  \item \textbf{AMLOC (Average Method LOC - Média de Número de Linhas de Código por Método)}: Esta métrica avalia a distribuição
+    do código entre os métodos, sendo uma importante indicador de coesão, reutilização e outras características importantes. 
+    Entretanto, assim como a LOC, deve ser avaliada considerando-se a linguagem e estilo de programação.
+  \item \textbf{NOA (Number of Attributes - Número de Atributos)}: NOA calcula o número de atributos de uma classe, sendo 
+    bastante importante para avaliar a coesão de uma classe.
+  \item \textbf{(Total Number of Modules or Classes - Número Total de Módulos ou Classes)}: Esta métrica mensura o tamanho do 
+    software baseados na quantidade de módulos e classes, sendo menos sensível por linguagens de programação, nível de
+    desenvolvedores e estilo de codificação.
+  \item \textbf{NOM (Number of Methods - Número de Métodos)}: Esta métrica se refere ao tamanho de uma classe medindo a 
+    quantidade de operações de uma classe. Sua interpretação pode ser complicada. Um número excessivo de métodos pode 
+    representar falta de coesão e de potencial de reusabilidade da classe. Por outro lado, pode representar uma classe bem 
+    estruturada com operações bem definidas. Entretanto, a avaliação isolada desta métrica não permite este tipo de afirmação.
+  \item \textbf{NPA (Number of Public Attributes - Número de Atributos Públicos)}: NPA mede basicamente o encapsulamento de 
+    uma classe. Independente da linguagem, é desejado que este valor seja o mais baixo possível, pois é recomendado que a 
+    manipulação de atributos de uma classe sejam realizados por métodos de acesso e operacionais.
+  \item \textbf{NPM (Number of Public Methods - Número de Métodos Públicos)}: Esta métrica é muito importante para a 
+    compreensão da abstração da classe, pois mede diretamente o tamanho da interface de acesso à mesma. NPM pode ser melhor
+    utilizada para compreender o potencial de reusabilidade e coesão de uma classe do que a métrica NOM isoladamente.
+  \item \textbf{ANPM (Average Number of Parameters per Method - Média de Parâmetros por Método)}: Essa métrica calcula a 
+    média de parâmetros dos métodos da classe, onde não se deseja um valor alto.
+  \item \textbf{MNPM (Maximum Number of Parameters per Method - Número Máximo de Parâmetros por Método)}: Essa métrica 
+    corresponde à maior ocorrência de número de parâmetros dos métodos de uma classe.
+  \item \textbf{DIT (Depth of Inheritance Tree - Profundidade da Árvore de Herança)}: Está métrica consiste no número de 
+    classes ancestrais da classe em análise, sem considerar heranças provindas de frameworks ou bibliotecas. Para linguagens 
+    com herança múltipla, o valor desta métrica é o DIT da maior hierarquia.
+  \item \textbf{NOC (Number of Children - Número de Filhos)}: NOC consiste no número de filhos direto de uma classe.
+  \item \textbf{ACCM (Average Cyclomatic Complexity per Method - Média da Complexidade Ciclomática por Método)}: Esta métrica 
+    mede a complexidade média dos métodos de uma classe, baseando-se na complexidade dos fluxos de controle existente no método.
+  \item \textbf{RFC (Response For a Class - Resposta de uma Classe)}: Esta métrica mede a complexidade de uma classe contando 
+    o número de métodos que um objeto de uma classe pode invocar, tanto métodos internos quanto de outras classes.
+  \item \textbf{ACC (Afferent Connections per Class - Conexões Aferentes por Classe)}: Esta métrica mede a conectividade de 
+    uma classe a partir da contagem de quantas classes do sistema acessam um atributo ou método da classe em análise. Caso o
+    valor de ACC de uma classe seja alto, modificações em sua estrutura podem afetar mais classes.
+  \item \textbf{CBO (Coupling Between Objects - Acoplamento Entre Objetos)}: Esta métrica calcula de quantas classes a classe 
+    em análise depende, sendo a recíproca da ACC.
+  \item \textbf{COF (Coupling Factor - Fator de Acoplamento)}: Esta métrica é a razão entre o número acoplamento existente que 
+    não sejam provindos de herança e do número total de possíveis acoplamentos. O máximo de acoplamento possível acontece 
+    quando todas as classes estão e são acopladas com as outras classes do projeto.
+  \item \textbf{LCOM4 (Lack of Cohesion in Methods - Ausência de Coesões em Métodos)}: Esta métrica cálcula o número de 
+    componentes conectados em uma classe. Um componente conectado consiste em um conjunto de métodos relacionados. Dois
+    métodos são relacionados se ambos acessam as mesmas variáveis da classe ou um método invoca ao outro.
+\end{itemize}
+
+Acima foram apresentadas métricas de design atreladas ao tamanho, coesão e acoplamento e atributos estruturais, que dão uma
+visão geral sobre a qualidade do design projetado e implementado.
+
+Apesar de apresentadas neste trabalho algumas métricas de design, e a sua importância por ter associação direta com algumas 
+vulnerabilidades, esse não é o foco do trabalho. O foco do estudo são as métricas de vulnerabilidade de código fonte que serão 
+apresentadas na seção a seguir.
+
+\section{Métricas de Vulnerabilidade de Código Fonte}
 
