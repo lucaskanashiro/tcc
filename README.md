@@ -2,7 +2,8 @@
 
 Aluno: Lucas Kanashiro Duarte 
 
-Título: ???
+Título: Valores frequentes de métricas de vulnerabilidade de código fonte em projetos de software livre: Uma análise para
+valores de referência
 
 Orientador: Prof. Dr. Paulo Roberto Miranda Meirelles
 
