@@ -149,9 +149,48 @@ de design que são possíveis de obter com o uso de ferramentas automatizadas pa
 Acima foram apresentadas métricas de design atreladas ao tamanho, coesão e acoplamento e atributos estruturais, que dão uma
 visão geral sobre a qualidade do design projetado e implementado.
 
+As métricas de design possuem relevância nesse trabalho pelo fato de que existem três causas básicas que podem surgir 
+vulnerabilidades em um software, sendo elas erros de implementação, falhas de design e erros de configuração ou infraestrutura
+do sistema ~\cite{malerba2010}. Portanto, as métricas de design possuem um papel importante para se evitar vulnerabilidades 
+em um software.
+
 Apesar de apresentadas neste trabalho algumas métricas de design, e a sua importância por ter associação direta com algumas 
 vulnerabilidades, esse não é o foco do trabalho. O foco do estudo são as métricas de vulnerabilidade de código fonte que serão 
 apresentadas na seção a seguir.
 
 \section{Métricas de Vulnerabilidade de Código Fonte}
+
+No mundo atual, onde praticamente todos estão interligados através da Internet, devemos nos preocupar cada vez mais com a 
+segurança dos softwares utilizados. Uma simples falha de segurança em um software pode causar desde danos pessoais, como perca 
+de arquivos pessoais, até mesmo perca de capital por parte de uma empresa multinacional. Sabendo que vulnerabilidade é um 
+conjunto de condições que podem levar a violação de uma política de segurança explícita ou implícita 
+~\cite{seacord&householder2005}, necessita-se, no contexto atual, de métricas de software voltadas especificamente para 
+vulnerabilidades de código fonte, onde será possível monitorar de maneira mais clara e metódica o quão seguro é o software que 
+está sendo desenvolvido ou analisado.
+
+As métricas de vulnerabilidade de código fonte, se utilizadas adequadamente no processo de desenvolvimento de software, evitam
+brechas para \textit{exploits} e ataques. Sendo \textit{exploit} um software ou uma técnica que tira vantagem de uma 
+vulnerabilidade para violar uma política de segurança ~\cite{seacord&householder2005} e ataque uma série de passos intencionais 
+seguidos por um atacante para violar uma política de segurança ~\cite{howard&longstaff98}. Um estudo de caso que exemplifica 
+um cenário de não utilização de métricas de vulnerabilidade de código fonte e que esse fator foi preponderante para abrir
+brechas para possíveis atacantes, foi o caso apresentado por ~\cite{aranha2012} no relatório sobre vulnerabilidades 
+encontradas no software da urna eletrônica brasileira. Nesse caso, a utilização de ferramentas de análise estática de código
+fonte voltadas para vulnerabilidades é essencial para que esse tipo de falha seja encontrada durante o período de 
+desenvolvimento do software, e não depois da sua liberação e colocação em produção.
+
+Tendo em vista a importância do monitoramento de métricas de vulnerabilidade de software, a seguir, serão apresentadas algumas
+métricas dessa categoria:
+
+\begin{itemize}
+  \item
+\end{itemize}
+
+As métricas apresentadas acima são objetivas; primitivas e derivadas; e racionais. Lembrando que o valor dessas métricas
+representam a quantidade de vezes que foram encontrados esses cenários de vulnerabilidade no código fonte do software em 
+questão.
+
+No decorrer do trabalho será apresentada a forma que se dará a definição dos valores de referência para acompanhamento dessas
+métricas, já que, como foi apresentado, é essencial o bom monitoramento das mesmas. Os valores de referências servirão
+de insumo para tomada de decisão após a extração das métricas, onde o engenheiro de software irá definir se o valor daquela
+métrica em específico é aceitável ou não, e com isso, tomar ações corretivas se necessário.
 
