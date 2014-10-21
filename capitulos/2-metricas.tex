@@ -182,9 +182,15 @@ Tendo em vista a importância do monitoramento de métricas de vulnerabilidade d
 métricas dessa categoria voltadas principalmente para implementações utilizando as linguagens de programação C e C++:
 
 \begin{itemize}
-  \item \textbf{AN (Argument with 'nonnull' attribute passed null - Argumento com atributo não nulo passado nulo)}
-  \item \textbf{ASOM (Allocator sizeof operand mismatch - Operador incompatível com alocador sizeof)}
-  \item \textbf{AUV (Assigned value is garbage or undefined - Valor atribuído é lixo ou indefinido)}
+  \item \textbf{AN (Argument with 'nonnull' attribute passed null - Argumento com atributo não nulo passado nulo):} Ocorre
+    quando uma função/método manipular um atributo sem valida-lo, acreditando que o mesmo não será nulo, e o argumento passado
+    na chamada da função é nulo.
+  \item \textbf{ASOM (Allocator sizeof operand mismatch - Operador incompatível com alocador sizeof)}: Ocorre quando o tipo
+    da variável (por exemplo \textit{int}, \textit{char}, \textit{float}, \textit{double}) passado para a função 
+    \textit{sizeof()} é inconsistente com o que foi passado para funções como \textit{malloc()}, \textit{calloc()} e 
+    \textit{realloc()}.
+  \item \textbf{AUV (Assigned value is garbage or undefined - Valor atribuído é lixo ou indefinido)}: Ocorre quando o valor 
+    atribuído a uma variável é lixo ou indefinido.
   \item \textbf{BD (Bad deallocator - Desalocador ruim)}
   \item \textbf{BF (Bad free - Liberação ruim)}
   \item \textbf{DA (Dead assignment - Atribuição morta)}
