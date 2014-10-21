@@ -179,10 +179,31 @@ fonte voltadas para vulnerabilidades é essencial para que esse tipo de falha se
 desenvolvimento do software, e não depois da sua liberação e colocação em produção.
 
 Tendo em vista a importância do monitoramento de métricas de vulnerabilidade de software, a seguir, serão apresentadas algumas
-métricas dessa categoria:
+métricas dessa categoria voltadas principalmente para implementações utilizando as linguagens de programação C e C++:
 
 \begin{itemize}
-  \item
+  \item \textbf{AN (Argument with 'nonnull' attribute passed null - Argumento com atributo não nulo passado nulo)}
+  \item \textbf{ASOM (Allocator sizeof operand mismatch - Operador incompatível com alocador sizeof)}
+  \item \textbf{AUV (Assigned value is garbage or undefined - Valor atribuído é lixo ou indefinido)}
+  \item \textbf{BD (Bad deallocator - Desalocador ruim)}
+  \item \textbf{BF (Bad free - Liberação ruim)}
+  \item \textbf{DA (Dead assignment - Atribuição morta)}
+  \item \textbf{DBZ (Divisions by zero - Divisão por zero)}
+  \item \textbf{DF (Double free - Liberação dupla)}
+  \item \textbf{DNP (Dereference of null pointer - Desreferencia de ponteiro nulo)}
+  \item \textbf{DUPV (Dereference of undefined pointer value - Desreferencia ou indefinição do valor do ponteiro)}
+  \item \textbf{FGBO (Potential buffer overflow in call to 'gets' - Potencial buffer overflow na chamada de 'gets')}
+  \item \textbf{MLK (Memory leak - Vazamento de memória)}
+  \item \textbf{OBAA (Out-of-bound array access - Acesso de array fora do limite)}
+  \item \textbf{OSF (Offset free - Liberação com deslocamento)}
+  \item \textbf{PITFC (Potential insecure temporary file in call 'mktemp' - Potencial insegurança de arquivo temporário na
+    chamada 'mktemp')}
+  \item \textbf{ROGU (Result of operation is garbage or undefined - Resultado da operação é lico ou indefinido)}
+  \item \textbf{RSVA (Return of stack variable address - Retorno de endereço de uma variável da pilha)}
+  \item \textbf{SAIGV (Stack address stored into global variable - Endereço da pilha armazendo em variável global)}
+  \item \textbf{UA (Undefined allocation of 0 bytes - Alocação indefinida de 0 bytes)}
+  \item \textbf{UAF (Use-after-free - Uso depois da liberação)}
+  \item \textbf{UAV (Uninitialized argument value - Valor do argumento não inicializado)}
 \end{itemize}
 
 As métricas apresentadas acima são objetivas; primitivas e derivadas; e racionais. Lembrando que o valor dessas métricas
