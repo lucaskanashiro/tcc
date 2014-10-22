@@ -178,43 +178,168 @@ encontradas no software da urna eletrônica brasileira. Nesse caso, a utilizaç�
 fonte voltadas para vulnerabilidades é essencial para que esse tipo de falha seja encontrada durante o período de 
 desenvolvimento do software, e não depois da sua liberação e colocação em produção.
 
-Tendo em vista a importância do monitoramento de métricas de vulnerabilidade de software, a seguir, serão apresentadas algumas
-métricas dessa categoria voltadas principalmente para implementações utilizando as linguagens de programação C e C++:
+Tendo em vista a importância do monitoramento de métricas de vulnerabilidade de software, a seguir, serão apresentados alguns
+cenários de métricas dessa categoria voltadas principalmente para implementações utilizando as linguagens de programação C e 
+C++, que dão maior liberdade na implementação do software:
 
 \begin{itemize}
   \item \textbf{AN (Argument with 'nonnull' attribute passed null - Argumento com atributo não nulo passado nulo):} Ocorre
     quando uma função/método manipular um atributo sem valida-lo, acreditando que o mesmo não será nulo, e o argumento passado
-    na chamada da função é nulo.
+    na chamada da função é nulo, como pode ser visto no trecho de código \ref{codigoAN}.
+
+    \begin{lstlisting}[caption={Código exemplo AN}, label=codigoAN]
+  int testeAN(int *lista)
+  {
+      return lista[0];     
+  }
+  
+  int *p = NULL;
+  testeAN(p);
+    \end{lstlisting}
+
   \item \textbf{ASOM (Allocator sizeof operand mismatch - Operador incompatível com alocador sizeof)}: Ocorre quando o tipo
     da variável (por exemplo \textit{int}, \textit{char}, \textit{float}, \textit{double}) passado para a função 
-    \textit{sizeof()} é inconsistente com o que foi passado para funções como \textit{malloc()}, \textit{calloc()} e 
-    \textit{realloc()}.
+    \textit{sizeof()} é inconsistente com o \textit{type cast} feito nas funções \textit{malloc()}, \textit{calloc()} e 
+    \textit{realloc()}, como pode ser visto no trecho de código \ref{codigoASOM}.
+
+    \begin{lstlisting}[caption={Código exemplo ASOM}, label=codigoASOM]
+  int *p = (float *)malloc(10*sizeof(int));
+    \end{lstlisting}
   \item \textbf{AUV (Assigned value is garbage or undefined - Valor atribuído é lixo ou indefinido)}: Ocorre quando o valor 
-    atribuído a uma variável é lixo ou indefinido.
-  \item \textbf{BD (Bad deallocator - Desalocador ruim)}
-  \item \textbf{BF (Bad free - Liberação ruim)}
-  \item \textbf{DA (Dead assignment - Atribuição morta)}
-  \item \textbf{DBZ (Divisions by zero - Divisão por zero)}
-  \item \textbf{DF (Double free - Liberação dupla)}
+    atribuído a uma variável é lixo ou indefinido. Exemplo no trecho de código \ref{codigoAUV}.
+
+    \begin{lstlisting}[caption={Código exemplo AUV}, label=codigoAUV]
+  int a, b, soma;
+  soma = a + b;
+    \end{lstlisting}
+  \item \textbf{BD (Bad deallocator - Desalocador ruim)}: Ocorre quando a forma que é desalocada a memória não condiz como a
+    forma em que a mesma foi alocada, vide exemplo no trecho de código \ref{codigoBD}.
+
+    \begin{lstlisting}[caption={Código exemplo BD}, label=codigoBD]
+  char *buff = new char;
+  delete[] buff;
+    \end{lstlisting}
+  \item \textbf{BF (Bad free - Liberação ruim)}: Ocorre quando há a tentativa de liberar uma área de memória que nunca foi
+    alocada, geralmente quando é passada uma referência para um ponteiro e confundindo o desenvolvedor. Um exemplo é o trecho 
+    de código \ref{codigoBF}.
+
+    \begin{lstlisting}[caption={Código exemplo BF}, label=codigoBF]
+  char a[4];
+  char *b = &a[0];
+
+  free(b);
+    \end{lstlisting}
+  \item \textbf{DBZ (Divisions by zero - Divisão por zero)}: Ocorre quando há operações de divisão onde o denominador é igual
+    a zero. O exemplo de trecho de código \ref{codigoDBZ} apresenta esse cenário.
+
+    \begin{lstlisting}[caption={Código exemplo DBZ}, label=codigoDBZ]
+  double divide(double numerador, double denominador)
+  {
+      return numerador/denominador;
+  }
+
+  double valor = divide(1.0,0.0);
+    \end{lstlisting}
+  \item \textbf{DF (Double free - Liberação dupla)}: Ocorre quando um ponteiro que aponta para uma região de memória 
+    anteriormente alocada é desalocado duas vezes no mesmo contexto. O trecho de código \ref{codigoDF} apresenta um exemplo
+    desse cenário.
+
+    \begin{lstlisting}[caption={Código exemplo DF}, label=codigoDF]
+  int *p = new int;
+
+  delete p;
+  deletep;
+    \end{lstlisting}
   \item \textbf{DNP (Dereference of null pointer - Desreferencia de ponteiro nulo)}
   \item \textbf{DUPV (Dereference of undefined pointer value - Desreferencia ou indefinição do valor do ponteiro)}
   \item \textbf{FGBO (Potential buffer overflow in call to 'gets' - Potencial buffer overflow na chamada de 'gets')}
   \item \textbf{MLK (Memory leak - Vazamento de memória)}
   \item \textbf{OBAA (Out-of-bound array access - Acesso de array fora do limite)}
-  \item \textbf{OSF (Offset free - Liberação com deslocamento)}
+  \item \textbf{OSF (Offset free - Liberação com deslocamento)}: Ocorre quando a liberação da região de memória é feita de 
+    forma incompleta, no momento da liberação é feito um deslocamento, deixando para trás um região de memória que não será
+    desalocada. Exemplo no trecho de código \ref{codigoOSF}.
+
+    \begin{lstlisting}[caption={Código exemplo OSF}, label=codigoOSF]
+  float *p = new float[10];
+
+  delete[] (++p);
+    \end{lstlisting}
   \item \textbf{PITFC (Potential insecure temporary file in call 'mktemp' - Potencial insegurança de arquivo temporário na
     chamada 'mktemp')}
   \item \textbf{ROGU (Result of operation is garbage or undefined - Resultado da operação é lico ou indefinido)}
-  \item \textbf{RSVA (Return of stack variable address - Retorno de endereço de uma variável da pilha)}
-  \item \textbf{SAIGV (Stack address stored into global variable - Endereço da pilha armazendo em variável global)}
-  \item \textbf{UA (Undefined allocation of 0 bytes - Alocação indefinida de 0 bytes)}
-  \item \textbf{UAF (Use-after-free - Uso depois da liberação)}
-  \item \textbf{UAV (Uninitialized argument value - Valor do argumento não inicializado)}
+  \item \textbf{RSVA (Return of stack variable address - Retorno de endereço de uma variável da pilha)}: Ocorre quando uma
+    função/método retorna um ponteiro para uma variável de escopo apenas da própria função/método, como apresentado no trecho
+    de código \ref{codigoRSVA}.
+
+    \begin{lstlisting}[caption={Código exemplo RSVA}, label=codigoRSVA]
+  char testeRSVA()
+  {
+      char letra = 'a';
+      return &letra;
+  }
+    \end{lstlisting}
+  \item \textbf{SAIGV (Stack address stored into global variable - Endereço da pilha armazendo em variável global)}: Ocorre
+    quando o endereço de uma variável de escopo de função/método é passada para uma variável global, podendo assim ser acessada 
+    fora do seu escopo. Esse cenário é aprensentado no trecho de código \ref{codigoSAIGV}.
+
+    \begin{lstlisting}[caption={Código exemplo SAIGV}, label=codigoSAIGV]
+  char *pointer;
+
+  int getWord(void)
+  {
+      char word[] = "World";
+      pointer = word;
+      return strlen(pointer);
+  }
+    \end{lstlisting}
+  \item \textbf{UA (Undefined allocation of 0 bytes - Alocação indefinida de 0 bytes)}: Ocorre quando é alocado 0 bytes para
+    um ponteiro, vide trecho de código \ref{codigoUA}.
+
+    \begin{lstlisting}[caption={Código exemplo UA}, label=codigoUA]
+  void *p = malloc(1);
+  p = realloc(p,0);
+    \end{lstlisting}
+  \item \textbf{UAF (Use-after-free - Uso depois da liberação)}: Ocorre quando um ponteiro é utilizado após a região de memória
+    que ele apontava tenha sido desalocada, exemplo no trecho de código \ref{codigoUAF}.
+
+    \begin{lstlisting}[caption={Código exemplo UAF}, label=codigoUAF]
+  class Pessoa{
+      public:
+          void teste();
+  };
+
+  int main()
+  {
+      Pessoa *p = new Pessoa;
+
+      delete p;
+      p->teste();
+
+      return 0;
+  }
+    \end{lstlisting}
+  \item \textbf{UAV (Uninitialized argument value - Valor do argumento não inicializado)}: Ocorre quando é passado um parâmetro
+    para uma função e o mesmo não foi inicializado, como apresentado no trecho de código \ref{codigoUAV}.
+
+    \begin{lstlisting}[caption={Código exemplo UAV}, label=codigoUAV]
+  void testeUAV(int arg)
+  {
+      return;
+  }
+
+  int main()
+  {
+      int arg_uninitialized;
+      testeUAV(arg_uninitialized);
+      
+      return 0;
+  }
+    \end{lstlisting}
 \end{itemize}
 
-As métricas apresentadas acima são objetivas; primitivas e derivadas; e racionais. Lembrando que o valor dessas métricas
-representam a quantidade de vezes que foram encontrados esses cenários de vulnerabilidade no código fonte do software em 
-questão.
+As métricas relacionadas aos cenários acima são objetivas; primitivas e derivadas; e racionais. Lembrando que o valor dessas 
+métricas representam a quantidade de vezes que foram encontrados esses cenários de vulnerabilidade no código fonte do software 
+em questão.
 
 No decorrer do trabalho será apresentada a forma que se dará a definição dos valores de referência para acompanhamento dessas
 métricas, já que, como foi apresentado, é essencial o bom monitoramento das mesmas. Os valores de referências servirão
