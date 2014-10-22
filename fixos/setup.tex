@@ -18,3 +18,55 @@
 \setlength{\parindent}{1.3cm}
 \setlength{\parskip}{0.2cm}  
 \makeindex
+
+
+%--------------------------------------------
+%Definições para código com fundo listrado
+\newcommand\realnumberstyle[1]{#1}
+\makeatletter
+\newcommand{\zebra}[3]{%
+    {\realnumberstyle{#3}}%
+    \begingroup
+    \lst@basicstyle
+    \ifodd\value{lstnumber}%
+        \color{#1}%
+    \else
+        \color{#2}%
+    \fi
+        \rlap{
+        \color@block{0.94\textwidth}{\ht\strutbox}{\dp\strutbox}%
+        \hspace*{\lst@numbersep}%
+        }%
+    \endgroup
+}
+\makeatother
+\renewcommand\lstlistingname{Código}
+
+\DeclareCaptionFormat{listing}{\vskip1pt\rule{\dimexpr\textwidth\relax}{0.4pt}\par\vskip1pt{\centering#1#2#3}}
+\captionsetup[lstlisting]{format=listing,singlelinecheck=false, margin=0pt, font={sf},labelsep=space,labelfont=bf}
+
+\DeclareMathVersion{sans}
+\SetSymbolFont{operators}{sans}{OT1}{cmbr}{m}{n}
+\SetSymbolFont{letters}  {sans}{OML}{cmbrm}{m}{it}
+\SetSymbolFont{symbols}  {sans}{OMS}{cmbrs}{m}{n}
+
+\lstnewenvironment{sflisting}[1][]
+  {\lstset{#1}\mathversion{sans}}{}
+
+\lstset{%
+language=C++,           %linguagem
+numbers=left,           %posição dos números
+stepnumber=1,           %frequencia de aparição dos números
+numbersep=5pt,
+numberstyle=\zebra{gray!15}{white!35},
+basewidth={0.6em,0.45em},
+fontadjust=true,
+mathescape=true,
+tabsize=4,
+commentstyle=\color{blue},
+literate={á}{{\'a}}1 {à}{{\`a}}1 {ã}{{\~a}}1 {é}{{\'e}}1 {É}{{\'E}}1 {ê}{{\^e}}1 {õ}{{\~o}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ç}{{\c c}}1 {³}{{$^3$}}1 {Ω}{{$\Omega$}}1,
+breaklines=true,
+showstringspaces=false,
+stringstyle=\color{cyan},
+basicstyle=\small\ttfamily}
+
