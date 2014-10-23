@@ -83,7 +83,7 @@ operações matemáticas ~\cite{meirelles2013}.
 No momento de definição de uma métrica de software é necessário pensar na classificação da mesma levando em consideração
 todas as dimensões apresentadas, deve-se definir a forma de obtenção, valoração e escala.
 
-Neste trabalho, serão trabalhadas em geral com métricas objetivas; primitivas e derivadas; e racional. Tendo em vista que o 
+Neste trabalho, serão trabalhadas em geral métricas objetivas; primitivas e derivadas; e racional. Tendo em vista que o 
 foco são métricas de código fonte que serão coletadas de forma automatizada por ferramentas especializadas.
 
 \section{Métricas de Design de Código Fonte}
@@ -209,8 +209,8 @@ C++, que dão maior liberdade na implementação do software:
     atribuído a uma variável é lixo ou indefinido. Exemplo no trecho de código \ref{codigoAUV}.
 
     \begin{lstlisting}[caption={Código exemplo AUV}, label=codigoAUV]
-  int a, b, soma;
-  soma = a + b;
+  int a, b;
+  a = b;
     \end{lstlisting}
   \item \textbf{BD (Bad deallocator - Desalocador ruim)}: Ocorre quando a forma que é desalocada a memória não condiz como a
     forma em que a mesma foi alocada, vide exemplo no trecho de código \ref{codigoBD}.
@@ -250,11 +250,74 @@ C++, que dão maior liberdade na implementação do software:
   delete p;
   deletep;
     \end{lstlisting}
-  \item \textbf{DNP (Dereference of null pointer - Desreferencia de ponteiro nulo)}
-  \item \textbf{DUPV (Dereference of undefined pointer value - Desreferencia ou indefinição do valor do ponteiro)}
-  \item \textbf{FGBO (Potential buffer overflow in call to 'gets' - Potencial buffer overflow na chamada de 'gets')}
-  \item \textbf{MLK (Memory leak - Vazamento de memória)}
-  \item \textbf{OBAA (Out-of-bound array access - Acesso de array fora do limite)}
+  \item \textbf{DNP (Dereference of null pointer - Desreferencia de ponteiro nulo)}: Ocorre quando é desreferenciado um 
+    ponteiro que espera-se que seja válido, mas na verdade ele é nulo, vide exemplo do trecho de código \ref{codigoDNP}.
+
+    \begin{lstlisting}[caption={Código exemplo DNP}, label=codigoDNP]
+  class A {
+      public:
+          int x;
+  };
+
+  void test() {
+      A *p = 0;
+      int k = p->x;
+  } 
+    \end{lstlisting}
+  \item \textbf{DUPV (Dereference of undefined pointer value - Desreferencia de valor do ponteiro indefinido)}: Ocorre 
+    quando é acessado um valor que determinado ponteiro referência entretanto o mesmo ainda não foi definido, assim como é
+    apresentado no trecho de código \ref{codigoDUPV}.
+
+    \begin{lstlisting}[caption={Código exemplo DUPV}, label=codigoDUPV]
+  class A {
+      public:
+          A(int x)
+          {
+              this->x = x;
+          }
+          int x,y;
+  };
+
+  void test() {
+      A *p = new A;
+      p->A(10);
+      int k = p->y;
+  } 
+    \end{lstlisting}
+  \item \textbf{FGBO (Potential buffer overflow in call to 'gets' - Potencial buffer overflow na chamada de 'gets')}: Ocorre
+    quando é utilizada a função \textit{gets()}, pois a mesma não valida o tamanho do buffer, podendo causar um \textit{buffer
+    overflow}, assim como é apresentado no trecho de código \ref{codigoFGBO}.
+
+    \begin{lstlisting}[caption={Código exemplo FGBO}, label=codigoFGBO]
+  void testeFGBO() {
+      char buff[1024];
+      gets(buff);
+  } 
+    \end{lstlisting}
+  \item \textbf{MLK (Memory leak - Vazamento de memória)}: Ocorre quando um espaço de memória não pode mais ser utilizado
+    porque a referência para o mesmo foi perdida, um exemplo seria a não liberação de um espaço de memória alocado como está
+    apresentado no trecho de código \ref{codigoMLK}.
+
+    \begin{lstlisting}[caption={Código exemplo MLK}, label=codigoMLK]
+  void testeMLK()
+  {
+      int *p = malloc(5);
+
+      if(p) 
+          return;
+  }
+    \end{lstlisting}
+  \item \textbf{OBAA (Out-of-bound array access - Acesso de array fora do limite)}: Ocorre quando é acessado uma posição de
+    memória fora do intervalo definido para o \textit{array}, podendo acessar espaço de memória que contenha lixo ou 
+    indefinido, abrindo brechas para atacantes. O exemplo no trecho de código \ref{codigoOBAA} representa esse cenário.
+
+    \begin{lstlisting}[caption={Código exemplo OBAA}, label=codigoOBAA]
+  int testeOBAA()
+  {
+    int array[2] = {0};
+    return array[2];
+  }
+    \end{lstlisting}
   \item \textbf{OSF (Offset free - Liberação com deslocamento)}: Ocorre quando a liberação da região de memória é feita de 
     forma incompleta, no momento da liberação é feito um deslocamento, deixando para trás um região de memória que não será
     desalocada. Exemplo no trecho de código \ref{codigoOSF}.
@@ -265,8 +328,24 @@ C++, que dão maior liberdade na implementação do software:
   delete[] (++p);
     \end{lstlisting}
   \item \textbf{PITFC (Potential insecure temporary file in call 'mktemp' - Potencial insegurança de arquivo temporário na
-    chamada 'mktemp')}
-  \item \textbf{ROGU (Result of operation is garbage or undefined - Resultado da operação é lico ou indefinido)}
+    chamada 'mktemp')}: Ocorre quando há a chamada da função \textit{mktemp()}, já que a mesma já está obsoleta e há uma 
+    insegurança associada a criação de arquivos temporários devido a fraca randomização na nomeação dos arquivos, onde outra
+    aplicação poderia gerar o mesmo arquivo temporário se passado o mesmo prefixo, nessa caso deve-se utilizar a função 
+    \textit{mkstemp()}. Exemplo desse cenário no trecho de código \ref{codigoPITFC}
+
+    \begin{lstlisting}[caption={Código exemplo PITFC}, label=codigoPITFC]
+  void testePITFC() {
+      char *x = mktemp("/tmp/zxcv"); 
+  }
+    \end{lstlisting}
+  \item \textbf{ROGU (Result of operation is garbage or undefined - Resultado da operação é lixo ou indefinido)}: Ocorre quando
+    o resultado de uma operação é lixo ou indefinido, provavelmente devido algum parâmetro da operação ser lixo ou indefinido, 
+    assim como é exemplificado no trecho de código \ref{codigoROGU}.
+
+    \begin{lstlisting}[caption={Código exemplo ROGU}, label=codigoROGU]
+  int a, b=5;
+  int soma = a + b;
+    \end{lstlisting}
   \item \textbf{RSVA (Return of stack variable address - Retorno de endereço de uma variável da pilha)}: Ocorre quando uma
     função/método retorna um ponteiro para uma variável de escopo apenas da própria função/método, como apresentado no trecho
     de código \ref{codigoRSVA}.
