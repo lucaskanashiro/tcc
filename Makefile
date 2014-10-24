@@ -1,4 +1,4 @@
-TARGET = analise_metricas_vulnerabilidade.pdf
+TARGET = TCC.pdf
 
 BIBTEX = bibtex
 LATEX = latex
