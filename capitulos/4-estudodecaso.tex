@@ -1,3 +1,120 @@
 \chapter{Estudo de Caso} \label{estudodecaso}
 
-Estudo de Caso
+\section{Definição} \label{definicao_estudo}
+
+Definição estudo de caso.
+
+\section{Ferramentas}
+
+A seguir serão apresentadas as ferramentas que serão utilizadas para a realização do estudo de caso definido na sessão 
+\ref{definicao_estudo}.
+
+\subsection{Analizo}
+
+Analizo é um conjunto de ferramentas livre, multi-linguagem (C, C++, Java), realiza análise de código fonte de maneira 
+extensível e disponibiliza diferentes tipos de visualização. Ele suporta a extração e cálculo de um bom número de métricas de 
+código fonte, geração de gráficos de dependência e análise de evolução do software \cite{analizo}.
+
+A seguir as funcionalidades da ferramenta Analizo \footnote{Disponível em http://www.analizo.org/features.html}:
+
+\begin{itemize}
+  \item Analisar código-fonte escritos em C, C ++ e Java.
+  \item Extrair métricas de código-fonte.
+  \item Extrair métricas de uma grande quantidade de projetos em lote (\textit{batch mode}).
+  \item Extrair métricas de um repositório.
+  \item Desenhar gráfico de dependências.
+  \item Analisar evolução do software (analisa-se várias versões do software e uma matriz de evolução é produzida).
+\end{itemize}
+
+Será iniciado o processo de manutenção corretiva da funcionalidade de extração de métricas de vulnerabilidade de código fonte 
+para as linguagens C e C++, para que melhor atenda as necessidades deste trabalho. Outra funcionalidade que ainda está em 
+processo de desenvolvimento é a adição do suporte da linguagem \textit{Perl}.
+
+A ferramenta Analizo é facilmente extensível, desde extratores até formas de visualização. A figura \ref{archanalizo} mostra
+como está implementada a arquitetura em camadas da ferramenta \cite{analizoartigo}. Existem basicamente cinco módulos, o 
+\textit{Core} é o modulo responsável por atividades centrais como processamento, filtros e modelos por exemplo; 
+\textit{Extractor} é o módulo que contém os extratores utilizados, atualmente existem três: \textit{Clang}, \textit{Doxyparse}
+e \textit{Sloccount}; \textit{Metrics} é o módulo que contém a lógica para cálculo de todas as métricas, hoje em dia possuindo
+37 (trinta e sete) métricas de módulo e 4 (quatro) métricas globais; \textit{Output} é o módulo que será dada a saída da 
+ferramenta, atualmente existem opções de banco de dados e arquivo CSV; \textit{Tools} é o módulo que representa várias outras
+ferramentas que podem trabalhar tanto acima do \textit{Core} quanto acima dos outros módulos.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]
+      {figuras/analizo.eps}
+  \caption{Arquitetura da ferramenta Analizo}
+  \label{archanalizo}
+\end{figure}
+
+\subsection{Clang}
+
+Clang é um compilador \textit{front end} para as linguagens de programação C, C++ e \textit{Objective-C}. O Clang faz parte
+do projeto LLVM \textit{Open Source} e utiliza o mesmo comoa seu \textit{back end}. 
+
+O Clang possui algumas funcionalidades e metas disponíveis no seu respectivo \textit{site}\footnote{http://clang.llvm.org}, e
+algumas das principais metas são:
+
+\begin{itemize}
+  \item Rápida compilação e baixo uso de memória
+  \item Diagnóstico expressivos (exemplo, apresentar erros de uma maneira fácil para o usuário)
+  \item Compatibilidade com o GCC (\textit{GNU Compiler Collection})
+  \item Suportar diversos clientes (exemplo, análise estática e refatoração)
+  \item Código fonte base simples e de fácil entendimento ("\textit{hackable}")
+\end{itemize}
+
+Algumas dessas metas estão sendo atingidas, por exemplo, em um experimento feito por \cite{naroff2009} evidenciou o rápido
+tempo de compilação do Clang em comparação com o GCC. Foi feita a compilação do \textit{PostgreSQL} em computadores com 
+configuraçãoes de \textit{hardware} iguais e o resultado obtido é expresso pela figura \ref{clang_gcc}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\textwidth]
+      {figuras/clang_gcc.eps}
+  \caption{Análise de performance do Clang em comparação com o GCC}
+  \label{clang_gcc}
+\end{figure}
+
+O Clang vem sendo desenvolvido baseado na arquitetura do projeto LLVM, ele possui bibliotecas centrais e bibliotecas de 
+aplicativos, conforme é apresentado na figura \ref{clang_arch}. No contexto desse trabalho, o foco é a biblioteca de aplicativo
+\textit{Analysis}. A ideia dessa biblioteca é trazer alguns benefícios para os desenvolvedores, como o descobrimento de 
+\textit{bugs} o mais cedo possível; checar sistematicamente o código fonte; achar alguns \textit{bugs} mesmo na falta de caso
+de testes, no caso de trechos de código difíceis de serem testados \cite{kremenek2009}. 
+
+A análise estática realizada pelo Clang é inter-procedural, podendo achar inconsistências entre funções/métodos, para isso,
+é necessária a compilação do código fonte, onde nessa fase será construída a AST (\textit{Abstract Syntaxe Tree})
+\cite{kremenek2009}. Essa característica pode não ser muito atraente a primeira vista, pois para realizar a análise do código 
+fonte é necessário compila-lo, entretanto, pode ser um ponto positivo tendo em vista que a todo momento que for feita 
+construção do software a análise será feita, mesmo que essa questão tenha sido esquecida.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\textwidth]
+      {figuras/clang_arch.eps}
+  \caption{Arquitetura da ferramenta Clang}
+  \label{clang_arch}
+\end{figure}
+
+\subsection{\textit{Scripts} para análise estatística}
+
+Serão utilizados \textit{scripts}\footnote{Disponível em https://gitlab.com/paulormm/tese} em linguagem R
+\footnote{http://www.r-project.org/} que foram inicialmente desenvolvidos em \cite{meirelles2013}. Foi escolhida a linguagem R
+devido o seu foco e poder para a realiazação de análises estatísticas. O processo de análise estatística que será realizado
+por esses \textit{scripts} tentará identificar qual distribuição estatística melhor se encaixa nos dados referentes a 
+determinada métrica, são utilizadas as seguintes distribuições estatísticas:
+
+\begin{itemize}
+  \item Pareto
+  \item Pareto tipo 2
+  \item Exponencial
+  \item Gama
+  \item Weibull
+  \item Poison
+\end{itemize}
+
+Caso nenhuma das distribuições apresentadas consigam refletir os valores de uma determinada métrica de vulnerabilidade, os
+\textit{scripts} tentarão encontrar uma distribuição estatística que melhor se adeque. Gráficos de cada distribuição serão
+gerados como saída desse processo de análise estatística para melhor visualização dos dados. Como entrada teremos arquivos
+CSV (\textit{Comma Separeted Values}) com os valores das métricas a serem analisadas.
+
+

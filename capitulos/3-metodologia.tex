@@ -4,22 +4,7 @@ Pretende-se nesse trabalho fazer uma análise qualitativa, utilizando distribui�
 se associa a cada métrica de vulnerabilidade e possivelmente passando por percentis dos valores das mesmas. Para isso, serão
 selecionados projetos de software livre para a realização de um estudo de caso especificado na seção \ref{estudodecaso}.
 Serão coletadas métricas de vulnerabilidade de código fonte e as mesmas passarão por um processo de análise estatística
-automatizado, utilizando \textit{scripts}\footnote{Disponível em https://gitlab.com/paulormm/tese} que foram desenvolvidos em 
-\cite{meirelles2013}. Esse processo de análise estatística tentará identificar qual distribuição estatística melhor se encaixa 
-nos dados referentes a determinada métrica, são utilizadas as seguintes distribuições estatísticas:
-
-\begin{itemize}
-  \item Pareto
-  \item Pareto tipo 2
-  \item Exponencial
-  \item Gama
-  \item Weibull
-  \item Poison
-\end{itemize}
-
-Caso nenhuma das distribuições apresentadas consigam refletir os valores de uma determinada métrica de vulnerabilidade, os
-\textit{scripts} tentarão encontrar uma distribuição estatística que melhor se adeque. Gráficos de cada distribuição serão
-gerados como saída desse processo de análise estatística para melhor visualização dos dados.
+automatizado. 
 
 De posse desses dados também espera-se determinar valores frequentes para as referidas métricas de vulnerabilidades de acordo
 com a classe de sua aplicação.
