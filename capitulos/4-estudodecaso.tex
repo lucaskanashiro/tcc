@@ -2,11 +2,46 @@
 
 \section{Definição} \label{definicao_estudo}
 
-Definição estudo de caso.
+O objetivo dessa sessão é definir o processo de execução do estudo de caso que será realizado neste trabalho, com o intuito 
+de melhor entender como deve-se dar o acompanhamento de métricas de vulnerabilidade de código fonte em projetos de software
+livre. 
 
-\section{Ferramentas}
+Os requisitos para a seleção dos projetos de software que serão utilizados nesse estudo de caso são:
 
-A seguir serão apresentadas as ferramentas que serão utilizadas para a realização do estudo de caso definido na sessão 
+\begin{itemize}
+  \item Possuir uma licensa de software livre (código fonte disponível)
+  \item Ser implementado utilizando as linguagens C e/ou C++
+\end{itemize}
+
+Levando em consideração que todas as ferramentas indicadas na seção \ref{tools} estão disponíveis para serem utilizadas, o
+processo para execução desse estudo de caso segue o fluxograma \ref{processo_estudo_de_caso}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]
+      {figuras/estudo_de_caso_processo.eps}
+  \caption{Processo para execução do estudo de caso}
+  \label{processo_estudo_de_caso}
+\end{figure}
+
+A seguir a descrição das atividades do processo apresentado no fluxograma \ref{processo_estudo_de_caso}.
+
+\begin{enumerate}\label{desc_processo}
+  \item Selecionar projetos de software que atendam os requisitos desse estudo de caso
+  \item Obter código fonte dos projetos selecionados
+  \item Identificar como construir projetos selecionados 
+  \item Executar ferramenta de extração de métricas de vulnerabilidade de código fonte
+  \item Realizar análise estatísticas sobre as métricas extraidas
+  \item Analisar resultados gerados pela análise
+  \item Realizar conclusões
+\end{enumerate}
+
+Espera-se que esse seja um ciclo completo para execução do estudo de caso proposto, entretanto, é importante salientar que esse
+ciclo será executado mais de uma vez até a conclusão do referido trabalho.
+
+\section{Ferramentas} \label{tools}
+
+A seguir serão apresentadas as ferramentas que serão utilizadas para a realização do estudo de caso definido na seção 
 \ref{definicao_estudo}.
 
 \subsection{Analizo}
