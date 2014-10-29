@@ -2,19 +2,11 @@
 
 \section{Definição} \label{definicao_estudo}
 
-O objetivo dessa sessão é definir o processo de execução do estudo de caso que será realizado neste trabalho, com o intuito 
+O objetivo dessa sessão é definir o processo inicial de execução do estudo de caso que será realizado neste trabalho, com o intuito 
 de melhor entender como deve-se dar o acompanhamento de métricas de vulnerabilidade de código fonte em projetos de software
 livre. 
 
-Os requisitos para a seleção dos projetos de software que serão utilizados nesse estudo de caso são:
-
-\begin{itemize}
-  \item Possuir uma licensa de software livre (código fonte disponível)
-  \item Ser implementado utilizando as linguagens C e/ou C++
-\end{itemize}
-
-Levando em consideração que todas as ferramentas indicadas na seção \ref{tools} estão disponíveis para serem utilizadas, o
-processo para execução desse estudo de caso segue o fluxograma \ref{processo_estudo_de_caso}.
+O processo para execução desse estudo de caso segue o fluxograma \ref{processo_estudo_de_caso}.
 
 \begin{figure}[h]
   \centering
@@ -31,20 +23,20 @@ A seguir a descrição das atividades do processo apresentado no fluxograma \ref
   \item Obter código fonte dos projetos selecionados
   \item Identificar como construir projetos selecionados 
   \item Executar ferramenta de extração de métricas de vulnerabilidade de código fonte
-  \item Realizar análise estatísticas sobre as métricas extraidas
+  \item Realizar análise estatísticas sobre as métricas extraídas, incluindo tratamento dos dados se necessário
   \item Analisar resultados gerados pela análise
   \item Realizar conclusões
 \end{enumerate}
 
 Espera-se que esse seja um ciclo completo para execução do estudo de caso proposto, entretanto, é importante salientar que esse
-ciclo será executado mais de uma vez até a conclusão do referido trabalho.
+ciclo será executado uma vez, podendo ser alterado no próximo ciclo.
 
 \section{Ferramentas} \label{tools}
 
 A seguir serão apresentadas as ferramentas que serão utilizadas para a realização do estudo de caso definido na seção 
-\ref{definicao_estudo}.
+\ref{definicao_estudo} e seguindo a metodologia descrita na seção \ref{metod_estudo}.
 
-\subsection{Analizo}
+\subsection{Analizo} \label{analizo}
 
 Analizo é um conjunto de ferramentas livre, multi-linguagem (C, C++, Java), realiza análise de código fonte de maneira 
 extensível e disponibiliza diferentes tipos de visualização. Ele suporta a extração e cálculo de um bom número de métricas de 
@@ -82,7 +74,7 @@ ferramentas que podem trabalhar tanto acima do \textit{Core} quanto acima dos ou
   \label{archanalizo}
 \end{figure}
 
-\subsection{Clang}
+\subsection{Clang} \label{clang}
 
 Clang é um compilador \textit{front end} para as linguagens de programação C, C++ e \textit{Objective-C}. O Clang faz parte
 do projeto LLVM \textit{Open Source} e utiliza o mesmo comoa seu \textit{back end}. 
@@ -130,7 +122,7 @@ construção do software a análise será feita, mesmo que essa questão tenha s
   \label{clang_arch}
 \end{figure}
 
-\subsection{\textit{Scripts} para análise estatística}
+\subsection{\textit{Scripts} para análise estatística} \label{scripts}
 
 Serão utilizados \textit{scripts}\footnote{Disponível em https://gitlab.com/paulormm/tese} em linguagem R
 \footnote{http://www.r-project.org/} que foram inicialmente desenvolvidos em \cite{meirelles2013}. Foi escolhida a linguagem R
@@ -152,17 +144,37 @@ Caso nenhuma das distribuições apresentadas consigam refletir os valores de um
 gerados como saída desse processo de análise estatística para melhor visualização dos dados. Como entrada teremos arquivos
 CSV (\textit{Comma Separeted Values}) com os valores das métricas a serem analisadas.
 
-\section{Metodologia}
+\section{Metodologia} \label{metod_estudo}
 
-Pretende-se nesse trabalho fazer uma análise qualitativa, utilizando distribuições estatísticas para determinar qual melhor
-se associa a cada métrica de vulnerabilidade e possivelmente passando por percentis dos valores das mesmas. Para isso, serão
-selecionados projetos de software livre para a realização de um estudo de caso especificado na seção \ref{estudodecaso}.
-Serão coletadas métricas de vulnerabilidade de código fonte e as mesmas passarão por um processo de análise estatística
-automatizado. 
+Ao iniciar este trabalho havia uma hipótese sobre como deveria se comportar as métricas de vulnerabilidades em projetos de
+software livre, baseado no trabalho de \cite{meirelles2013}. A hipótese seria que esse novo tipo de métrica se comportaria
+semelhantemente às métricas de design, onde em geral se comportariam como distribuições estatísticas de cauda longa, e com
+isso, seria possível analisar os dados e fazer uma avaliação de forma quantitativa. Entretanto, durante o processo empírico
+de desenvolvimento deste estudo de caso viu-se que a natureza das métricas são diferentes. As métricas de design em sua grande
+maioria possuem valores significativos em todas as suas análises, tendo elas valoração zero ou não, já as métricas de 
+vulnerabilidades em grande parte das vezes possuem valoração zero pois não possuem significado, levando em conta que as mesmas
+representam a quantidade de cenários de vulnerabilidades presentes no código fonte em questão. Logo, nas métricas de 
+vulnerabilidades existirão vários zeros não significativos, atrapalhando uma análise similar a feita em \cite{meirelles2013}.
+Tendo isso em vista, decidiu-se então realizar uma análise qualitativa ao invés de quantitativa.
 
-De posse desses dados também espera-se determinar valores frequentes para as referidas métricas de vulnerabilidades de acordo
-com a classe de sua aplicação.
+O estudo de caso inicial realizado está seguindo as atividades definidas na seção \ref{definicao_estudo}.
 
-Após a geração de todas essas informações será feita uma síntese e conclusão de como deve se dar o monitoramento de métricas de 
-vulnerabilidade de código fonte dentro de projetos de software, assim podendo apontar trabalhos futuros.
+Os requisitos para a seleção dos projetos de software que serão utilizados nesse estudo de caso são:
 
+\begin{itemize}
+  \item Possuir uma licensa de software livre (código fonte disponível)
+  \item Ser implementado utilizando a(s) linguagem(ns) C e/ou C++
+  \item Ser conhecido por sofrer ataques de terceiros devido vulnerabilidades de código fonte
+\end{itemize}
+
+A ferramenta utilizada para extração de métricas de vulnerabilidades foi a Clang (\ref{clang}), entretanto espera-se que seja utilizada
+a ferramenta Analizo (\ref{analizo}), sendo essa uma contribuição deste trabalho. E os \textit{scripts} apresentados na seção 
+\ref{scripts} foram utilizados para a realização da análise estatística, tendo os dados passados por um processo de adequação do 
+formato esperado pelos mesmos.
+
+Ao final, como foi dito anteriormente, foi feita uma análise qualitativa dos resultados obtidos, que está apresentado na seção
+\ref{analise_estudo}
+
+\section{Análise qualitativa dos resultados obtidos} \label{analise_estudo}
+
+\section{Conclusão}
