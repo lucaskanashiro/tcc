@@ -167,14 +167,32 @@ Os requisitos para a seleção dos projetos de software que serão utilizados ne
   \item Ser conhecido por sofrer ataques de terceiros devido vulnerabilidades de código fonte
 \end{itemize}
 
+O código fonte de cada projeto foi obtido diretamente no site oficial de cada um dos projetos selecionados.
+
 A ferramenta utilizada para extração de métricas de vulnerabilidades foi a Clang (\ref{clang}), entretanto espera-se que seja utilizada
 a ferramenta Analizo (\ref{analizo}), sendo essa uma contribuição deste trabalho. E os \textit{scripts} apresentados na seção 
 \ref{scripts} foram utilizados para a realização da análise estatística, tendo os dados passados por um processo de adequação do 
-formato esperado pelos mesmos.
+formato esperado pelos mesmos, já que o \textit{report} padrão do Clang é um arquivo HTML (\textit{HyperText MarkUp Language}) e os 
+\textit{scripts} utilizados esperam como entrada arquivos CSV.
 
 Ao final, como foi dito anteriormente, foi feita uma análise qualitativa dos resultados obtidos, que está apresentado na seção
 \ref{analise_estudo}
 
 \section{Análise qualitativa dos resultados obtidos} \label{analise_estudo}
+
+Os projetos selecionados para realizar este estudo de caso foram os seguintes, levando em consideração os requisitos apresentados na
+seção \ref{metod_estudo}:
+
+\begin{itemize}
+  \item Bash
+  \item Firefox
+  \item Inetutils
+  \item Openssh
+  \item Openssl
+  \item Python2.7
+  \item Ruby-2.1
+\end{itemize}
+
+
 
 \section{Conclusão}
