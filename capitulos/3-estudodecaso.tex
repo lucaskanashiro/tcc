@@ -144,6 +144,31 @@ Caso nenhuma das distribuições apresentadas consigam refletir os valores de um
 gerados como saída desse processo de análise estatística para melhor visualização dos dados. Como entrada teremos arquivos
 CSV (\textit{Comma Separeted Values}) com os valores das métricas a serem analisadas.
 
+Outro tipo de análise que poderá ser feita com essa suíte de \textit{scripts} será relacionada aos percentis das métricas.
+Dada uma amostra (ou coleção de dados), os percentis são medidas que dividem a amostra ordenada (por ordem crescente dos dados) 
+em 100 partes, cada uma com uma percentagem de dados aproximadamente igual. Define-se percentil k, ${Q_k}$, 
+para k = 1, 2, ..., 99, como sendo o valor tal que k\% dos elementos da amostra são menores ou iguais a ${Q_k}$ e os restantes 
+(100-k)\% elementos da amostra são maiores ou iguais a ${Q_k}$ \cite{martins2013}. Os pencentis analisados possuem os seguintes
+limites:
+
+\begin{itemize}
+  \item 1\%
+  \item 5\%
+  \item 10\%
+  \item 25\%
+  \item 50\%
+  \item 75\%
+  \item 90\%
+  \item 95\%
+  \item 99\%
+\end{itemize}
+
+Uma métrica abaixo da faixa de 1\% é considerada na faixa mínima e acima de 99\% máxima. A saída serão gráficos dos percentis
+e um arquivo texto com a quantidade de valores dentro daquela faixa do percentil.
+
+Tendo os percentis das métricas será possível fazer uma análise qualitativa e tentar definir em qual faixa é aceitável ou não
+os valores das métricas de vulnerabilidade de código fonte.
+
 \section{Metodologia} \label{metod_estudo}
 
 Ao iniciar este trabalho havia uma hipótese sobre como deveria se comportar as métricas de vulnerabilidades em projetos de
@@ -169,11 +194,12 @@ Os requisitos para a seleção dos projetos de software que serão utilizados ne
 
 O código fonte de cada projeto foi obtido diretamente no site oficial de cada um dos projetos selecionados.
 
-A ferramenta utilizada para extração de métricas de vulnerabilidades foi a Clang (\ref{clang}), entretanto espera-se que seja utilizada
-a ferramenta Analizo (\ref{analizo}), sendo essa uma contribuição deste trabalho. E os \textit{scripts} apresentados na seção 
-\ref{scripts} foram utilizados para a realização da análise estatística, tendo os dados passados por um processo de adequação do 
-formato esperado pelos mesmos, já que o \textit{report} padrão do Clang é um arquivo HTML (\textit{HyperText MarkUp Language}) e os 
-\textit{scripts} utilizados esperam como entrada arquivos CSV.
+A ferramenta utilizada para extração de métricas de vulnerabilidades foi a Clang (\ref{clang}), entretanto espera-se que seja 
+utilizada a ferramenta Analizo (\ref{analizo}), sendo essa uma contribuição deste trabalho. E os \textit{scripts} apresentados 
+na seção \ref{scripts} foram utilizados para a realização da análise estatística, tendo os dados passados por um processo de 
+adequação do formato esperado pelos mesmos, já que o \textit{report} padrão do Clang é um arquivo HTML (\textit{HyperText MarkUp
+Language}) e os \textit{scripts} utilizados esperam como entrada arquivos CSV. Para essa adequação dos dados coletados foram
+utilizados \textit{scripts Perl} \footnote{Disponível em https://github.com/lucaskanashiro/clang\_parser\_html\_to\_csv}.
 
 Ao final, como foi dito anteriormente, foi feita uma análise qualitativa dos resultados obtidos, que está apresentado na seção
 \ref{analise_estudo}
@@ -193,6 +219,14 @@ seção \ref{metod_estudo}:
   \item Ruby-2.1
 \end{itemize}
 
+Devido a diferente natureza das métricas de vulnerabilidade, existem alguns pontos importantes que devem ser apresentados com
+relação aos resultados obtidos neste estudo de caso:
 
+\begin{itemize}
+  \item São apresentados apenas arquivos que apresentaram algum cenário de vulnerabilidade em seu conteúdo, os demais são
+    omitidos.
+  \item Mesmo um arquivo tendo apresentado algum cenário de vulnerabilidade, geralmente, a grande maioria das métricas 
+    relacionadas possuem valoração igual a zero;
+\end{itemize}
 
 \section{Conclusão}
