@@ -94,56 +94,48 @@ de desenvolvimento de software oportuniza além da aferição da qualidade do pr
 foi implementada determinada funcionalidade é repensada e reimplementada, de forma que melhore alguns atributos dos software,
 como manutenibilidade, testabilidade, a própria qualidade interna do software. Abaixo serão apresentadas as principais métricas
 de design que são possíveis de obter com o uso de ferramentas automatizadas para análise estática de código fonte 
-~\cite{arthur&carlos2014,meirelles2013}:
+~\cite{arthur&carlos2014,meirelles2013}, a nome completo de cada uma das métricas foi especificado na lista de abreviaturas e 
+siglas.
 
 \begin{itemize}
-  \item \textbf{LOC (Lines of Codes - Linhas de Código)}: LOC calcula o número de linhas executáveis, desconsiderando linhas 
+  \item \textbf{LOC}: Calcula o número de linhas executáveis, desconsiderando linhas 
     em branco e comentários. Esta é a métrica de tamanho mais comum. Entretanto, deve ser cuidadosamente usada e composta, pois
     os parâmetros de comparação não devem ser os mesmos quando se varia a linguagem e estilo de programação.
-  \item \textbf{(Total Number of Modules or Classes - Número Total de Módulos ou Classes)}: Esta métrica mensura o 
-    tamanho do software baseados na quantidade de módulos e classes, sendo menos sensível por linguagens de programação, nível 
-    de desenvolvedores e estilo de codificação.
-  \item \textbf{AMLOC (Average Method LOC - Média de Número de Linhas de Código por Método)}: Esta métrica avalia a distribuição
+  \item \textbf{AMLOC}: Esta métrica avalia a distribuição
     do código entre os métodos, sendo uma importante indicador de coesão, reutilização e outras características importantes. 
     Entretanto, assim como a LOC, deve ser avaliada considerando-se a linguagem e estilo de programação.
-  \item \textbf{NOA (Number of Attributes - Número de Atributos)}: NOA calcula o número de atributos de uma classe, sendo 
+  \item \textbf{NOA}: NOA calcula o número de atributos de uma classe, sendo 
     bastante importante para avaliar a coesão de uma classe.
-  \item \textbf{(Total Number of Modules or Classes - Número Total de Módulos ou Classes)}: Esta métrica mensura o tamanho do 
-    software baseados na quantidade de módulos e classes, sendo menos sensível por linguagens de programação, nível de
-    desenvolvedores e estilo de codificação.
-  \item \textbf{NOM (Number of Methods - Número de Métodos)}: Esta métrica se refere ao tamanho de uma classe medindo a 
+  \item \textbf{NOM}: Esta métrica se refere ao tamanho de uma classe medindo a 
     quantidade de operações de uma classe. Sua interpretação pode ser complicada. Um número excessivo de métodos pode 
     representar falta de coesão e de potencial de reusabilidade da classe. Por outro lado, pode representar uma classe bem 
     estruturada com operações bem definidas. Entretanto, a avaliação isolada desta métrica não permite este tipo de afirmação.
-  \item \textbf{NPA (Number of Public Attributes - Número de Atributos Públicos)}: NPA mede basicamente o encapsulamento de 
-    uma classe. Independente da linguagem, é desejado que este valor seja o mais baixo possível, pois é recomendado que a 
-    manipulação de atributos de uma classe sejam realizados por métodos de acesso e operacionais.
-  \item \textbf{NPM (Number of Public Methods - Número de Métodos Públicos)}: Esta métrica é muito importante para a 
-    compreensão da abstração da classe, pois mede diretamente o tamanho da interface de acesso à mesma. NPM pode ser melhor
-    utilizada para compreender o potencial de reusabilidade e coesão de uma classe do que a métrica NOM isoladamente.
-  \item \textbf{ANPM (Average Number of Parameters per Method - Média de Parâmetros por Método)}: Essa métrica calcula a 
-    média de parâmetros dos métodos da classe, onde não se deseja um valor alto.
-  \item \textbf{MNPM (Maximum Number of Parameters per Method - Número Máximo de Parâmetros por Método)}: Essa métrica 
-    corresponde à maior ocorrência de número de parâmetros dos métodos de uma classe.
-  \item \textbf{DIT (Depth of Inheritance Tree - Profundidade da Árvore de Herança)}: Está métrica consiste no número de 
-    classes ancestrais da classe em análise, sem considerar heranças provindas de frameworks ou bibliotecas. Para linguagens 
-    com herança múltipla, o valor desta métrica é o DIT da maior hierarquia.
-  \item \textbf{NOC (Number of Children - Número de Filhos)}: NOC consiste no número de filhos direto de uma classe.
-  \item \textbf{ACCM (Average Cyclomatic Complexity per Method - Média da Complexidade Ciclomática por Método)}: Esta métrica 
-    mede a complexidade média dos métodos de uma classe, baseando-se na complexidade dos fluxos de controle existente no método.
-  \item \textbf{RFC (Response For a Class - Resposta de uma Classe)}: Esta métrica mede a complexidade de uma classe contando 
-    o número de métodos que um objeto de uma classe pode invocar, tanto métodos internos quanto de outras classes.
-  \item \textbf{ACC (Afferent Connections per Class - Conexões Aferentes por Classe)}: Esta métrica mede a conectividade de 
-    uma classe a partir da contagem de quantas classes do sistema acessam um atributo ou método da classe em análise. Caso o
-    valor de ACC de uma classe seja alto, modificações em sua estrutura podem afetar mais classes.
-  \item \textbf{CBO (Coupling Between Objects - Acoplamento Entre Objetos)}: Esta métrica calcula de quantas classes a classe 
-    em análise depende, sendo a recíproca da ACC.
-  \item \textbf{COF (Coupling Factor - Fator de Acoplamento)}: Esta métrica é a razão entre o número acoplamento existente que 
-    não sejam provindos de herança e do número total de possíveis acoplamentos. O máximo de acoplamento possível acontece 
-    quando todas as classes estão e são acopladas com as outras classes do projeto.
-  \item \textbf{LCOM4 (Lack of Cohesion in Methods - Ausência de Coesões em Métodos)}: Esta métrica cálcula o número de 
-    componentes conectados em uma classe. Um componente conectado consiste em um conjunto de métodos relacionados. Dois
-    métodos são relacionados se ambos acessam as mesmas variáveis da classe ou um método invoca ao outro.
+  \item \textbf{NPA}: NPA mede basicamente o encapsulamento de uma classe. Independente da linguagem, é desejado que este valor 
+    seja o mais baixo possível, pois é recomendado que a manipulação de atributos de uma classe sejam realizados por métodos de 
+    acesso e operacionais.
+  \item \textbf{NPM}: Esta métrica é muito importante para a compreensão da abstração da classe, pois mede diretamente o 
+    tamanho da interface de acesso à mesma. NPM pode ser melhor utilizada para compreender o potencial de reusabilidade e 
+    coesão de uma classe do que a métrica NOM isoladamente.
+  \item \textbf{ANPM}: Essa métrica calcula a média de parâmetros dos métodos da classe, onde não se deseja um valor alto.
+  \item \textbf{MNPM}: Essa métrica corresponde à maior ocorrência de número de parâmetros dos métodos de uma classe.
+  \item \textbf{DIT}: Está métrica consiste no número de classes ancestrais da classe em análise, sem considerar heranças 
+    provindas de frameworks ou bibliotecas. Para linguagens com herança múltipla, o valor desta métrica é o DIT da maior 
+    hierarquia.
+  \item \textbf{NOC}: NOC consiste no número de filhos direto de uma classe.
+  \item \textbf{ACCM}: Esta métrica mede a complexidade média dos métodos de uma classe, baseando-se na complexidade dos fluxos 
+    de controle existente no método.
+  \item \textbf{RFC}: Esta métrica mede a complexidade de uma classe contando o número de métodos que um objeto de uma classe 
+    pode invocar, tanto métodos internos quanto de outras classes.
+  \item \textbf{ACC}: Esta métrica mede a conectividade de uma classe a partir da contagem de quantas classes do sistema 
+    acessam um atributo ou método da classe em análise. Caso o valor de ACC de uma classe seja alto, modificações em sua 
+    estrutura podem afetar mais classes.
+  \item \textbf{CBO}: Esta métrica calcula de quantas classes a classe em análise depende, sendo a recíproca da ACC.
+  \item \textbf{COF}: Esta métrica é a razão entre o número acoplamento existente que não sejam provindos de herança e do 
+    número total de possíveis acoplamentos. O máximo de acoplamento possível acontece quando todas as classes estão e são 
+    acopladas com as outras classes do projeto.
+  \item \textbf{LCOM4}: Esta métrica cálcula o número de componentes conectados em uma classe. Um componente conectado consiste 
+    em um conjunto de métodos relacionados. Dois métodos são relacionados se ambos acessam as mesmas variáveis da classe ou um 
+    método invoca ao outro.
 \end{itemize}
 
 Acima foram apresentadas métricas de design atreladas ao tamanho, coesão e acoplamento e atributos estruturais, que dão uma
@@ -158,7 +150,7 @@ Apesar de apresentadas neste trabalho algumas métricas de design, e a sua impor
 vulnerabilidades, esse não é o foco do trabalho. O foco do estudo são as métricas de vulnerabilidade de código fonte que serão 
 apresentadas na seção a seguir.
 
-\section{Métricas de Vulnerabilidade de Código Fonte}
+\section{Métricas de Vulnerabilidade de Código Fonte} \label{cap:metricas_vuln}
 
 No mundo atual, onde praticamente todos estão interligados através da Internet, devemos nos preocupar cada vez mais com a 
 segurança dos softwares utilizados. Uma simples falha de segurança em um software pode causar desde danos pessoais, como perca 
@@ -180,12 +172,12 @@ desenvolvimento do software, e não depois da sua liberação e colocação em p
 
 Tendo em vista a importância do monitoramento de métricas de vulnerabilidade de software, a seguir, serão apresentados alguns
 cenários de métricas dessa categoria voltadas principalmente para implementações utilizando as linguagens de programação C e 
-C++, que dão maior liberdade na implementação do software:
+C++, que dão maior liberdade na implementação do software, o nome completo das métricas a seguir estão na lista de abreviaturas 
+e siglas:
 
 \begin{itemize}
-  \item \textbf{AN (Argument with 'nonnull' attribute passed null - Argumento com atributo não nulo passado nulo):} Ocorre
-    quando uma função/método manipular um atributo sem valida-lo, acreditando que o mesmo não será nulo, e o argumento passado
-    na chamada da função é nulo, como pode ser visto no trecho de código \ref{codigoAN}.
+  \item \textbf{AN}: Ocorre quando uma função/método manipular um atributo sem valida-lo, acreditando que o mesmo não será 
+    nulo, e o argumento passado na chamada da função é nulo, como pode ser visto no trecho de código \ref{codigoAN}.
 
     \begin{lstlisting}[caption={Código exemplo AN}, label=codigoAN]
   int testeAN(int *lista)
@@ -197,31 +189,29 @@ C++, que dão maior liberdade na implementação do software:
   testeAN(p);
     \end{lstlisting}
 
-  \item \textbf{ASOM (Allocator sizeof operand mismatch - Operador incompatível com alocador sizeof)}: Ocorre quando o tipo
-    da variável (por exemplo \textit{int}, \textit{char}, \textit{float}, \textit{double}) passado para a função 
-    \textit{sizeof()} é inconsistente com o \textit{type cast} feito nas funções \textit{malloc()}, \textit{calloc()} e 
-    \textit{realloc()}, como pode ser visto no trecho de código \ref{codigoASOM}.
+  \item \textbf{ASOM}: Ocorre quando o tipo da variável (por exemplo \textit{int}, \textit{char}, \textit{float}, 
+    \textit{double}) passado para a função \textit{sizeof()} é inconsistente com o \textit{type cast} feito nas funções 
+    \textit{malloc()}, \textit{calloc()} e \textit{realloc()}, como pode ser visto no trecho de código \ref{codigoASOM}.
 
     \begin{lstlisting}[caption={Código exemplo ASOM}, label=codigoASOM]
   int *p = (float *)malloc(10*sizeof(int));
     \end{lstlisting}
-  \item \textbf{AUV (Assigned value is garbage or undefined - Valor atribuído é lixo ou indefinido)}: Ocorre quando o valor 
-    atribuído a uma variável é lixo ou indefinido. Exemplo no trecho de código \ref{codigoAUV}.
+  \item \textbf{AUV}: Ocorre quando o valor atribuído a uma variável é lixo ou indefinido. Exemplo no trecho de código 
+    \ref{codigoAUV}.
 
     \begin{lstlisting}[caption={Código exemplo AUV}, label=codigoAUV]
   int a, b;
   a = b;
     \end{lstlisting}
-  \item \textbf{BD (Bad deallocator - Desalocador ruim)}: Ocorre quando a forma que é desalocada a memória não condiz como a
-    forma em que a mesma foi alocada, vide exemplo no trecho de código \ref{codigoBD}.
+  \item \textbf{BD}: Ocorre quando a forma que é desalocada a memória não condiz como a forma em que a mesma foi alocada, vide 
+    exemplo no trecho de código \ref{codigoBD}.
 
     \begin{lstlisting}[caption={Código exemplo BD}, label=codigoBD]
   char *buff = new char;
   delete[] buff;
     \end{lstlisting}
-  \item \textbf{BF (Bad free - Liberação ruim)}: Ocorre quando há a tentativa de liberar uma área de memória que nunca foi
-    alocada, geralmente quando é passada uma referência para um ponteiro e confundindo o desenvolvedor. Um exemplo é o trecho 
-    de código \ref{codigoBF}.
+  \item \textbf{BF}: Ocorre quando há a tentativa de liberar uma área de memória que nunca foi alocada, geralmente quando é 
+    passada uma referência para um ponteiro e confundindo o desenvolvedor. Um exemplo é o trecho de código \ref{codigoBF}.
 
     \begin{lstlisting}[caption={Código exemplo BF}, label=codigoBF]
   char a[4];
@@ -229,8 +219,8 @@ C++, que dão maior liberdade na implementação do software:
 
   free(b);
     \end{lstlisting}
-  \item \textbf{DBZ (Divisions by zero - Divisão por zero)}: Ocorre quando há operações de divisão onde o denominador é igual
-    a zero. O exemplo de trecho de código \ref{codigoDBZ} apresenta esse cenário.
+  \item \textbf{DBZ}: Ocorre quando há operações de divisão onde o denominador é igual a zero. O exemplo de trecho de código 
+    \ref{codigoDBZ} apresenta esse cenário.
 
     \begin{lstlisting}[caption={Código exemplo DBZ}, label=codigoDBZ]
   double divide(double numerador, double denominador)
@@ -240,9 +230,8 @@ C++, que dão maior liberdade na implementação do software:
 
   double valor = divide(1.0,0.0);
     \end{lstlisting}
-  \item \textbf{DF (Double free - Liberação dupla)}: Ocorre quando um ponteiro que aponta para uma região de memória 
-    anteriormente alocada é desalocado duas vezes no mesmo contexto. O trecho de código \ref{codigoDF} apresenta um exemplo
-    desse cenário.
+  \item \textbf{DF}: Ocorre quando um ponteiro que aponta para uma região de memória anteriormente alocada é desalocado duas 
+    vezes no mesmo contexto. O trecho de código \ref{codigoDF} apresenta um exemplo desse cenário.
 
     \begin{lstlisting}[caption={Código exemplo DF}, label=codigoDF]
   int *p = new int;
@@ -250,8 +239,8 @@ C++, que dão maior liberdade na implementação do software:
   delete p;
   deletep;
     \end{lstlisting}
-  \item \textbf{DNP (Dereference of null pointer - Desreferencia de ponteiro nulo)}: Ocorre quando é desreferenciado um 
-    ponteiro que espera-se que seja válido, mas na verdade ele é nulo, vide exemplo do trecho de código \ref{codigoDNP}.
+  \item \textbf{DNP}: Ocorre quando é desreferenciado um ponteiro que espera-se que seja válido, mas na verdade ele é nulo, 
+    vide exemplo do trecho de código \ref{codigoDNP}.
 
     \begin{lstlisting}[caption={Código exemplo DNP}, label=codigoDNP]
   class A {
@@ -264,9 +253,8 @@ C++, que dão maior liberdade na implementação do software:
       int k = p->x;
   } 
     \end{lstlisting}
-  \item \textbf{DUPV (Dereference of undefined pointer value - Desreferencia de valor do ponteiro indefinido)}: Ocorre 
-    quando é acessado um valor que determinado ponteiro referência entretanto o mesmo ainda não foi definido, assim como é
-    apresentado no trecho de código \ref{codigoDUPV}.
+  \item \textbf{DUPV}: Ocorre quando é acessado um valor que determinado ponteiro referência entretanto o mesmo ainda não foi 
+    definido, assim como é apresentado no trecho de código \ref{codigoDUPV}.
 
     \begin{lstlisting}[caption={Código exemplo DUPV}, label=codigoDUPV]
   class A {
@@ -284,9 +272,8 @@ C++, que dão maior liberdade na implementação do software:
       int k = p->y;
   } 
     \end{lstlisting}
-  \item \textbf{FGBO (Potential buffer overflow in call to 'gets' - Potencial buffer overflow na chamada de 'gets')}: Ocorre
-    quando é utilizada a função \textit{gets()}, pois a mesma não valida o tamanho do buffer, podendo causar um \textit{buffer
-    overflow}, assim como é apresentado no trecho de código \ref{codigoFGBO}.
+  \item \textbf{FGBO}: Ocorre quando é utilizada a função \textit{gets()}, pois a mesma não valida o tamanho do buffer, podendo 
+    causar um \textit{buffer overflow}, assim como é apresentado no trecho de código \ref{codigoFGBO}.
 
     \begin{lstlisting}[caption={Código exemplo FGBO}, label=codigoFGBO]
   void testeFGBO() {
@@ -294,9 +281,9 @@ C++, que dão maior liberdade na implementação do software:
       gets(buff);
   } 
     \end{lstlisting}
-  \item \textbf{MLK (Memory leak - Vazamento de memória)}: Ocorre quando um espaço de memória não pode mais ser utilizado
-    porque a referência para o mesmo foi perdida, um exemplo seria a não liberação de um espaço de memória alocado como está
-    apresentado no trecho de código \ref{codigoMLK}.
+  \item \textbf{MLK}: Ocorre quando um espaço de memória não pode mais ser utilizado porque a referência para o mesmo foi 
+    perdida, um exemplo seria a não liberação de um espaço de memória alocado como está apresentado no trecho de código 
+    \ref{codigoMLK}.
 
     \begin{lstlisting}[caption={Código exemplo MLK}, label=codigoMLK]
   void testeMLK()
@@ -307,9 +294,9 @@ C++, que dão maior liberdade na implementação do software:
           return;
   }
     \end{lstlisting}
-  \item \textbf{OBAA (Out-of-bound array access - Acesso de array fora do limite)}: Ocorre quando é acessado uma posição de
-    memória fora do intervalo definido para o \textit{array}, podendo acessar espaço de memória que contenha lixo ou 
-    indefinido, abrindo brechas para atacantes. O exemplo no trecho de código \ref{codigoOBAA} representa esse cenário.
+  \item \textbf{OBAA}: Ocorre quando é acessado uma posição de memória fora do intervalo definido para o \textit{array}, 
+    podendo acessar espaço de memória que contenha lixo ou indefinido, abrindo brechas para atacantes. O exemplo no trecho de 
+    código \ref{codigoOBAA} representa esse cenário.
 
     \begin{lstlisting}[caption={Código exemplo OBAA}, label=codigoOBAA]
   int testeOBAA()
@@ -318,17 +305,16 @@ C++, que dão maior liberdade na implementação do software:
     return array[2];
   }
     \end{lstlisting}
-  \item \textbf{OSF (Offset free - Liberação com deslocamento)}: Ocorre quando a liberação da região de memória é feita de 
-    forma incompleta, no momento da liberação é feito um deslocamento, deixando para trás um região de memória que não será
-    desalocada. Exemplo no trecho de código \ref{codigoOSF}.
+  \item \textbf{OSF}: Ocorre quando a liberação da região de memória é feita de forma incompleta, no momento da liberação é 
+    feito um deslocamento, deixando para trás um região de memória que não será desalocada. Exemplo no trecho de código 
+    \ref{codigoOSF}.
 
     \begin{lstlisting}[caption={Código exemplo OSF}, label=codigoOSF]
   float *p = new float[10];
 
   delete[] (++p);
     \end{lstlisting}
-  \item \textbf{PITFC (Potential insecure temporary file in call 'mktemp' - Potencial insegurança de arquivo temporário na
-    chamada 'mktemp')}: Ocorre quando há a chamada da função \textit{mktemp()}, já que a mesma já está obsoleta e há uma 
+  \item \textbf{PITFC}: Ocorre quando há a chamada da função \textit{mktemp()}, já que a mesma já está obsoleta e há uma 
     insegurança associada a criação de arquivos temporários devido a fraca randomização na nomeação dos arquivos, onde outra
     aplicação poderia gerar o mesmo arquivo temporário se passado o mesmo prefixo, nessa caso deve-se utilizar a função 
     \textit{mkstemp()}. Exemplo desse cenário no trecho de código \ref{codigoPITFC}
@@ -338,17 +324,15 @@ C++, que dão maior liberdade na implementação do software:
       char *x = mktemp("/tmp/zxcv"); 
   }
     \end{lstlisting}
-  \item \textbf{ROGU (Result of operation is garbage or undefined - Resultado da operação é lixo ou indefinido)}: Ocorre quando
-    o resultado de uma operação é lixo ou indefinido, provavelmente devido algum parâmetro da operação ser lixo ou indefinido, 
-    assim como é exemplificado no trecho de código \ref{codigoROGU}.
+  \item \textbf{ROGU}: Ocorre quando o resultado de uma operação é lixo ou indefinido, provavelmente devido algum parâmetro da 
+    operação ser lixo ou indefinido, assim como é exemplificado no trecho de código \ref{codigoROGU}.
 
     \begin{lstlisting}[caption={Código exemplo ROGU}, label=codigoROGU]
   int a, b=5;
   int soma = a + b;
     \end{lstlisting}
-  \item \textbf{RSVA (Return of stack variable address - Retorno de endereço de uma variável da pilha)}: Ocorre quando uma
-    função/método retorna um ponteiro para uma variável de escopo apenas da própria função/método, como apresentado no trecho
-    de código \ref{codigoRSVA}.
+  \item \textbf{RSVA}: Ocorre quando uma função/método retorna um ponteiro para uma variável de escopo apenas da própria 
+    função/método, como apresentado no trecho de código \ref{codigoRSVA}.
 
     \begin{lstlisting}[caption={Código exemplo RSVA}, label=codigoRSVA]
   char testeRSVA()
@@ -357,9 +341,8 @@ C++, que dão maior liberdade na implementação do software:
       return &letra;
   }
     \end{lstlisting}
-  \item \textbf{SAIGV (Stack address stored into global variable - Endereço da pilha armazendo em variável global)}: Ocorre
-    quando o endereço de uma variável de escopo de função/método é passada para uma variável global, podendo assim ser acessada 
-    fora do seu escopo. Esse cenário é aprensentado no trecho de código \ref{codigoSAIGV}.
+  \item \textbf{SAIGV}: Ocorre quando o endereço de uma variável de escopo de função/método é passada para uma variável global, 
+    podendo assim ser acessada fora do seu escopo. Esse cenário é aprensentado no trecho de código \ref{codigoSAIGV}.
 
     \begin{lstlisting}[caption={Código exemplo SAIGV}, label=codigoSAIGV]
   char *pointer;
@@ -371,15 +354,14 @@ C++, que dão maior liberdade na implementação do software:
       return strlen(pointer);
   }
     \end{lstlisting}
-  \item \textbf{UA (Undefined allocation of 0 bytes - Alocação indefinida de 0 bytes)}: Ocorre quando é alocado 0 bytes para
-    um ponteiro, vide trecho de código \ref{codigoUA}.
+  \item \textbf{UA}: Ocorre quando é alocado 0 bytes para um ponteiro, vide trecho de código \ref{codigoUA}.
 
     \begin{lstlisting}[caption={Código exemplo UA}, label=codigoUA]
   void *p = malloc(1);
   p = realloc(p,0);
     \end{lstlisting}
-  \item \textbf{UAF (Use-after-free - Uso depois da liberação)}: Ocorre quando um ponteiro é utilizado após a região de memória
-    que ele apontava tenha sido desalocada, exemplo no trecho de código \ref{codigoUAF}.
+  \item \textbf{UAF}: Ocorre quando um ponteiro é utilizado após a região de memória que ele apontava tenha sido desalocada, 
+    exemplo no trecho de código \ref{codigoUAF}.
 
     \begin{lstlisting}[caption={Código exemplo UAF}, label=codigoUAF]
   class Pessoa{
@@ -397,8 +379,8 @@ C++, que dão maior liberdade na implementação do software:
       return 0;
   }
     \end{lstlisting}
-  \item \textbf{UAV (Uninitialized argument value - Valor do argumento não inicializado)}: Ocorre quando é passado um parâmetro
-    para uma função e o mesmo não foi inicializado, como apresentado no trecho de código \ref{codigoUAV}.
+  \item \textbf{UAV}: Ocorre quando é passado um parâmetro para uma função e o mesmo não foi inicializado, como apresentado no 
+    trecho de código \ref{codigoUAV}.
 
     \begin{lstlisting}[caption={Código exemplo UAV}, label=codigoUAV]
   void testeUAV(int arg)
