@@ -323,5 +323,75 @@ vulnerabilidade de código fonte por módulo do \emph{Linux Kernel}.
 
 \subsubsection{Análise dos Resultados}
 
-\section{Análise Qualitativa}
+Tendo o arquivo CSV com a valoração das métricas de vulnerabilidade de código
+fonte do projeto \emph{Linux Kernel}, houve a necessidade de uma reflexão antes
+de prosseguir com o processo apresentado. Ao
+fazer uma análise inicial dos valores das métricas, viu-se que grande parte
+possuía valoração nula (igual a zero), representando que na maioria dos módulos
+do \emph{Linux Kernel} não possuía vulnerabilidades de código fonte. Das vinte
+métricas de vulnerabilidade de código fonte apresentadas na seção
+\ref{cap:metricas_vuln}, apenas duas delas possuíram valoração não nula, sendo
+elas DNP e DUPV. 
+
+Com isso, antes de se concluir o estudo de caso, já foi
+possível negar a hipótese \emph{H1} e \emph{H2} apresentadas na subseção
+\ref{subsec:hipoteses}, pois a forma de observar as métricas de vulnerabilidade
+é diferente da de \textit{design} de código fonte, além de a média dos valores
+das métricas dos módulos não ser relevante para o seu acompanhamento. Métricas de \textit{design},
+em geral, não possui essa grande quantidade de valoração nula das métricas nos
+módulos de um grande projeto como o \emph{Linux Kernel}, diferente do que
+pode-se observar com as métricas de vulnerabilidade de código fonte. E como
+grande parte dos módulos possuí valoração das métricas nulas, a média desses
+valores não é representativo para o acompanhamento das mesmas.
+
+Após essa constatação, continuou-se o processo apresentado no fluxograma 
+\ref{fig:processo_estudo_de_caso}, foram realizadas as seguintes atividades:
+
+\begin{itemize}
+  \item Realizar análise estatística
+  \item Analisar resultados
+  \item Realizar conclusões
+\end{itemize}
+
+Antes de iniciar a atividade de análise estatística decidiu-se não testar a
+hipótese \emph{H3} referente as distribuições estatísticas, pois, devido a
+hipótese \emph{H1} ter sido negada, preferiu-se realizar uma análise qualitativa
+antes para tentar entender como que deve-se observar métricas de vulnerabilidade de código
+fonte antes de tentar encontrar distribuições estatísticas que represente-as.
+Talvez, a distribuição estatística não seja relevante para acompanha-las, por
+isso essa hipótese não foi testada neste estudo de caso.
+
+Apesar de todas as hipóteses terem se esgotado nesse ponto do estudo de caso,
+foi preferível a continuação do estudo para tentar extrair alguma informação
+útil para a questão do acompanhamento de métricas de vulnerabilidade de código
+fonte.
+
+Na atividade de realizar a análise estatística foi utilizada a suíte de
+\textit{scripts} apresentados na subseção \ref{scripts}, entretanto, só foi
+trabalhado com os percentis dos valores das métricas, a fim de tentar extrair
+alguma informação relevante. Os gráficos dos percentis de cada uma das métricas 
+de vulnerabilidade trabalhadas pode ser encontrado no anexo \ref{anex:percentis}.
+
+Analisando os resultados através dos gráficos gerados pode-se ver que a maioria das métricas se manteve
+em zero em todos os módulos do \emph{Linux Kernel}, tendo variado apenas os
+valores das métricas DNP (\ref{graphic:dnp}) e DUPV (\ref{graphic:dupv}). Levando 
+em consideração apenas os gráficos das métricas não nulas, pode-se ver que os valores 
+das métricas se concentram nos percentis mais elevados, com isso, conclui-se que
+a grande maioria dos valores dessas métricas possuem valores similares na
+maioria dos módulos, não variando muito a sua valoração. Entretanto, essa
+informação não agrega tanto valor no que diz respeito a como se acompanhar
+métricas de vulnerabilidade de código fonte em um projeto de software, apenas nos mostra que a
+maioria dos valores das métricas são similares, ou seja, se o valor de uma
+métrica variar muito de um módulo para outro, existe um indício de que algo pode
+estar errado.
+
+Ao realizar a análise apresentada acima, chegou-se a conclusão que para entender
+melhor as métricas de vulnerabilidade de código fonte é necessário realizar uma
+análise qualitativa ao invés de quantitativa. Com isso, resolveu-se realizar uma
+nova análise, agora qualitativa, das métricas de vulnerabilidade de código fonte
+extraídas do projeto \emph{Linux Kernel}, para tentar compreender um pouco
+melhor a natureza dessas métricas, essa análise é apresentada na seção
+\ref{sec:analise_qualitativa}.
+
+\section{Análise Qualitativa} \label{sec:analise_qualitativa}
 
