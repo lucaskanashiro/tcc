@@ -246,8 +246,12 @@ de percentis utilizados são:
   \end{itemize}
 \end{multicols}
 
-A saída desse processo de análise estatística serão gráficos dos percentis e um arquivo texto com a quantidade de valores 
-dentro de cada intervalo de percentil.
+No processo do cálculo dos percentis o maior e menor valores são descartados, a
+fim de remover \textit{outliers}, sendo \textit{outlier} um número que é muito maior 
+ou menor que o resto dos números em uma dada série de números, segundo \emph{Hawkins}
+(\citeyear{hawkins80}). A saída desse processo de análise estatística serão gráficos 
+dos percentis e um arquivo texto com a quantidade de valores dentro de cada intervalo 
+de percentil.
 
 Tendo os percentis das métricas será possível fazer uma análise, sabendo em quais faixas geralmente ocorre 
 determinados tipos de vulnerabilidades e tentar definir em qual faixa é aceitável ou não os valores das métricas de 
@@ -330,8 +334,8 @@ fazer uma análise inicial dos valores das métricas, viu-se que grande parte
 possuía valoração nula (igual a zero), representando que na maioria dos módulos
 do \emph{Linux Kernel} não possuía vulnerabilidades de código fonte. Das vinte
 métricas de vulnerabilidade de código fonte apresentadas na seção
-\ref{cap:metricas_vuln}, apenas duas delas possuíram valoração não nula, sendo
-elas DNP e DUPV. 
+\ref{cap:metricas_vuln}, apenas três delas possuíram valoração não nula em pelo
+menos um dos módulos, sendo elas DNP, DUPV e SAIGV. 
 
 Com isso, antes de se concluir o estudo de caso, já foi
 possível negar a hipótese \emph{H1} e \emph{H2} apresentadas na subseção
@@ -374,10 +378,12 @@ de vulnerabilidade trabalhadas pode ser encontrado no anexo \ref{anex:percentis}
 
 Analisando os resultados através dos gráficos gerados pode-se ver que a maioria das métricas se manteve
 em zero em todos os módulos do \emph{Linux Kernel}, tendo variado apenas os
-valores das métricas DNP (\ref{graphic:dnp}) e DUPV (\ref{graphic:dupv}). Levando 
-em consideração apenas os gráficos das métricas não nulas, pode-se ver que os valores 
-das métricas se concentram nos percentis mais elevados, com isso, conclui-se que
-a grande maioria dos valores dessas métricas possuem valores similares na
+valores das métricas DNP (\ref{graphic:dnp}) e DUPV (\ref{graphic:dupv}). O
+gráfico da métrica SAIGV também é uma reta em zero, apesar de ter uma ocorrência
+não nula, devido a exclusão do menor e maior valor no processo de análise
+estatística. Levando em consideração apenas os gráficos das métricas não nulas, 
+pode-se ver que os valores das métricas se concentram nos percentis mais elevados, 
+com isso, conclui-se que a grande maioria dos valores dessas métricas possuem valores similares na
 maioria dos módulos, não variando muito a sua valoração. Entretanto, essa
 informação não agrega tanto valor no que diz respeito a como se acompanhar
 métricas de vulnerabilidade de código fonte em um projeto de software, apenas nos mostra que a
