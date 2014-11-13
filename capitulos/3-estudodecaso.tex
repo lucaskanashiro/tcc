@@ -13,8 +13,8 @@ do mesmo.
 
 A metodologia utilizada neste estudo de caso foi feita baseada no trabalho
 realizado por \emph{Meirelles} (\citeyear{meirelles2013}), onde foi levantada
-uma hipótese inicial e cujo objetivo é testar tal hipótese. A definição da
-hipótese inicial levantada será apresentada na subseção \ref{subsec:hipotese}.
+uma hipótese inicial e cujo objetivo é testar tal hipótese. A definição das
+hipóteses iniciais levantadas será apresentada na subseção \ref{subsec:hipoteses}.
 Para o teste dessa hipótese foi selecionado um projeto de software considerado
 representativo no contexto de vulnerabilidades de código fonte, que é o projeto
 \emph{Linux}. Ele é a base para a grande maioria dos sistemas operacionais
@@ -87,27 +87,192 @@ não foi utilizado no estudo, mas que será alvo de uma das contribuições dest
 trabalho. Em seguida, serão apresentadas a ferramenta \emph{Clang Static
 Analyzer}, e os \textit{Scripts} utilizados.
 
-O teste da hipótese, desde a coleta dos dados até a análise dos resultados, serão
+O teste das hipóteses, desde a coleta dos dados até a análise dos resultados, serão
 apresentados na subseção \ref{subsec:teste_hipotese}. Nessa subseção será
-apresentado a corretude da hipótese.
+apresentado a corretude ou não da hipótese.
 
-\subsection{Hipótese} \label{subsec:hipotese}
+\subsection{Hipóteses} \label{subsec:hipoteses}
 
-%Ao iniciar este trabalho havia uma hipótese sobre como deveria se comportar as métricas de vulnerabilidades em projetos de
-%software livre, baseado no trabalho de \cite{meirelles2013}. A hipótese seria que esse novo tipo de métrica se comportaria
-%semelhantemente às métricas de design, onde em geral se comportariam como distribuições estatísticas de cauda longa, ou seja, 
-%a média dos valores não seria representativa, e com isso, seria possível analisar os dados e fazer uma avaliação de forma 
-%quantitativa. Entretanto, durante o processo empírico de desenvolvimento deste estudo de caso viu-se que a natureza das 
-%métricas são diferentes. As métricas de design em sua grande maioria possuem valores significativos em todas as suas análises, 
-%tendo elas valoração zero ou não, já as métricas de vulnerabilidades em grande parte das vezes, possuem valoração zero, pois 
-%não possuem significado, levando em conta que as mesmas representam a quantidade de cenários de vulnerabilidades presentes no 
-%código fonte em questão. Logo, nas métricas de vulnerabilidades existirão vários zeros não significativos, atrapalhando uma 
-%análise similar a feita em \cite{meirelles2013}. Tendo isso em vista, decidiu-se então realizar uma análise qualitativa ao 
-%invés de quantitativa.
+As hipóteses iniciais levantadas para este estudo de caso, foram feitas baseadas em
+formas de se acompanhar e analisar métricas de \textit{design} de código fonte
+apresentada em outros trabalhos, como em \emph{Meirelles}
+(\citeyear{meirelles2013}). Logo, as hipóteses são:
+
+\begin{itemize}
+  \item \textit{H1}: As métricas de vulnerabilidade de código fonte podem ser
+    observadas de maneira similar as métricas de \textit{design} de código
+    fonte.
+  \item \textit{H2}: A média dos valores das métricas de vulnerabilidade de
+    código fonte, geralmente, não é representativa para o acompanhamento das mesmas.
+  \item \textit{H3}: Os valores das métricas de vulnerabilidade de código fonte
+    se comportam como distribuições estatísticas de cauda longa, e não
+    distribuições estatísticas normalizáveis.
+\end{itemize}
+
+Todas as hipóteses apresentadas foram levantadas devido aos resultados apresentados em
+\emph{Meirelles} (\citeyear{meirelles2013}) serem satisfatórios e foram
+consideradas como premissas iniciais. Sendo validadas e confirmadas as hipóteses
+acima, será possível encontrar valores de referência baseado em análises
+quantitativas dos valores das métricas de vulnerabilidade. 
 
 \subsection{Ferramentas} \label{subsec:ferramentas}
 
-\subsection{Teste da Hipótese} \label{subsec:teste_hipotese}
+Nesta seção serão apresentadas as ferramentas utilizadas neste estudo de caso.
+
+\subsubsection{Analizo} \label{analizo}
+
+\emph{Analizo} é um conjunto de ferramentas livre, multi-linguagem (C, C++, Java), realiza análise de código fonte, é facilmente 
+extensível e disponibiliza diferentes tipos de visualização. Ele suporta a extração e cálculo de um bom número de métricas de 
+código fonte, geração de gráficos de dependência e análise de evolução do software \cite{analizo}.
+
+A seguir as funcionalidades da ferramenta \emph{Analizo} \footnote{Disponível em
+\url{http://www.analizo.org/features.html}}:
+
+\begin{itemize}
+  \item Analisar código-fonte escritos em C, C ++ e Java.
+  \item Extrair métricas de código-fonte.
+  \item Extrair métricas de uma grande quantidade de projetos em lote (\textit{batch mode}).
+  \item Extrair métricas de um repositório.
+  \item Desenhar gráfico de dependências.
+  \item Analisar evolução do software (analisa-se várias versões do software e uma matriz de evolução é produzida).
+\end{itemize}
+
+Será iniciado o processo de manutenção corretiva da funcionalidade de extração de métricas de vulnerabilidade de código fonte 
+para as linguagens C e C++, para que melhor atenda as necessidades deste trabalho. Outra funcionalidade que ainda está em 
+processo de desenvolvimento é a adição do suporte da linguagem \textit{Perl}.
+
+A ferramenta \emph{Analizo} é facilmente extensível, desde extratores até formas de visualização. A figura \ref{archanalizo} mostra
+como está implementada a arquitetura em camadas da ferramenta \cite{analizoartigo}. Existem basicamente cinco módulos, o 
+\textit{Core} é o modulo responsável por atividades centrais como processamento, filtros e modelos por exemplo; 
+\textit{Extractor} é o módulo que contém os extratores utilizados, atualmente existem três: \textit{Clang}, \textit{Doxyparse}
+e \textit{Sloccount}; \textit{Metrics} é o módulo que contém a lógica para cálculo de todas as métricas, hoje em dia possuindo
+37 (trinta e sete) métricas de módulo e 4 (quatro) métricas globais; \textit{Output} é o módulo que será dada a saída da 
+ferramenta, atualmente existem opções de banco de dados e arquivo CSV; \textit{Tools} é o módulo que representa várias outras
+ferramentas que podem trabalhar tanto acima do \textit{Core} quanto acima dos outros módulos.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\textwidth]
+      {figuras/analizo.eps}
+  \caption{Arquitetura da ferramenta Analizo}
+  \label{archanalizo}
+\end{figure}
+
+\subsubsection{Clang} \label{clang}
+
+\emph{Clang} é um compilador \textit{front end} para as linguagens de
+programação C, C++ e \textit{Objective-C}. O \emph{Clang} faz parte
+do projeto LLVM \textit{Open Source} e utiliza o mesmo como seu \textit{backend}. 
+
+O \emph{Clang} possui algumas funcionalidades e metas disponíveis no seu respectivo
+\textit{site}\footnote{Disponível em: \url{http://clang.llvm.org}}, e
+algumas das principais metas são:
+
+\begin{itemize}
+  \item Rápida compilação e baixo uso de memória
+  \item Diagnóstico expressivos (exemplo, apresentar erros de uma maneira fácil para o usuário)
+  \item Compatibilidade com o GCC
+  \item Suportar diversos clientes (exemplo, análise estática e refatoração)
+  \item Código fonte base simples e de fácil entendimento ("\textit{hackable}")
+\end{itemize}
+
+Algumas dessas metas estão sendo atingidas, por exemplo, um experimento realizado por \cite{naroff2009} evidenciou o rápido
+tempo de compilação do Clang em comparação com o GCC. Foi feita a compilação do \textit{PostgreSQL} em computadores com as
+mesmas configuraçãoes de \textit{hardware} e o resultado obtido é expresso pela figura \ref{clang_gcc}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\textwidth]
+      {figuras/clang_gcc.eps}
+  \caption{Análise de performance do Clang em comparação com o GCC}
+  \label{clang_gcc}
+\end{figure}
+
+O \emph{Clang} vem sendo desenvolvido baseado na arquitetura do projeto LLVM, ele possui bibliotecas centrais e bibliotecas de 
+aplicativos, conforme é apresentado na figura \ref{clang_arch}. No contexto desse trabalho, o foco é a biblioteca de aplicativo
+\textit{Analysis}. A ideia dessa biblioteca é trazer alguns benefícios para os desenvolvedores, como o descobrimento de 
+\textit{bugs} o mais cedo possível; checar sistematicamente o código fonte; achar alguns \textit{bugs} mesmo na falta de caso
+de testes, no caso de trechos de código difíceis de serem testados \cite{kremenek2009}. 
+
+A análise estática realizada pelo \emph{Clang} é inter-procedural, podendo achar inconsistências entre funções/métodos, para isso,
+é necessária a compilação do código fonte, onde nessa fase será construída a AST 
+\cite{kremenek2009}. Essa característica pode não ser muito atraente a primeira vista, pois para realizar a análise do código 
+fonte é necessário compila-lo, entretanto, pode ser um ponto positivo tendo em vista que a todo momento que for feita 
+construção do software a análise será feita, mesmo que essa questão tenha sido esquecida.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\textwidth]
+      {figuras/clang_arch.eps}
+      \caption{Arquitetura da ferramenta \emph{Clang}}
+  \label{clang_arch}
+\end{figure}
+
+\subsubsection{\textit{Scripts} para análise estatística} \label{scripts}
+
+Os \textit{scripts}\footnote{Disponível em:
+\url{https://gitlab.com/paulormm/tese}} foram escritos utilizando linguagem R
+\footnote{Informações em: \url{http://www.r-project.org/}} que foram
+inicialmente desenvolvidos em \emph{Meirelles} (\citeyear{meirelles2013}). Foi escolhida a linguagem R
+devido o seu foco e poder para a realização de análises estatísticas. Uma das
+atividades desse processo de análise estatística que será realizado
+por esses \textit{scripts} tentará identificar qual distribuição estatística melhor se encaixa nos dados referentes a 
+determinada métrica, são utilizadas as seguintes distribuições estatísticas:
+
+\begin{itemize}
+  \item Pareto
+  \item Pareto tipo 2
+  \item Exponencial
+  \item Gama
+  \item Weibull
+  \item Poison
+\end{itemize}
+
+Caso nenhuma das distribuições apresentadas consigam refletir os valores de uma determinada métrica de vulnerabilidade, os
+\textit{scripts} tentarão encontrar uma distribuição estatística que melhor se adeque. Gráficos de cada distribuição serão
+gerados como saída desse processo de análise estatística para melhor visualização dos dados. Como entrada teremos arquivos
+CSV com os valores das métricas a serem analisadas.
+
+Outro tipo de análise que poderá ser feita com essa suíte de \textit{scripts} será relacionada aos percentis das métricas.
+Dada uma amostra (ou coleção de dados), os percentis são medidas que dividem a amostra ordenada (por ordem crescente dos dados) 
+em cem (100) partes, cada uma com uma percentagem de dados aproximadamente igual. Define-se percentil k, ${Q_k}$, 
+k recebendo valores de um (1) a noventa e nove (99), como sendo o valor tal que k\% dos elementos da amostra são menores ou 
+iguais a ${Q_k}$ e os restantes (100-k)\% elementos da amostra são maiores ou iguais a ${Q_k}$ \cite{martins2013}. Os valores
+de percentis utilizados são: 
+
+\begin{multicols}{3}
+  \begin{itemize}
+    \item 1\%
+    \item 5\%
+    \item 10\%
+    \item 25\%
+    \item 50\%
+    \item 75\%
+    \item 90\%
+    \item 95\%
+    \item 99\%
+  \end{itemize}
+\end{multicols}
+
+A saída desse processo de análise estatística serão gráficos dos percentis e um arquivo texto com a quantidade de valores 
+dentro de cada intervalo de percentil.
+
+Tendo os percentis das métricas será possível fazer uma análise, sabendo em quais faixas geralmente ocorre 
+determinados tipos de vulnerabilidades e tentar definir em qual faixa é aceitável ou não os valores das métricas de 
+vulnerabilidade de código fonte.
+
+Foram desenvolvidos para este trabalho \textit{scripts}\footnote{Disponível em
+\url{https://github.com/lucaskanashiro/clang\_parser\_html\_to\_csv}} para a adequação dos
+dados advindos da ferramenta de extração de métricas de vulnerabilidade de
+código fonte (\emph{Clang}, apresentado na subseção \ref{clang}). A saída padrão
+da ferramenta é um arquivo HTML e a suíte de \textit{scripts} apresentados
+anteriormente tem como um dos requisitos o arquivo de entrada ser do formato
+CSV. Esses \textit{scripts} de adequação do formato dos dados utiliza-se de
+expressões regulares para encontrar padrões e contar as ocorrências de
+determinada cenário de vulnerabilidade, e com isso esses valores são escritos em
+um arquivo CSV.
+
+\subsection{Teste das Hipóteses} \label{subsec:teste_hipotese}
 \subsubsection{Coleta de Dados}
 \subsubsection{Análise dos Resultados}
 
