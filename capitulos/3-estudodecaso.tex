@@ -71,7 +71,9 @@ das métricas de vulnerabilidade, entretanto, foram encontradas limitações na
 implementação dessa \textit{feature} e por isso foi utilizada a ferramenta
 \emph{Clang Static Analyzer}. A evolução dessa funcionalidade da ferramenta
 \emph{Analizo} é um dos objetivos deste trabalho, como foi apresentado na seção
-\ref{sec:objetivos}.
+\ref{sec:objetivos}. Atualmente, o autor deste trabalho é um dos mantenedores da
+ferramenta \emph{Analizo}, e compôs a equipe de desenvolvimento da
+\textit{feature} em questão.
 
 Para o entendimento completo do estudo de caso, serão apresentadas as
 ferramentas utilizadas na subseção \ref{subsec:ferramentas}, iniciando pela ferramenta \emph{Analizo}, que
@@ -374,12 +376,55 @@ Na atividade de realizar a análise estatística foi utilizada a suíte de
 \textit{scripts} apresentados na subseção \ref{scripts}, entretanto, só foi
 trabalhado com os percentis dos valores das métricas, a fim de tentar extrair
 alguma informação relevante. Os gráficos dos percentis de cada uma das métricas 
-de vulnerabilidade trabalhadas pode ser encontrado no anexo \ref{anex:percentis}.
+de vulnerabilidade trabalhadas pode ser encontrado no anexo \ref{anex:percentis}. 
+A tabela \ref{tab:percentis} apresenta os valores dos percentis referentes a cada
+uma das métricas de vulnerabilidade de código fonte gerados a partir da atividade
+de análise estatística.
 
-Analisando os resultados através dos gráficos gerados pode-se ver que a maioria das métricas se manteve
+\begin{table}[h]
+\caption{Percentis das métricas de vulnerabilidade extraídas do projeto \emph{Linux Kernel}}
+\label{tab:percentis}
+\begin{tabular}{cccccccccccc}
+\hline
+\textbf{Métrica} & \textbf{Mínimo} & \textbf{1\%} & \textbf{5\%} & \textbf{10\%} & \textbf{25\%} & \textbf{50\%} & \textbf{75\%} & \textbf{90\%} & \textbf{95\%} & \textbf{99\%} & \textbf{Máximo} \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{AN}      & 0               & 0            & 0            & 0             & 0             & 0             & 0             & 0             & 0             & 0             & 0               \\ \hline
+\textbf{ASOM}    & 0               & 0            & 0            & 0             & 0             & 0             & 0             & 0             & 0             & 0             & 0               \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{AUV}     & 0               & 0            & 0            & 0             & 0             & 0             & 0             & 0             & 0             & 0             & 0               \\ \hline
+\textbf{BD}      & 0               & 0            & 0            & 0             & 0             & 0             & 0             & 0             & 0             & 0             & 0               \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{BF}      & 0               & 0            & 0            & 0             & 0             & 0             & 0             & 0             & 0             & 0             & 0               \\ \hline
+\textbf{DBZ}     & 0               & 0            & 0            & 0             & 0             & 0             & 0             & 0             & 0             & 0             & 0               \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{DF}      & 0               & 0            & 0            & 0             & 0             & 0             & 0             & 0             & 0             & 0             & 0               \\ \hline
+\textbf{DNP}     & 0               & 0            & 0            & 0             & 0             & 1             & 1,75          & 2             & 2,75          & 11,1499       & 17              \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{DUPV}    & 0               & 0            & 0            & 0             & 0             & 0             & 0             & 0             & 0             & 1,3499        & 2               \\ \hline
+\textbf{FGBO}    & 0               & 0            & 0            & 0             & 0             & 0             & 0             & 0             & 0             & 0             & 0               \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{MLK}     & 0               & 0            & 0            & 0             & 0             & 0             & 0             & 0             & 0             & 0             & 0               \\ \hline
+\textbf{OBAA}    & 0               & 0            & 0            & 0             & 0             & 0             & 0             & 0             & 0             & 0             & 0               \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{OSF}     & 0               & 0            & 0            & 0             & 0             & 0             & 0             & 0             & 0             & 0             & 0               \\ \hline
+\textbf{PITFC}   & 0               & 0            & 0            & 0             & 0             & 0             & 0             & 0             & 0             & 0             & 0               \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{ROGU}    & 0               & 0            & 0            & 0             & 0             & 0             & 0             & 0             & 0             & 0             & 0               \\ \hline
+\textbf{RSVA}    & 0               & 0            & 0            & 0             & 0             & 0             & 0             & 0             & 0             & 0             & 0               \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{SAIGV}   & 0               & 0            & 0            & 0             & 0             & 0             & 0             & 0             & 0             & 0             & 0               \\ \hline
+\textbf{UA}      & 0               & 0            & 0            & 0             & 0             & 0             & 0             & 0             & 0             & 0             & 0               \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{UAF}     & 0               & 0            & 0            & 0             & 0             & 0             & 0             & 0             & 0             & 0             & 0               \\ \hline
+\textbf{UAV}     & 0               & 0            & 0            & 0             & 0             & 0             & 0             & 0             & 0             & 0             & 0               \\ \hline
+\end{tabular}
+\end{table}
+
+Analisando os resultados através dos gráficos gerados e a tabela \ref{tab:percentis}, 
+pode-se ver que a maioria das métricas se manteve
 em zero em todos os módulos do \emph{Linux Kernel}, tendo variado apenas os
 valores das métricas DNP (\ref{graphic:dnp}) e DUPV (\ref{graphic:dupv}). O
-gráfico da métrica SAIGV também é uma reta em zero, apesar de ter uma ocorrência
+gráfico da métrica SAIGV também é uma reta em zero, apesar de ter apenas uma ocorrência
 não nula, devido a exclusão do menor e maior valor no processo de análise
 estatística. Levando em consideração apenas os gráficos das métricas não nulas, 
 pode-se ver que os valores das métricas se concentram nos percentis mais elevados, 
@@ -394,10 +439,9 @@ estar errado.
 Ao realizar a análise apresentada acima, chegou-se a conclusão que para entender
 melhor as métricas de vulnerabilidade de código fonte é necessário realizar uma
 análise qualitativa ao invés de quantitativa. Com isso, resolveu-se realizar uma
-nova análise, agora qualitativa, das métricas de vulnerabilidade de código fonte
-extraídas do projeto \emph{Linux Kernel}, para tentar compreender um pouco
-melhor a natureza dessas métricas, essa análise é apresentada na seção
-\ref{sec:analise_qualitativa}.
+nova análise, agora qualitativa, das métricas de vulnerabilidade de código fonte, 
+para tentar compreender um pouco melhor a natureza dessas métricas, essa análise 
+é apresentada na seção \ref{sec:analise_qualitativa}.
 
 \section{Análise Qualitativa} \label{sec:analise_qualitativa}
 
