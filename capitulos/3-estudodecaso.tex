@@ -548,3 +548,73 @@ um forte viés em segurança, como o \emph{Blender} e \emph{Gstreamer}. A exceç
 pois o mesmo possui uma alta porcentagem de módulos vulneráveis, entretanto, é um alvo constante de ataques e
 deveria se preocupar em não deixar brechas de segurança para atacantes. Isso mostra que o \emph{Bash} por 
 enquanto ainda é uma boa opção para a utilização de \textit{exploits} por parte de atacantes.
+
+Durante esta análise foram identificados um conjunto de métricas de vulnerabilidade que são mais comuns e
+ocorrem com mais frequência. A métrica de vulnerabilidade mais frequente nos projetos analisados foi a DNP,
+a mesma está presente em todos os projetos. Além de ser frequênte entre os projetos, essa métrica também
+é comum a boa parte dos módulos de um mesmo projeto. Na tabela \ref{tab:dnp} é apresentado a quantidade
+absoluta de módulos que possuem o cenário de vulnerabilidade de desreferência de ponteiro nulo e a porcentagem
+de módulos que a mesma atinge de cada projeto.
+
+
+\begin{table}[h]
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{cccc}
+\hline
+\textbf{Projeto}      & \textbf{Nº total de Módulos} & \textbf{Nº total de Módulos vulneráveis} & \textbf{\% de Módulos vulneráveis} \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{Bash}         & 253                          & 22                                       & 8.6956                             \\ \hline
+\textbf{Blender}      & 1472                         & 93                                       & 6.3179                             \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{FFmpeg}       & 1776                         & 37                                       & 2.0833                             \\ \hline
+\textbf{Firefox}      & 12404                        & 218                                      & 1.7574                             \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{Gstreamer}    & 264                          & 16                                       & 6.0606                             \\ \hline
+\textbf{Inetutils}    & 2576                         & 6                                        & 0.2329                             \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{Linux Kernel} & 23056                        & 40                                       & 0.1734                             \\ \hline
+\textbf{OpenSSH}      & 248                          & 7                                        & 2.8225                             \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{OpenSSL}      & 974                          & 14                                       & 1.4373                             \\ \hline
+\textbf{Python2.7}    & 551                          & 18                                       & 3.2667                             \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{Ruby-2.1}     & 381                          & 10                                       & 2.6246                             \\ \hline
+\end{tabular}
+}
+\caption{Métrica DNP por projeto}
+\label{tab:dnp}
+\end{table}
+
+
+Fazendo um comparativo entre as tabelas \ref{tab:modulos_proj} e \ref{tab:dnp}, pode-se ver que na
+maioria dos projetos o cenário de vulnerabilidade tratado pela métrica DNP é responsável pela maior
+parte das vulnerabilidades, como por exemplo no projeto \emph{Linux Kernel}. O \emph{Linux Kernel}
+é o projeto com menor taxa de módulos vulneráveis, sendo igual a 0.1865\%, logo, é o projeto mais 
+seguro dentre os estudados. Ele possui quarenta e três (43) módulos vulneráveis e quarenta (40) deles
+possuem o cenário referente a métrica DNP, ou seja, a DNP é responsável praticamente por 93.02\% das 
+vulnerabilidades presentes no \emph{Linux Kernel}. Esse dado só foi apresentado para evidenciar que
+essa vulnerabilidade deve ser acompanhada de perto, pois até projetos preocupados com essa questão
+de segurança sofrem desse mal. No momento da implementação deve-se tomar cuidado para não acessar 
+locais de memória que já foram desalocados/liberados anteriormente.
+
+A métrica de vulnerabilidade de código fonte DNP se apresenta como a mais recorrente entre as trabalhadas
+no contexto deste trabalho, entretanto, outras métricas também aparecem com uma frequência um pouco menor,
+como a métrica AN e ROGU. O resumo da frequência das métricas de vulnerabilidade de código fonte por módulo
+de cada um dos projetos poderá ser visto no anexo \ref{anex:analise_qualitativa}. A seguir uma lista com
+as mais recorrentes métricas de vulnerabilidade de código fonte identificadas:
+
+\begin{multicols}{2}
+\begin{itemize}
+  \item DNP
+  \item AN
+  \item ROGU
+  \item AUV
+\end{itemize}
+\end{multicols}
+
+Esta análise qualitativa apresentou-se mais produtiva para um entendimento inicial do comportamento
+das métricas de vulnerabilidade de código fonte do que uma análise quantitativa. Com essa análise foi
+possível levantar uma nova hipótese a ser testada, onde projetos com propósito similar se comportam de 
+maneira similar, além de determinar um conjunto de métricas de vulnerabilidade mais recorrentes, que devem
+ser acompanhadas mais de perto em um projeto de software.
+
