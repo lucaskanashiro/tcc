@@ -1,4 +1,76 @@
-\chapter{Considerações Finais}
+\chapter{Considerações Preliminares}
 
-Conclusão
+Como pode-se ver nas análises realizadas sobre valores de métricas de
+vulnerabilidade de código fonte, uma análise quantitativa não seria relevante
+para o momento e sim uma análise qualitativa, a fim de entender o comportamento
+e natureza dessas métricas. Na tentativa de realização de uma análise
+quantitativa dentro do contexto do estudo de caso, foram negadas algumas
+hipóteses e outra hipótese preferiu-se não testa-la. Dentre as hipóteses
+apresentadas na subseção \ref{subsec:hipoteses}, as hipóteses \emph{H1} e \emph{H2}
+foram negadas e a \emph{H3} não foi testada, as justificativas do porque dessas
+decisões está na seção \ref{subsec:teste_hipotese}, onde foi descrito o teste
+das hipóteses no estudo de caso realizado.
+
+Na realização da análise qualitativa dos valores das métricas de vulnerabilidade
+de código fonte foi possível identificar métricas de vulnerabilidade mais
+recorrentes, sendo algumas delas: DNP, AN, ROGU e AUV. Também foi possível
+levantar uma nova hipótese a ser testada, onde em projetos de software com
+propósitos similares podem também acompanhar suas métricas de vulnerabilidade de
+código fonte de maneira similar.
+
+Este trabalho se limitou a uma revisão bibliográfica e um estudo de caso com análise 
+quantitativa de um projeto de software e uma análise qualitativa de dez
+projetos. Para a consolidação das análises espera-se aumentar a quantidade de
+projetos analisados, a fim de ter um resultado mais consistente.
+
+Possíveis limitações podem ser encontradas com relação a extração das métricas
+de vulnerabilidade de código fonte, tais limitações devido a possíveis falsos
+positivos e negativos, entretanto, seriam limitações da ferramenta \emph{Clang}.
+Lembrando que a extração e coleta das métricas de vulnerabilidade não são foco
+deste trabalho, apenas a forma de interpretação e acompanhamento das mesmas.
+
+Tendo em vista o tema deste trabalho, será adicionado ao mesmo um novo tipo de
+métrica de código fonte, além das métricas de vulnerabilidade, sendo elas as
+métricas de anotação para softwares implementados com a linguagem de programação
+Java. Sendo essas métricas um novo conceito de métricas de código fonte,
+específicas para linguagem Java. O objetivo será o mesmo das métricas de
+vulnerabilidade de código fonte, tentar determinar uma melhor forma para
+interpretação e acompanhamento de métricas advindas dessa origem.
+
+Após o entendimento de como deve-se acompanhar as métricas trabalhadas neste
+trabalho, espera-se modelar o problema seguindo uma abordagem de aprendizado de
+máquina, com o intuito de conseguir classificar projetos baseado na valoração
+dessas métricas.
+
+Baseado nas considerações feitas acima será apresentado na seção
+\ref{sec:cronograma} um cronograma para a continuação deste trabalho.
+
+\section{Cronograma} \label{sec:cronograma}
+
+Esta seção visa apresentar uma perspectiva para a continuação deste trabalho
+materializada em um cronograma de atividades. Na tabela \ref{tab:cronograma},
+serão apresentadas as atividades e datas previstas para a sua realização.
+
+\begin{table}[h]
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|c|c|}
+\hline
+\multicolumn{1}{|c|}{\textbf{Atividade}}                   & \textbf{Data de Início} & \textbf{Data de Término} \\ \hline
+Selecionar novos projetos para análise de vulnerabilidades & 02/02                   & 08/02                    \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+Extrair e Analisar métricas de todos os projetos           & 09/02                   & 15/03                    \\ \hline
+Adicionar Métricas de Anotações                            & 16/03                   & 29/03                    \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+Selecionar projetos para análise de anotações              & 30/03                   & 05/04                    \\ \hline
+Extrair e Analisar métricas de anotação                    & 06/04                   & 03/05                    \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+Elaborar modelo para métricas de vulnerabilidade           & 04/05                   & 31/05                    \\ \hline
+Elaborar modelo para métricas de anotação                  & 01/06                   & 21/06                    \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+Entrega final do trabalho                                  & 22/06                   & 28/06                    \\ \hline
+\end{tabular}
+}
+\caption{Cronograma}
+\label{tab:cronograma}
+\end{table}
 
