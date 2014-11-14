@@ -382,8 +382,7 @@ uma das métricas de vulnerabilidade de código fonte gerados a partir da ativid
 de análise estatística.
 
 \begin{table}[h]
-\caption{Percentis das métricas de vulnerabilidade extraídas do projeto \emph{Linux Kernel}}
-\label{tab:percentis}
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{cccccccccccc}
 \hline
 \textbf{Métrica} & \textbf{Mínimo} & \textbf{1\%} & \textbf{5\%} & \textbf{10\%} & \textbf{25\%} & \textbf{50\%} & \textbf{75\%} & \textbf{90\%} & \textbf{95\%} & \textbf{99\%} & \textbf{Máximo} \\ \hline
@@ -418,6 +417,9 @@ de análise estatística.
 \textbf{UAF}     & 0               & 0            & 0            & 0             & 0             & 0             & 0             & 0             & 0             & 0             & 0               \\ \hline
 \textbf{UAV}     & 0               & 0            & 0            & 0             & 0             & 0             & 0             & 0             & 0             & 0             & 0               \\ \hline
 \end{tabular}
+}
+\caption{Percentis das métricas de vulnerabilidade extraídas do projeto \emph{Linux Kernel}}
+\label{tab:percentis}
 \end{table}
 
 Analisando os resultados através dos gráficos gerados e a tabela \ref{tab:percentis}, 
@@ -445,3 +447,104 @@ para tentar compreender um pouco melhor a natureza dessas métricas, essa análi
 
 \section{Análise Qualitativa} \label{sec:analise_qualitativa}
 
+Nesta seção será apresentada uma análise qualitativa das métricas de vulnerabilidade 
+de código fonte. Para iniciar essa análise em um perspectiva diferente da que foi 
+apresentada na seção \ref{subsec:teste_hipotese}, identificou-se a necessidade de informações
+de uma maior quantidade de projetos de software, além do projeto \emph{Linux Kernel} que foi
+utilizado no estudo de caso apresentado. Foram selecionados alguns projetos de naturezas
+diferentes, respeitando os únicos requisito de possuir a linguagem de programação C/C++ como
+base da sua implementação e ser um software livre, sendo eles:
+
+\begin{multicols}{2}
+\begin{itemize}
+  \item Bash
+  \item Blender
+  \item FFmpeg
+  \item Firefox
+  \item Gstreamer
+  \item Inetutils
+  \item OpenSSH
+  \item OpenSSL
+  \item Python2.7
+  \item Ruby-2.1
+\end{itemize}
+\end{multicols}
+
+Considerou-se que talvez a inserção de projetos de software com propósitos diferentes
+pudesse agregar algum tipo de informação interessante para a interpretação e acompanhamento
+das métricas de vulnerabilidade de código fonte. Onde uma possível hipótese seria que os
+valores das métricas de vulnerabilidade variam de maneira diferente dependendo da natureza 
+do software.
+
+O processo realizado com cada um desses projetos foi similar ao aplicado no estudo de caso
+para coleta de dados, apresentada na subseção \ref{subsec:teste_hipotese}, com o projeto 
+\emph{Linux Kernel}. Após feita a coleta de dados, havia disponível um arquivo CSV para
+cada projeto contendo as métricas de vulnerabilidade de código fonte por módulo. Ao invés
+de prosseguir com o processo realizado no estudo de caso, onde nesta etapa seria feita uma
+análise estatística quantitativa dos valores das métricas, o problema foi abordado de 
+maneira diferente, como será apresentado a seguir.
+
+Levando em conta que nesta fase as métricas de vulnerabilidade de código fonte já estavam
+disponíveis, as atividades realizadas nesta análise qualitativa foram as seguintes:
+
+\begin{enumerate}
+  \item Contabilizar quantidade total de módulos presentes no projeto a ser analisado.
+  \item Selecionar métricas de vulnerabilidade com valoração não nula para o projeto em questão.
+  \item Contabilizar quantidade de módulos afetados por cada uma das métricas anteriormente selecionadas.
+  \item Calcular porcentagem de módulos do projeto afetados por alguma vulnerabilidade.
+  \item Calcular porcentagem de módulos do projeto afetados por cada uma das vulnerabilidades 
+    referentes as métricas selecionadas.
+  \item Analisar os resultados obtidos.
+\end{enumerate}
+
+Essas atividades foram definidas e realizadas no decorrer de um processo empírico, a fim de melhor
+entender o referido problema. A seguir, serão apresentados os resultados obtidos a partir da nova
+abordagem de análise.
+
+A tabela \ref{tab:modulos_proj} apresenta uma visão geral de cada projeto aqui analisado, contendo
+informações como número total de módulos C/C++ do projeto, número total de módulos que sofrem
+algum tipo de vulnerabilidade e porcentagem dos módulos do projeto vulneráveis.
+
+\begin{table}[h]
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{cccc}
+\hline
+\textbf{Projeto}      & \textbf{Nº total de Módulos} & \textbf{Nº total de Módulos vulneráveis} & \textbf{\% de Módulos vulneráveis} \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{Bash}         & 253                          & 36                                       & 14.2292                            \\ \hline
+\textbf{Blender}      & 1472                         & 106                                      & 7.2010                             \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{FFmpeg}       & 1776                         & 100                                      & 5.6306                             \\ \hline
+\textbf{Firefox}      & 12404                        & 328                                      & 2.6443                             \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{Gstreamer}    & 264                          & 22                                       & 8.3333                             \\ \hline
+\textbf{Inetutils}    & 2576                         & 27                                       & 1.0481                             \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{Linux Kernel} & 23056                        & 43                                       & 0.1865                             \\ \hline
+\textbf{OpenSSH}      & 248                          & 14                                       & 5.6451                             \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{OpenSSL}      & 974                          & 26                                       & 2.6694                             \\ \hline
+\textbf{Python2.7}    & 551                          & 32                                       & 5.8076                             \\ \hline
+\rowcolor[HTML]{EFEFEF} 
+\textbf{Ruby-2.1}     & 381                          & 20                                       & 5.2493                             \\ \hline
+\end{tabular}
+}
+\caption{Análise de Módulos por Projeto}
+\label{tab:modulos_proj}
+\end{table}
+
+Analisando os dados apresentados acima pode-se perceber que, em média, cinco porcento (5\%) dos módulos
+dos projetos são de alguma forma vulneráveis devido a erros de codificação. Os valores absolutos da
+quantidade de módulos afetados são bem inferiores ao de módulos totais, o que explica a grande quantidade
+de valores nulos de métricas de vulnerabilidades em grande parte dos módulos de um projeto.
+
+Pode-se perceber que alguns projetos com propósito similar, como o \emph{Python2.7} e o \emph{Ruby-2.1}
+que são linguagens de programação, possuem valores bem próximos de módulos vulneráveis, o que pode ser um
+indício de que a hipótese levantada no início desta seção seja verdadeira, onde projetos com propósitos
+similares se comportam de maneira parecida.
+
+Além disso, os projetos com maiores taxas de módulos vulneráveis, em geral, são projetos que não possuem
+um forte viés em segurança, como o \emph{Blender} e \emph{Gstreamer}. A exceção nesse caso seria o \emph{Bash},
+pois o mesmo possui uma alta porcentagem de módulos vulneráveis, entretanto, é um alvo constante de ataques e
+deveria se preocupar em não deixar brechas de segurança para atacantes. Isso mostra que o \emph{Bash} por 
+enquanto ainda é uma boa opção para a utilização de \textit{exploits} por parte de atacantes.
