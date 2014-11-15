@@ -6,6 +6,50 @@ Introdução
 
 \section{Objetivos} \label{sec:objetivos}
 
+Levando em consideração o que foi apresentado anteriormente, este trabalho tem
+como objetivo principal determinar uma forma de interpretar e acompanhar
+métricas de código fonte além das métricas de \textit{design}. Nesta
+etapa do trabalho, o objetivo é encontrar uma forma de interpretar e monitorar,
+especificamente, métricas de vulnerabilidade de código fonte.
+
+No entanto, para isso, espera-se se aprofundar mais na teoria das métricas de
+software e cada tipo de métricas de código fonte que deseja-se estudar, com o 
+intuito de dominar o contexto que está sendo trabalhado e suas nuâncias.
+
+Com o conhecimento teórico em mãos parte-se para o conhecimento prático,
+empírico. Tendo assim, como objetivo, realizar estudos empíricos utilizando 
+projetos de software livre, as métricas em questão e ferramentas para 
+automatização desse processo também livre, para tentar responder a questão de 
+como se deve interpretar e acompanhar os valores dessas métricas de código fonte.
+Com esses estudos empíricos é passível de encontrar várias informações relevantes
+que ainda não foram pensadas no âmbito teórico. Além da necessidade de prática
+em um trabalho de final de curso de Engenharia de Software.
+
+Passando para as ferramentas utilizadas nos estudos empíricos, espera-se que
+seja contribuição deste trabalho a manutenção evolutiva da ferramenta
+\emph{Analizo}, com o que diz respeito a extração das métricas de
+vulnerabilidade de código fonte. Esta funcionalidade já existe na ferramenta,
+entretanto, necessita de alguns ajustes. Sendo o autor deste trabalho um dos
+mantenedores da ferramenta e participante da equipe de desenvolvimento dessa
+funcionalidade, espera-se contribuir com o projeto ao final, para que esta seja
+a ferramenta para extração desse tipo de métrica de código fonte.
+
+Em outra etapa do trabalho será envolvido a questão do aprendizado de máquina, e
+será um dos objetivos tentar modelar a problemática da interpretação e
+acompanhamento das métricas de código fonte, além das de \textit{design},
+seguindo essa abordagem. Sendo escopo deste trabalho apenas a modelagem do
+problema seguindo a abordagem de aprendizado de máquina e não a implementação
+deste modelo.
+
+Em resumo, o principal objetivo de pesquisa deste trabalho é responder a
+seguinte questão:
+
+\begin{itemize}
+  \item Como deve-se interpretar e acompanhar as métricas de código fonte além 
+    das métricas de \textit{design}?
+\end{itemize}
+
+
 \section{Metodologia}
 
 A metodologia utilizada para se atingir os objetivos deste trabalho foram: uma
@@ -16,7 +60,22 @@ fonte que serão adicionados a este trabalho; além da realização de um estudo
 caso, baseado em \emph{Meirelles} (\citeyear{meirelles2013}), para tentar entender 
 melhor as métricas de vulnerabilidadede código fonte, como as mesmas se comportam 
 e qual a melhor forma de monitora-las, tendo em vista que ainda não existe uma
-quantidade considerável de referencial teórico acerca do assunto.
+quantidade considerável de referencial teórico acerca do assunto. Após a
+consolidação de como interpretar e monitorar essas métricas, este trabalho
+partirá para a abordagem de aprendizado de máquina, tentando melhorar a solução
+do problema encontrada.
+
+Sendo assim, as seguintes etapas deverão ser realizadas ao final deste trabalho:
+
+\begin{enumerate}
+  \item Fazer uma revisão bibliográfica sobre de métricas de software,
+    especificamente de código fonte.
+  \item Realizar um estudo empírico acerca das métricas de código fonte em
+    questão.
+  \item Modelar o problema de como interpretar e acompanhar essas métricas
+    seguindo uma abordagem de aprendizado de máquina.
+\end{enumerate}
+
 
 \section{Organização do Trabalho}
 
