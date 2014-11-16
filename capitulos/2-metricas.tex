@@ -4,13 +4,13 @@
 
 Por volta dos anos 70, o desenvolvimento de software estava se tornando caótico. A demanda por novos softwares aumentava,
 entretanto não existiam técnicas que apoiassem o desenvolvimento, com isso, os softwares desenvolvidos estavam passando
-a ter uma qualidade cada vez pior, sendo qualidade o conjunto de propriedades do produto ou serviço, que lhe conferem 
-aptidões para satisfazer as necessidades explícitas ou implícitas ~\cite{iso:8402}. Tendo isso em vista, o cenário de
+a ter uma qualidade cada vez pior, sendo "\emph{qualidade} o conjunto de propriedades do produto ou serviço, que lhe conferem 
+aptidões para satisfazer as necessidades explícitas ou implícitas" ~\cite{iso:8402}. Tendo isso em vista, o cenário de
 desenvolvimento de software era comumente caracterizado da seguinte forma:
 
 \begin{itemize}
-  \item Cronograma e estimativas de custo grosseiramente imprecisas,
-  \item Software de má qualidade, e
+  \item Cronograma e estimativas de custo grosseiramente imprecisas;
+  \item Software de má qualidade;
   \item Um índice de produtividade crescendo mais lentamente do que a demanda por software.
 \end{itemize}
 
@@ -21,7 +21,7 @@ Para solucionar a "Crise do Software" ~se via necessário um melhor gerenciament
 e do software produzido, o método utilizado até então não se mostrava eficaz diante desse cenário caótico, as formas de medir 
 e estimar não estavam atendendo as reais necessidades. Viu-se então as peculiaridades e complexidade do desenvolvimento de 
 software. Levando em consideração que uma métrica é a composição de procedimentos para a definição de escalas e métodos para 
-medidas ~\cite{iso:9126-1}, e a partir dessas dificuldades se definiu qual seria o real objetivo de uma métrica de software: 
+medidas ~\cite{iso:9126-1}, e a partir dessas dificuldades definiu-se qual seria o real objetivo de uma métrica de software: 
 identificação e medição dos parâmetros essenciais que afetam o desenvolvimento de software ~\cite{mills88}.
 
 Portanto, as métricas de software possuem papel fundamental para o acompanhamento da qualidade tanto do processo de
@@ -40,7 +40,7 @@ de métricas utilizadas, até porque o tratamento de um grande volume de dados p
   \item a métrica deve medir efetivamente o proposto por ela;
   \item pequenas mudanças no software, por exemplo, não podem causar grandes mudanças no valor obtido;
   \item deve haver formas de mapeamento das métricas para o entendimento do comportamento das entidades analisadas através 
-    da manipulação dos números obtidos e
+    da manipulação dos números obtidos;
   \item o resultado da métrica deve ser independente da linguagem de programação utilizada.
 \end{itemize}
 
@@ -53,12 +53,13 @@ ser \textit{primitivas} ou \textit{compostas}; método como serão determinadas,
 \textit{subjetivas}; e também pode variar a sua escala, onde podem ser \textit{nominal}, \textit{ordinal}, \textit{intervalo}
 ou \textit{racional}.
 
-As métricas primitivas podem ser obtidas a partir da própria entidade, por leitura direta, possuem apenas uma medida, já as
+As métricas primitivas podem ser obtidas a partir da própria entidade, por
+leitura direta, possuem apenas uma medida. Já as
 métricas compostas são calculadas a partir de uma ou mais medidas, sendo essas métricas primitivas, logo, as métricas compostas
 são derivadas de métricas primitivas. 
 
 A forma de determinar uma métrica pode depender da avaliação de quem está interpretando-a e não somente dos dados em si, nesse
-caso, chama-se de métrica subjetiva, dependendo de quem está avaliando o resultado final pode diferenciar ou não. Agora quando
+caso, chama-se de métrica subjetiva. Dependendo de quem está avaliando o resultado final pode diferenciar ou não. Agora quando
 existem regras claras e bem definidas para determinar a valoração de uma métrica, chamamos a mesma de métrica objetiva, não
 dependendo da opinião de terceiros.
 
@@ -85,7 +86,7 @@ operações matemáticas ~\cite{meirelles2013}.
 No momento de definição de uma métrica de software é necessário pensar na classificação da mesma levando em consideração
 todas as dimensões apresentadas, deve-se definir a forma de obtenção, valoração e escala.
 
-Neste trabalho, serão trabalhadas em geral métricas objetivas; primitivas e derivadas; e racional. Tendo em vista que o 
+Neste trabalho, serão utilizadas em geral métricas objetivas; primitivas e derivadas; e racional. Tendo em vista que o 
 foco são métricas de código fonte que serão coletadas de forma automatizada por ferramentas especializadas.
 
 \section{Métricas de \textit{Design} de Código Fonte}
@@ -93,61 +94,63 @@ foco são métricas de código fonte que serão coletadas de forma automatizada 
 Métricas de \textit{design} de software devem ser compreendidas como um conjunto de métricas que medem atributos do código 
 fonte que permitam a avaliação de produtos de software ~\cite{arthur&carlos2014}. A utilização correta de métricas de \textit{design} no ciclo
 de desenvolvimento de software oportuniza além da aferição da qualidade do produto, a refatoração. Na refatoração, a forma que
-foi implementada determinada funcionalidade é repensada e reimplementada, de forma que melhore alguns atributos dos software,
+foi implementada determinada funcionalidade é repensada e reimplementada, de forma que melhore alguns atributos do software,
 como manutenibilidade, testabilidade, a própria qualidade interna do software. Abaixo serão apresentadas as principais métricas
 de design que são possíveis de obter com o uso de ferramentas automatizadas para análise estática de código fonte 
-~\cite{arthur&carlos2014,meirelles2013}, a nome completo de cada uma das métricas foi especificado na lista de abreviaturas e 
+~\cite{arthur&carlos2014,meirelles2013}, o nome completo de cada uma das métricas foi especificado na lista de abreviaturas e 
 siglas.
 
 \begin{itemize}
   \item \textbf{LOC}: Calcula o número de linhas executáveis, desconsiderando linhas 
     em branco e comentários. Esta é a métrica de tamanho mais comum. Entretanto, deve ser cuidadosamente usada e composta, pois
     os parâmetros de comparação não devem ser os mesmos quando se varia a linguagem e estilo de programação.
-  \item \textbf{AMLOC}: Esta métrica avalia a distribuição
-    do código entre os métodos, sendo uma importante indicador de coesão, reutilização e outras características importantes. 
+  \item \textbf{AMLOC}: Essa métrica avalia a distribuição
+    do código entre os métodos, sendo um importante indicador de coesão, reutilização e outras características importantes. 
     Entretanto, assim como a LOC, deve ser avaliada considerando-se a linguagem e estilo de programação.
   \item \textbf{NOA}: Calcula o número de atributos de uma classe, sendo 
     bastante importante para avaliar a coesão de uma classe.
-  \item \textbf{NOM}: Esta métrica se refere ao tamanho de uma classe medindo a 
-    quantidade de operações de uma classe. Sua interpretação pode ser complicada. Um número excessivo de métodos pode 
+  \item \textbf{NOM}: Essa métrica se refere ao tamanho de uma classe medindo a 
+    quantidade de operações da mesma. Sua interpretação pode ser complicada. Um número excessivo de métodos pode 
     representar falta de coesão e de potencial de reusabilidade da classe. Por outro lado, pode representar uma classe bem 
     estruturada com operações bem definidas. Entretanto, a avaliação isolada desta métrica não permite este tipo de afirmação.
-  \item \textbf{NPA}: Mede basicamente o encapsulamento de uma classe. Independente da linguagem, é desejado que este valor 
+  \item \textbf{NPA}: Mede basicamente o encapsulamento de uma classe.
+    Independentemente da linguagem, é desejado que este valor 
     seja o mais baixo possível, pois é recomendado que a manipulação de atributos de uma classe sejam realizados por métodos de 
     acesso e operacionais.
-  \item \textbf{NPM}: Esta métrica é muito importante para a compreensão da abstração da classe, pois mede diretamente o 
-    tamanho da interface de acesso à mesma. NPM pode ser melhor utilizada para compreender o potencial de reusabilidade e 
-    coesão de uma classe do que a métrica NOM isoladamente.
-  \item \textbf{ANPM}: Essa métrica calcula a média de parâmetros dos métodos da classe, onde não se deseja um valor alto.
+  \item \textbf{NPM}: Essa métrica é muito importante para a compreensão da abstração da classe, pois mede diretamente o 
+    tamanho da interface de acesso à mesma. NPM pode ser melhor utilizada, para compreender o potencial de reusabilidade e 
+    coesão de uma classe, do que a métrica NOM isoladamente.
+  \item \textbf{ANPM}: Essa métrica calcula a média de parâmetros dos métodos da classe onde não se deseja um valor alto.
   \item \textbf{MNPM}: Essa métrica corresponde à maior ocorrência de número de parâmetros dos métodos de uma classe.
-  \item \textbf{DIT}: Está métrica consiste no número de classes ancestrais da classe em análise, sem considerar heranças 
-    provindas de frameworks ou bibliotecas. Para linguagens com herança múltipla, o valor desta métrica é o DIT da maior 
-    hierarquia.
+  \item \textbf{DIT}: Essa métrica consiste no número de classes ancestrais da classe em análise, sem considerar heranças 
+    provindas de \textit{frameworks} ou bibliotecas. Para linguagens com herança múltipla, o valor desta métrica é o DIT 
+    da maior hierarquia.
   \item \textbf{NOC}: Consiste no número de filhos direto de uma classe.
-  \item \textbf{ACCM}: Esta métrica mede a complexidade média dos métodos de uma classe, baseando-se na complexidade dos fluxos 
+  \item \textbf{ACCM}: Essa métrica mede a complexidade média dos métodos de uma classe, baseando-se na complexidade dos fluxos 
     de controle existente no método.
-  \item \textbf{RFC}: Esta métrica mede a complexidade de uma classe contando o número de métodos que um objeto de uma classe 
+  \item \textbf{RFC}: Essa métrica mede a complexidade de uma classe contando o número de métodos que um objeto de uma classe 
     pode invocar, tanto métodos internos quanto de outras classes.
-  \item \textbf{ACC}: Esta métrica mede a conectividade de uma classe a partir da contagem de quantas classes do sistema 
+  \item \textbf{ACC}: Essa métrica mede a conectividade de uma classe a partir da contagem de quantas classes do sistema 
     acessam um atributo ou método da classe em análise. Caso o valor de ACC de uma classe seja alto, modificações em sua 
     estrutura podem afetar mais classes.
-  \item \textbf{CBO}: Esta métrica calcula de quantas classes a classe em análise depende, sendo a recíproca da ACC.
-  \item \textbf{COF}: Esta métrica é a razão entre o número acoplamento existente que não sejam provindos de herança e do 
+  \item \textbf{CBO}: Essa métrica calcula de quantas classes a analisada depende, sendo a recíproca da ACC.
+  \item \textbf{COF}: Essa métrica é a razão entre o número de acoplamento existente que não sejam provindos de herança e do 
     número total de possíveis acoplamentos. O máximo de acoplamento possível acontece quando todas as classes estão e são 
     acopladas com as outras classes do projeto.
-  \item \textbf{LCOM4}: Esta métrica cálcula o número de componentes conectados em uma classe. Um componente conectado consiste 
+  \item \textbf{LCOM4}: Essa métrica cálcula o número de componentes conectados em uma classe. Um componente conectado consiste 
     em um conjunto de métodos relacionados. Dois métodos são relacionados se ambos acessam as mesmas variáveis da classe ou um 
     método invoca ao outro.
 \end{itemize}
 
-Acima foram apresentadas métricas de design atreladas ao tamanho, coesão e acoplamento e atributos estruturais, que dão uma
+Acima foram apresentadas métricas de \textit{design} atreladas ao tamanho,
+coesão, acoplamento e atributos estruturais, que dão uma
 visão geral sobre a qualidade do \textit{design} projetado e implementado.
 
-As métricas de \textit{design} possuem relevância nesse trabalho pelo fato de que existem três causas básicas que podem surgir 
+As métricas de \textit{design} possuem relevância neste trabalho pelo fato de que existem três causas básicas que podem surgir 
 vulnerabilidades em um software, sendo elas erros de implementação, falhas de
 \textit{design} e erros de configuração ou infraestrutura
-do sistema ~\cite{malerba2010}. Portanto, as métricas de \textit{design} possuem um papel importante para se evitar vulnerabilidades 
-em um software.
+do sistema ~\cite{malerba2010}. Portanto, as métricas de \textit{design} possuem um papel importante para se 
+evitar vulnerabilidades em um software.
 
 Apesar de apresentadas neste trabalho algumas métricas de \textit{design}, e a sua importância por ter associação direta com algumas 
 vulnerabilidades, esse não é o foco do trabalho. O foco do estudo são as
@@ -177,12 +180,13 @@ desenvolvimento do software, e não depois da sua liberação e colocação em p
 
 Tendo em vista a importância do monitoramento de métricas de vulnerabilidade de software, a seguir, serão apresentados alguns
 cenários de métricas dessa categoria voltadas principalmente para implementações utilizando as linguagens de programação C e 
-C++, que dão maior liberdade na implementação do software, o nome completo das métricas a seguir estão na lista de abreviaturas 
+C++, que dão maior liberdade na implementação do software. O nome completo das métricas a seguir estão na lista de abreviaturas 
 e siglas:
 
 \begin{itemize}
-  \item \textbf{AN}: Ocorre quando uma função/método manipular um atributo sem valida-lo, acreditando que o mesmo não será 
-    nulo, e o argumento passado na chamada da função é nulo, como pode ser visto no trecho de código \ref{codigoAN}.
+  \item \textbf{AN}: Ocorre quando uma função/método manipular um atributo sem
+    validá-lo, acreditando que o mesmo não será 
+    nulo, e o argumento passado na chamada da função/método é nulo, como pode ser visto no trecho de código \ref{codigoAN}.
 
     \begin{lstlisting}[caption={Código exemplo AN}, label=codigoAN]
   int testeAN(int *lista)
@@ -405,11 +409,10 @@ e siglas:
 
 As métricas relacionadas aos cenários acima são objetivas; primitivas e derivadas; e racionais. Lembrando que o valor dessas 
 métricas representam a quantidade de vezes que foram encontrados esses cenários de vulnerabilidade no código fonte do software 
-em questão. Esses cenários de vulnerabilidade apresentados são todos baseados na
+em questão. Esses cenários de vulnerabilidades apresentados são todos baseados na
 lista de CWEs \footnote{Acessível em: \url{http://cwe.mitre.org/}}, que nada
 mais é do que uma lista de vulnerabilidades de software, sendo uma iniciativa da
-própria comunidade a criação dessa lista, que documenta os vários tipos de
-vulnerabilidades já encontradas e validadas.
+própria comunidade a criação dessa lista, que documenta os vários tipos já encontradas e validadas.
 
 No decorrer do trabalho será apresentada a forma que se dará a definição de como
 fazer o acompanhamento dessas
@@ -417,5 +420,5 @@ métricas, já que, como foi apresentado, é essencial o bom monitoramento das
 mesmas. Os possíveis valores de referências servirão
 de insumo para tomada de decisão após a extração das métricas, onde o Engenheiro
 de Software irá definir se o valor daquela
-métrica em específico é aceitável ou não, e com isso, tomar ações corretivas se necessário.
+métrica em específico é aceitável ou não, e, com isso, tomar ações corretivas se necessário.
 

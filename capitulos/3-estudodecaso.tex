@@ -2,8 +2,8 @@
 
 Como foi dito na seção \ref{cap:introducao}, o problema de como realizar o
 acompanhamento de métricas de vulnerabilidade de código fonte ainda não foi bem
-atacado dentro do contexto da Engenharia de Software, tendo isso em vista,
-foi trabalhado um estudo de caso a fim de tentar identificar qual a melhor forma
+explorado dentro do contexto da Engenharia de Software. A partir disso,
+foi realizado um estudo de caso com o intuito de tentar identificar qual a melhor forma
 de se acompanhar e analisar métricas de código fonte dessa natureza. O estudo
 de caso realizado neste trabalho visa testar algumas hipóteses iniciais que serão apresentadas
 neste mesmo capítulo, além de identificar possíveis melhorias para a continuação
@@ -17,7 +17,7 @@ hipóteses iniciais e cujo objetivo é testar tais hipóteses. A definição das
 hipóteses iniciais levantadas será apresentada na subseção \ref{subsec:hipoteses}.
 
 A fim de facilitar o entendimento das atividades realizadas neste estudo de
-caso, será apresentado a seguir o processo que foi seguido. Através do
+caso, será apresentado a seguir o processo executado. Através do
 fluxograma \ref{fig:processo_estudo_de_caso} pode-se ver o sequenciamento das
 atividades realizadas e logo a seguir, na lista \ref{desc_processo}, o
 detalhamento de cada uma delas.
@@ -35,10 +35,10 @@ Detalhamento das atividades apresentadas no fluxograma
 
 \begin{enumerate}\label{desc_processo}
   \item \textbf{Selecionar projetos}: Selecionar projeto de software representativo no contexto de
-    vulnerabilidades de código fonte, foi considerado como representativo um
+    vulnerabilidades de código fonte. Foi considerado como representativo, um
     software que tenha um viés maior em segurança devido a ocorrência de ataques
     sobre o mesmo.
-  \item \textbf{Obter código fonte}: Obter código fonte do projeto selecionados. Foi utilizado o código fonte
+  \item \textbf{Obter código fonte}: Obter código fonte do projeto selecionado. Foi utilizado o código fonte
   da última versão estável do projeto.
   \item \textbf{Identificar como construir projetos}: Identificar como construir projeto selecionado. O projeto foi contruído
     segundo as orientações da própria comunidade referente ao mesmo.
@@ -49,11 +49,10 @@ Detalhamento das atividades apresentadas no fluxograma
     tratamentos necessários das informações obtidas através da análise estática
     de código fonte, já que da maneira que foi disponibilizado pela ferramenta
     não atendia os requisitos do processo de análise estatística realizado.
-  \item \textbf{Analisar resultados}: Analisar resultados gerados pela análise estatística. Essa análise foi uma atividade
-    manual, analisando os gráficos e tabelas geradas pela atividade anterior um
-    a um.
-  \item \textbf{Realizar conclusões}: Realizar conclusões. Onde foi definido se a hipótese testada estava
-    correta ou não.
+  \item \textbf{Analisar resultados}: Analisar resultados gerados pela análise
+    estatística. Esse estudo foi uma atividade
+    manual, observando os gráficos e tabelas gerados pela atividade anterior.
+  \item \textbf{Realizar conclusões}: Definir se a hipótese testada estava correta ou não.
 \end{enumerate}
 
 Para a realização de algumas das atividades apresentadas foram utilizadas
@@ -72,7 +71,7 @@ Inicialmente o intuito era utilizar a ferramenta \emph{Analizo} para a extraçã
 das métricas de vulnerabilidade, entretanto, foram encontradas limitações na
 implementação dessa \textit{feature} e por isso foi utilizada a ferramenta
 \emph{Clang Static Analyzer}. A evolução dessa funcionalidade da ferramenta
-\emph{Analizo} é um dos objetivos deste trabalho, como foi apresentado na seção
+\emph{Analizo} constitui um dos objetivos deste trabalho, como foi apresentado na seção
 \ref{sec:objetivos}. Atualmente, o autor deste trabalho é um dos mantenedores da
 ferramenta \emph{Analizo}, e compôs a equipe de desenvolvimento da
 \textit{feature} em questão.
@@ -85,13 +84,13 @@ Analyzer}, e os \textit{Scripts} utilizados.
 
 O teste das hipóteses, desde a coleta dos dados até a análise dos resultados, serão
 apresentados na subseção \ref{subsec:teste_hipotese}. Nessa subseção será
-apresentado a corretude ou não da hipótese.
+apresentado a corretude ou não das hipóteses.
 
 \subsection{Hipóteses} \label{subsec:hipoteses}
 
 As hipóteses iniciais levantadas para este estudo de caso, foram feitas baseadas em
 formas de se acompanhar e analisar métricas de \textit{design} de código fonte
-apresentada em outros trabalhos, como em \emph{Meirelles}
+apresentadas em outros trabalhos, como em \emph{Meirelles}
 (\citeyear{meirelles2013}). Logo, as hipóteses são:
 
 \begin{itemize}
@@ -106,8 +105,8 @@ apresentada em outros trabalhos, como em \emph{Meirelles}
 \end{itemize}
 
 Todas as hipóteses apresentadas foram levantadas devido aos resultados apresentados em
-\emph{Meirelles} (\citeyear{meirelles2013}) serem satisfatórios e foram
-consideradas como premissas iniciais. Sendo validadas e confirmadas as hipóteses
+\emph{Meirelles} (\citeyear{meirelles2013}), por serem satisfatórios e
+considerados como premissas iniciais. Sendo validadas e confirmadas as hipóteses
 acima, será possível encontrar valores de referência baseado em análises
 quantitativas dos valores das métricas de vulnerabilidade. 
 
@@ -117,7 +116,7 @@ Nesta seção serão apresentadas as ferramentas utilizadas neste estudo de caso
 
 \subsubsection{Analizo} \label{analizo}
 
-\emph{Analizo} é um conjunto de ferramentas livre, multi-linguagem (C, C++, Java), realiza análise de código fonte, é facilmente 
+\emph{Analizo} é um conjunto de ferramentas livre, multilinguagem (C, C++, Java), realiza análise de código fonte, é facilmente 
 extensível e disponibiliza diferentes tipos de visualização. Ele suporta a extração e cálculo de um bom número de métricas de 
 código fonte, geração de gráficos de dependência e análise de evolução do software \cite{analizo}.
 
@@ -137,11 +136,15 @@ Será iniciado o processo de manutenção corretiva da funcionalidade de extraç
 para as linguagens C e C++, para que melhor atenda as necessidades deste trabalho. Outra funcionalidade que ainda está em 
 processo de desenvolvimento é a adição do suporte da linguagem \textit{Perl}.
 
-A ferramenta \emph{Analizo} é facilmente extensível, desde extratores até formas de visualização. A figura \ref{archanalizo} mostra
+A ferramenta \emph{Analizo} é facilmente extensível, desde extratores até formas
+de visualizações. A figura \ref{archanalizo} mostra
 como está implementada a arquitetura em camadas da ferramenta \cite{analizoartigo}. Existem basicamente cinco módulos, o 
-\textit{Core} é o modulo responsável por atividades centrais como processamento, filtros e modelos por exemplo; 
-\textit{Extractor} é o módulo que contém os extratores utilizados, atualmente existem três: \textit{Clang}, \textit{Doxyparse}
-e \textit{Sloccount}; \textit{Metrics} é o módulo que contém a lógica para cálculo de todas as métricas, hoje em dia possuindo
+\textit{Core} é o módulo responsável por atividades centrais como processamento,
+filtros e modelos dentre outros; 
+\textit{Extractor} é o módulo que contém os extratores de métricas de código
+fonte utilizados, atualmente existem três: \textit{Clang}, \textit{Doxyparse}
+e \textit{Sloccount}; \textit{Metrics} é o módulo que contém a lógica para
+cálculo de todas as métricas, atualmente possui
 37 (trinta e sete) métricas de módulo e 4 (quatro) métricas globais; \textit{Output} é o módulo que será dada a saída da 
 ferramenta, atualmente existem opções de banco de dados e arquivo CSV; \textit{Tools} é o módulo que representa várias outras
 ferramentas que podem trabalhar tanto acima do \textit{Core} quanto acima dos outros módulos.
@@ -187,17 +190,18 @@ mesmas configuraçãoes de \textit{hardware} e o resultado obtido é expresso pe
   \label{clang_gcc}
 \end{figure}
 
-O \emph{Clang} vem sendo desenvolvido baseado na arquitetura do projeto LLVM, ele possui bibliotecas centrais e bibliotecas de 
+O \emph{Clang} vem sendo desenvolvido baseado na arquitetura do projeto
+\emph{LLVM}, possui bibliotecas centrais e bibliotecas de 
 aplicativos, conforme é apresentado na figura \ref{clang_arch}. No contexto desse trabalho, o foco é a biblioteca de aplicativo
 \textit{Analysis}. A ideia dessa biblioteca é trazer alguns benefícios para os desenvolvedores, como o descobrimento de 
 \textit{bugs} o mais cedo possível; checar sistematicamente o código fonte; achar alguns \textit{bugs} mesmo na falta de caso
 de testes, no caso de trechos de código difíceis de serem testados \cite{kremenek2009}. 
 
-A análise estática realizada pelo \emph{Clang} é inter-procedural, podendo achar inconsistências entre funções/métodos, para isso,
+A análise estática realizada pelo \emph{Clang} é interprocedural, podendo achar inconsistências entre funções/métodos, para isso,
 é necessária a compilação do código fonte, onde nessa fase será construída a AST 
 \cite{kremenek2009}. Essa característica pode não ser muito atraente a primeira vista, pois para realizar a análise do código 
 fonte é necessário compila-lo, entretanto, pode ser um ponto positivo tendo em vista que a todo momento que for feita 
-construção do software a análise será feita, mesmo que essa questão tenha sido esquecida.
+construção do software a análise será realizada, mesmo que essa questão tenha sido esquecida.
 
 \begin{figure}[h]
   \centering
@@ -229,7 +233,7 @@ determinada métrica, são utilizadas as seguintes distribuições estatísticas
 
 Caso nenhuma das distribuições apresentadas consigam refletir os valores de uma determinada métrica, os
 \textit{scripts} tentarão encontrar uma distribuição estatística que melhor se adeque. Gráficos de cada distribuição serão
-gerados como saída desse processo de análise estatística para melhor visualização dos dados. Como entrada teremos arquivos
+gerados como saída desse processo de análise estatística, para melhor visualização dos dados. Como entrada teremos arquivos
 CSV com os valores das métricas a serem analisadas.
 
 Outro tipo de análise que poderá ser feita com essa suíte de \textit{scripts} será relacionada aos percentis das métricas.
@@ -272,7 +276,7 @@ da ferramenta é um arquivo HTML e a suíte de \textit{scripts} apresentados
 anteriormente tem como um dos requisitos o arquivo de entrada ser do formato
 CSV. Esses \textit{scripts} de adequação do formato dos dados utiliza-se de
 expressões regulares para encontrar padrões e contar as ocorrências de
-determinada cenário de vulnerabilidade, e com isso esses valores são escritos em
+determinada cenário de vulnerabilidade. Com isso esses valores são escritos em
 um arquivo CSV.
 
 \subsection{Teste das Hipóteses} \label{subsec:teste_hipotese}
@@ -282,8 +286,8 @@ Nesta seção será feito o teste das hipóteses apresentadas na subseção
 
 \subsubsection{Coleta de Dados}
 
-Para realizar a coleta dos dados para iniciar o teste dos hipóteses, foram
-realizadas as seguintes atividades do processo descrito pelo fluxograma
+Para realizar a coleta dos dados e iniciar o teste das hipóteses, foram
+feitas as seguintes atividades do processo descrito pelo fluxograma
 \ref{fig:processo_estudo_de_caso}:
 
 \begin{itemize}
@@ -293,10 +297,10 @@ realizadas as seguintes atividades do processo descrito pelo fluxograma
   \item Extrair métricas de vulnerabilidade
 \end{itemize}
 
-Para o teste dessa hipótese foi selecionado um projeto de software considerado
+Para o teste dessas hipóteses foi selecionado um projeto de software considerado
 representativo no contexto de vulnerabilidades de código fonte, que é o projeto
 \emph{Linux Kernel}. Ele é a base para a grande maioria dos sistemas operacionais
-disponíveis, esses sistemas são bastante utilizados por Engenheiros de Software para
+disponíveis, esses sistemas são bastante utilizados por Engenheiros para
 o próprio desenvolvimento de software, além de ser o sistema operacional em
 execução na grande maioria dos servidores de aplicações, onde geralmente
 atacantes exploram vulnerabilidades ao utilizarem-se de \textit{exploits}, como
@@ -308,7 +312,7 @@ criador Linus Torvalds. Para encontrar o repositório foi utilizado a ferramenta
 \emph{OpenHub} \footnote{Acessível em: \url{https://www.openhub.net/}}, onde
 pode-se encontrar várias informações dessa natureza.
 
-Para a construição (\textit{build}) do projeto existe documentação em diversos
+Para a construção (\textit{build}) do projeto existe documentação em diversos
 locais, praticamente todas as distribuições \emph{Linux} possuem essa
 documentação. Para este estudo de caso foi utilizada a documentação de uma das
 distribuições \emph{Linux} mais conhecidas, do Ubuntu \footnote{Documentação para
@@ -347,16 +351,16 @@ menos um dos módulos, sendo elas DNP, DUPV e SAIGV.
 Com isso, antes de se concluir o estudo de caso, já foi
 possível negar a hipótese \emph{H1} e \emph{H2} apresentadas na subseção
 \ref{subsec:hipoteses}, pois a forma de observar as métricas de vulnerabilidade
-é diferente da de \textit{design} de código fonte, além de a média dos valores
+é diferente da de \textit{design} de código fonte, além da média dos valores
 das métricas dos módulos não ser relevante para o seu acompanhamento. Métricas de \textit{design},
-em geral, não possui essa grande quantidade de valoração nula das métricas nos
+em geral, não possuem essa grande quantidade de valoração nula das métricas nos
 módulos de um grande projeto como o \emph{Linux Kernel}, diferente do que
 pode-se observar com as métricas de vulnerabilidade de código fonte. E como
-grande parte dos módulos possuí valoração das métricas nulas, a média desses
+grande parte dos módulos possui valoração das métricas nulas, a média desses
 valores não é representativo para o acompanhamento das mesmas.
 
 Após essa constatação, continuou-se o processo apresentado no fluxograma 
-\ref{fig:processo_estudo_de_caso}, foram realizadas as seguintes atividades:
+\ref{fig:processo_estudo_de_caso}. Foram realizadas as seguintes atividades:
 
 \begin{itemize}
   \item Realizar análise estatística
@@ -373,15 +377,15 @@ Talvez, a distribuição estatística não seja relevante para acompanha-las, po
 isso essa hipótese não foi testada neste estudo de caso.
 
 Apesar de todas as hipóteses terem se esgotado nesse ponto do estudo de caso,
-foi preferível a continuação do estudo para tentar extrair alguma informação
-útil para a questão do acompanhamento de métricas de vulnerabilidade de código
+foi preferível a continuação do mesmo para tentar extrair alguma informação
+útil no que se refere a questão do acompanhamento de métricas de vulnerabilidade de código
 fonte.
 
 Na atividade de realizar a análise estatística foi utilizada a suíte de
 \textit{scripts} apresentados na subseção \ref{scripts}, entretanto, só foi
 trabalhado com os percentis dos valores das métricas, a fim de tentar extrair
 alguma informação relevante. Os gráficos dos percentis de cada uma das métricas 
-de vulnerabilidade trabalhadas pode ser encontrado no anexo \ref{anex:percentis}. 
+de vulnerabilidade trabalhadas podem ser encontrados no apêndice \ref{anex:percentis}. 
 A tabela \ref{tab:percentis} apresenta os valores dos percentis referentes a cada
 uma das métricas de vulnerabilidade de código fonte gerados a partir da atividade
 de análise estatística.
@@ -435,7 +439,7 @@ gráfico da métrica SAIGV também é uma reta em zero, apesar de ter apenas uma
 não nula, devido a exclusão do menor e maior valor no processo de análise
 estatística. Levando em consideração apenas os gráficos das métricas não nulas, 
 pode-se ver que os valores das métricas se concentram nos percentis mais elevados, 
-com isso, conclui-se que a grande maioria dos valores dessas métricas possuem valores similares na
+com isso, conclui-se, que a grande maioria dos valores dessas métricas possuem valores similares na
 maioria dos módulos, não variando muito a sua valoração. Entretanto, essa
 informação não agrega tanto valor no que diz respeito a como se acompanhar
 métricas de vulnerabilidade de código fonte em um projeto de software, apenas nos mostra que a
@@ -603,9 +607,10 @@ de segurança sofrem desse mal. No momento da implementação deve-se tomar cuid
 locais de memória que não foram alocados, ou seja, não acessar ponteiros nulos,
 podendo utilizar-se de validações antes da chamada ao ponteiro.
 
-A métrica de vulnerabilidade de código fonte DNP se apresenta como a mais recorrente entre as trabalhadas
+A métrica de vulnerabilidade de código fonte DNP se apresenta como a mais
+recorrente entre as aŕesentadas
 no contexto deste trabalho, entretanto, outras métricas também aparecem com uma frequência um pouco menor,
-como a métrica AN e ROGU. O resumo da frequência das métricas de vulnerabilidade de código fonte por módulo
+como as métricas AN e ROGU. O resumo da frequência das métricas de vulnerabilidade de código fonte por módulo
 de cada um dos projetos poderá ser visto no apêndice \ref{anex:analise_qualitativa}. A seguir uma lista com
 as mais recorrentes métricas de vulnerabilidade de código fonte identificadas:
 
@@ -620,7 +625,8 @@ as mais recorrentes métricas de vulnerabilidade de código fonte identificadas:
 
 Esta análise qualitativa apresentou-se mais produtiva para um entendimento inicial do comportamento
 das métricas de vulnerabilidade de código fonte do que uma análise quantitativa. Com essa análise foi
-possível levantar uma nova hipótese a ser testada, onde projetos com propósito similar se comportam de 
+possível levantar uma nova hipótese a ser testada, onde projetos com propósitos
+semelhantes se comportam de 
 maneira similar, além de determinar um conjunto de métricas de vulnerabilidade mais recorrentes, que devem
 ser acompanhadas mais de perto em um projeto de software.
 
