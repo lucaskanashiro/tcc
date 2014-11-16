@@ -12,8 +12,8 @@ do mesmo.
 \section{Metodologia} \label{sec:metodologia}
 
 A metodologia utilizada neste estudo de caso foi feita baseada no trabalho
-realizado por \emph{Meirelles} (\citeyear{meirelles2013}), onde foi levantada
-uma hipótese inicial e cujo objetivo é testar tal hipótese. A definição das
+realizado por \emph{Meirelles} (\citeyear{meirelles2013}), onde foram levantadas
+hipóteses iniciais e cujo objetivo é testar tais hipóteses. A definição das
 hipóteses iniciais levantadas será apresentada na subseção \ref{subsec:hipoteses}.
 
 A fim de facilitar o entendimento das atividades realizadas neste estudo de
@@ -35,7 +35,9 @@ Detalhamento das atividades apresentadas no fluxograma
 
 \begin{enumerate}\label{desc_processo}
   \item \textbf{Selecionar projetos}: Selecionar projeto de software representativo no contexto de
-    vulnerabilidades de código fonte.
+    vulnerabilidades de código fonte, foi considerado como representativo um
+    software que tenha um viés maior em segurança devido a ocorrência de ataques
+    sobre o mesmo.
   \item \textbf{Obter código fonte}: Obter código fonte do projeto selecionados. Foi utilizado o código fonte
   da última versão estável do projeto.
   \item \textbf{Identificar como construir projetos}: Identificar como construir projeto selecionado. O projeto foi contruído
@@ -170,15 +172,18 @@ algumas das principais metas são:
   \item Código fonte base simples e de fácil entendimento ("\textit{hackable}")
 \end{itemize}
 
-Algumas dessas metas estão sendo atingidas, por exemplo, um experimento realizado por \cite{naroff2009} evidenciou o rápido
-tempo de compilação do Clang em comparação com o GCC. Foi feita a compilação do \textit{PostgreSQL} em computadores com as
+Algumas dessas metas estão sendo atingidas, por exemplo, um experimento
+realizado por \emph{Naroff} (\citeyear{naroff2009}), evidenciou o rápido
+tempo de compilação do \emph{Clang} em comparação com o \emph{GCC}, principal
+compilador para linguagem C/C++ disponível no mercado. Foi feita a compilação do \textit{PostgreSQL} em computadores com as
 mesmas configuraçãoes de \textit{hardware} e o resultado obtido é expresso pela figura \ref{clang_gcc}.
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.4\textwidth]
       {figuras/clang_gcc.eps}
-  \caption{Análise de performance do Clang em comparação com o GCC}
+      \caption{Análise de performance do \emph{Clang} em comparação com o
+      \emph{GCC}}
   \label{clang_gcc}
 \end{figure}
 
@@ -222,7 +227,7 @@ determinada métrica, são utilizadas as seguintes distribuições estatísticas
   \item Poison
 \end{itemize}
 
-Caso nenhuma das distribuições apresentadas consigam refletir os valores de uma determinada métrica de vulnerabilidade, os
+Caso nenhuma das distribuições apresentadas consigam refletir os valores de uma determinada métrica, os
 \textit{scripts} tentarão encontrar uma distribuição estatística que melhor se adeque. Gráficos de cada distribuição serão
 gerados como saída desse processo de análise estatística para melhor visualização dos dados. Como entrada teremos arquivos
 CSV com os valores das métricas a serem analisadas.
@@ -256,8 +261,8 @@ dos percentis e um arquivo texto com a quantidade de valores dentro de cada inte
 de percentil.
 
 Tendo os percentis das métricas será possível fazer uma análise, sabendo em quais faixas geralmente ocorre 
-determinados tipos de vulnerabilidades e tentar definir em qual faixa é aceitável ou não os valores das métricas de 
-vulnerabilidade de código fonte.
+determinados tipos de métricas, e tentar definir em qual faixa é aceitável ou não os valores das métricas de 
+código fonte trabalhadas.
 
 Foram desenvolvidos para este trabalho \textit{scripts}\footnote{Disponível em
 \url{https://github.com/lucaskanashiro/clang\_parser\_html\_to\_csv}} para a adequação dos
@@ -452,7 +457,7 @@ de código fonte. Para iniciar essa análise em um perspectiva diferente da que 
 apresentada na seção \ref{subsec:teste_hipotese}, identificou-se a necessidade de informações
 de uma maior quantidade de projetos de software, além do projeto \emph{Linux Kernel} que foi
 utilizado no estudo de caso apresentado. Foram selecionados alguns projetos de naturezas
-diferentes, respeitando os únicos requisito de possuir a linguagem de programação C/C++ como
+diferentes, respeitando os únicos requisitos de possuir a linguagem de programação C/C++ como
 base da sua implementação e ser um software livre, sendo eles:
 
 \begin{multicols}{2}
@@ -551,7 +556,7 @@ enquanto ainda é uma boa opção para a utilização de \textit{exploits} por p
 
 Durante esta análise foram identificados um conjunto de métricas de vulnerabilidade que são mais comuns e
 ocorrem com mais frequência. A métrica de vulnerabilidade mais frequente nos projetos analisados foi a DNP,
-a mesma está presente em todos os projetos. Além de ser frequênte entre os projetos, essa métrica também
+a mesma está presente em todos os projetos. Além de ser frequente entre os projetos, essa métrica também
 é comum a boa parte dos módulos de um mesmo projeto. Na tabela \ref{tab:dnp} é apresentado a quantidade
 absoluta de módulos que possuem o cenário de vulnerabilidade de desreferência de ponteiro nulo e a porcentagem
 de módulos que a mesma atinge de cada projeto.
@@ -595,12 +600,13 @@ possuem o cenário referente a métrica DNP, ou seja, a DNP é responsável prat
 vulnerabilidades presentes no \emph{Linux Kernel}. Esse dado só foi apresentado para evidenciar que
 essa vulnerabilidade deve ser acompanhada de perto, pois até projetos preocupados com essa questão
 de segurança sofrem desse mal. No momento da implementação deve-se tomar cuidado para não acessar 
-locais de memória que já foram desalocados/liberados anteriormente.
+locais de memória que não foram alocados, ou seja, não acessar ponteiros nulos,
+podendo utilizar-se de validações antes da chamada ao ponteiro.
 
 A métrica de vulnerabilidade de código fonte DNP se apresenta como a mais recorrente entre as trabalhadas
 no contexto deste trabalho, entretanto, outras métricas também aparecem com uma frequência um pouco menor,
 como a métrica AN e ROGU. O resumo da frequência das métricas de vulnerabilidade de código fonte por módulo
-de cada um dos projetos poderá ser visto no anexo \ref{anex:analise_qualitativa}. A seguir uma lista com
+de cada um dos projetos poderá ser visto no apêndice \ref{anex:analise_qualitativa}. A seguir uma lista com
 as mais recorrentes métricas de vulnerabilidade de código fonte identificadas:
 
 \begin{multicols}{2}
