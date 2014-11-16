@@ -1,6 +1,34 @@
 \chapter{Introdução} \label{cap:introducao}
 
-Introdução
+A medição é um processo auxiliar essencial para o desenvolvimento de software
+com qualidade. É importante medir para entender e controlar processos, produtos 
+e projetos \cite{ministerio_processo2012}. Medidas fornecem informações sobre 
+objetos (processos, produtos e projetos) e eventos, tornando-os compreensíveis 
+e controláveis \cite{fenton&pfleenger98}. Entretanto, muitas vezes, mede-se
+simplesmente por medir \cite{ministerio_processo2012}, não justificando todo o 
+esforço gasto, lembrando que sempre há esforço envolvido para se medir algo.
+
+O cenário apresentado acima é o que geralmente ocorre quando as pessoas não estão
+capacitadas para trabalhar no dado contexto. Quando as pessoas não estão
+preparadas para trabalhar com determinadas métricas de software existem duas opções:
+utilizam de maneira inadequada, não agregando valor ao processo de desenvolvimento
+de software; ou apenas não utilizam, mesmo que sejam importantes para o processo de
+desenvolvimento.
+
+Muitas vezes, as métricas de código fonte se encaixam bem nessa situação, não são 
+utilizadas dentro do processo de desenvolvimento porque não se sabe o que deve ser
+feito com as mesmas e que decisões tomar. Quando utilizadas, são utilizadas apenas
+as métricas de \textit{design} de código fonte, que são mais conhecidas, como as 
+métricas orientadas a objetos de \emph{Chidamber e Kemerer} 
+(\citeyear{chidamber&kemerer2002}), isso ocorre porque são métricas já consolidadas
+e possuem várias diretrizes de como utiliza-las de maneira adequada. Novas classes 
+de métricas de código fonte, como as métricas de vulnerabilidade de código fonte 
+por exemplo, não são tão utilizadas no dia-a-dia do desenvolvimento de software, 
+devido a falta de conhecimento de como interpreta-las e monitora-las.
+
+É nesse contexto que se encaixa este trabalho, onde pessoas não utilizam ou utilizam
+de maneira inadequada métricas de código fonte por falta de orientação de como 
+interpreta-las e utiliza-las de maneira que agregue valor ao produto/negócio.
 
 \section{Justificativa}
 
@@ -15,7 +43,9 @@ com essas informações advindas dessas novas métricas.
 Relacionado as métricas de vulnerabilidade de código fonte que é a primeira
 classe de métricas de código fonte trabalhada neste trabalho, existe a
 questão da segurança dos softwares, que está bastante em voga nos últimos
-tempos, o que reforça a necessidade de inserção de métricas de vulnerabilidade
+tempos, o que reforça a
+
+ necessidade de inserção de métricas de vulnerabilidade
 de código fonte dentro do ciclo de desenvolvimento de software. O encontro
 dessas vulnerabilidades ainda dentro do ciclo de desenvolvimento facilita a
 correção das mesmas, além de evitar custos de possíveis futuras manutenções
