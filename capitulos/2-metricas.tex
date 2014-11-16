@@ -14,9 +14,10 @@ desenvolvimento de software era comumente caracterizado da seguinte forma:
   \item Um índice de produtividade crescendo mais lentamente do que a demanda por software.
 \end{itemize}
 
-Esse cenário descrito acima foi referenciado como a "Crise do Software" ~\cite{arthur85}.
+Esse cenário descrito acima foi referenciado como a "Crise do Software" por
+\emph{Arthur} (~\citeyear{arthur85}).
 
-Para solucionar a "Crise do Software"  se via necessário um melhor gerenciamento do processo de desenvolvimento de software
+Para solucionar a "Crise do Software" ~se via necessário um melhor gerenciamento do processo de desenvolvimento de software
 e do software produzido, o método utilizado até então não se mostrava eficaz diante desse cenário caótico, as formas de medir 
 e estimar não estavam atendendo as reais necessidades. Viu-se então as peculiaridades e complexidade do desenvolvimento de 
 software. Levando em consideração que uma métrica é a composição de procedimentos para a definição de escalas e métodos para 
@@ -62,7 +63,8 @@ existem regras claras e bem definidas para determinar a valoração de uma métr
 dependendo da opinião de terceiros.
 
 As metricas de software precisam ser coletadas em um modelo de dados específico que pode envolver cálculos ou análise 
-estatística subjetiva ~\cite{meirelles2013}. Segundo \cite{fenton&pfleenger98}, existem quatro tipos de dados de medidas
+estatística subjetiva ~\cite{meirelles2013}. Segundo \emph{Fenton e Pfleenger}
+(\citeyear{fenton&pfleenger98}), existem quatro tipos de dados de medidas
 reconhecidos para métricas de software. Abaixo serão apresentados os quatro tipos de escalas de métricas de software 
 ~\cite{meirelles2013}:
 
@@ -86,10 +88,10 @@ todas as dimensões apresentadas, deve-se definir a forma de obtenção, valora�
 Neste trabalho, serão trabalhadas em geral métricas objetivas; primitivas e derivadas; e racional. Tendo em vista que o 
 foco são métricas de código fonte que serão coletadas de forma automatizada por ferramentas especializadas.
 
-\section{Métricas de Design de Código Fonte}
+\section{Métricas de \textit{Design} de Código Fonte}
 
-Métricas de design de software devem ser compreendidas como um conjunto de métricas que medem atributos do código-fonte que 
-permitam a avaliação de produtos de software ~\cite{arthur&carlos2014}. A utilização correta de métricas de design no ciclo
+Métricas de \textit{design} de software devem ser compreendidas como um conjunto de métricas que medem atributos do código 
+fonte que permitam a avaliação de produtos de software ~\cite{arthur&carlos2014}. A utilização correta de métricas de \textit{design} no ciclo
 de desenvolvimento de software oportuniza além da aferição da qualidade do produto, a refatoração. Na refatoração, a forma que
 foi implementada determinada funcionalidade é repensada e reimplementada, de forma que melhore alguns atributos dos software,
 como manutenibilidade, testabilidade, a própria qualidade interna do software. Abaixo serão apresentadas as principais métricas
@@ -104,13 +106,13 @@ siglas.
   \item \textbf{AMLOC}: Esta métrica avalia a distribuição
     do código entre os métodos, sendo uma importante indicador de coesão, reutilização e outras características importantes. 
     Entretanto, assim como a LOC, deve ser avaliada considerando-se a linguagem e estilo de programação.
-  \item \textbf{NOA}: NOA calcula o número de atributos de uma classe, sendo 
+  \item \textbf{NOA}: Calcula o número de atributos de uma classe, sendo 
     bastante importante para avaliar a coesão de uma classe.
   \item \textbf{NOM}: Esta métrica se refere ao tamanho de uma classe medindo a 
     quantidade de operações de uma classe. Sua interpretação pode ser complicada. Um número excessivo de métodos pode 
     representar falta de coesão e de potencial de reusabilidade da classe. Por outro lado, pode representar uma classe bem 
     estruturada com operações bem definidas. Entretanto, a avaliação isolada desta métrica não permite este tipo de afirmação.
-  \item \textbf{NPA}: NPA mede basicamente o encapsulamento de uma classe. Independente da linguagem, é desejado que este valor 
+  \item \textbf{NPA}: Mede basicamente o encapsulamento de uma classe. Independente da linguagem, é desejado que este valor 
     seja o mais baixo possível, pois é recomendado que a manipulação de atributos de uma classe sejam realizados por métodos de 
     acesso e operacionais.
   \item \textbf{NPM}: Esta métrica é muito importante para a compreensão da abstração da classe, pois mede diretamente o 
@@ -121,7 +123,7 @@ siglas.
   \item \textbf{DIT}: Está métrica consiste no número de classes ancestrais da classe em análise, sem considerar heranças 
     provindas de frameworks ou bibliotecas. Para linguagens com herança múltipla, o valor desta métrica é o DIT da maior 
     hierarquia.
-  \item \textbf{NOC}: NOC consiste no número de filhos direto de uma classe.
+  \item \textbf{NOC}: Consiste no número de filhos direto de uma classe.
   \item \textbf{ACCM}: Esta métrica mede a complexidade média dos métodos de uma classe, baseando-se na complexidade dos fluxos 
     de controle existente no método.
   \item \textbf{RFC}: Esta métrica mede a complexidade de uma classe contando o número de métodos que um objeto de uma classe 
@@ -139,15 +141,17 @@ siglas.
 \end{itemize}
 
 Acima foram apresentadas métricas de design atreladas ao tamanho, coesão e acoplamento e atributos estruturais, que dão uma
-visão geral sobre a qualidade do design projetado e implementado.
+visão geral sobre a qualidade do \textit{design} projetado e implementado.
 
-As métricas de design possuem relevância nesse trabalho pelo fato de que existem três causas básicas que podem surgir 
-vulnerabilidades em um software, sendo elas erros de implementação, falhas de design e erros de configuração ou infraestrutura
-do sistema ~\cite{malerba2010}. Portanto, as métricas de design possuem um papel importante para se evitar vulnerabilidades 
+As métricas de \textit{design} possuem relevância nesse trabalho pelo fato de que existem três causas básicas que podem surgir 
+vulnerabilidades em um software, sendo elas erros de implementação, falhas de
+\textit{design} e erros de configuração ou infraestrutura
+do sistema ~\cite{malerba2010}. Portanto, as métricas de \textit{design} possuem um papel importante para se evitar vulnerabilidades 
 em um software.
 
-Apesar de apresentadas neste trabalho algumas métricas de design, e a sua importância por ter associação direta com algumas 
-vulnerabilidades, esse não é o foco do trabalho. O foco do estudo são as métricas de vulnerabilidade de código fonte que serão 
+Apesar de apresentadas neste trabalho algumas métricas de \textit{design}, e a sua importância por ter associação direta com algumas 
+vulnerabilidades, esse não é o foco do trabalho. O foco do estudo são as
+métricas de código fonte além do \textit{design}, como as métricas de vulnerabilidade de código fonte que serão 
 apresentadas na seção a seguir.
 
 \section{Métricas de Vulnerabilidade de Código Fonte} \label{cap:metricas_vuln}
@@ -165,7 +169,8 @@ brechas para \textit{exploits} e ataques. Sendo \textit{exploit} um software ou 
 vulnerabilidade para violar uma política de segurança ~\cite{seacord&householder2005} e ataque uma série de passos intencionais 
 seguidos por um atacante para violar uma política de segurança ~\cite{howard&longstaff98}. Um estudo de caso que exemplifica 
 um cenário de não utilização de métricas de vulnerabilidade de código fonte e que esse fator foi preponderante para abrir
-brechas para possíveis atacantes, foi o caso apresentado por ~\cite{aranha2012} no relatório sobre vulnerabilidades 
+brechas para possíveis atacantes, foi o caso apresentado por \emph{Aranha}
+(~\citeyear{aranha2012}) no relatório sobre vulnerabilidades 
 encontradas no software da urna eletrônica brasileira. Nesse caso, a utilização de ferramentas de análise estática de código
 fonte voltadas para vulnerabilidades é essencial para que esse tipo de falha seja encontrada durante o período de 
 desenvolvimento do software, e não depois da sua liberação e colocação em produção.
@@ -406,8 +411,11 @@ mais é do que uma lista de vulnerabilidades de software, sendo uma iniciativa d
 própria comunidade a criação dessa lista, que documenta os vários tipos de
 vulnerabilidades já encontradas e validadas.
 
-No decorrer do trabalho será apresentada a forma que se dará a definição dos valores de referência para acompanhamento dessas
-métricas, já que, como foi apresentado, é essencial o bom monitoramento das mesmas. Os valores de referências servirão
-de insumo para tomada de decisão após a extração das métricas, onde o engenheiro de software irá definir se o valor daquela
+No decorrer do trabalho será apresentada a forma que se dará a definição de como
+fazer o acompanhamento dessas
+métricas, já que, como foi apresentado, é essencial o bom monitoramento das
+mesmas. Os possíveis valores de referências servirão
+de insumo para tomada de decisão após a extração das métricas, onde o Engenheiro
+de Software irá definir se o valor daquela
 métrica em específico é aceitável ou não, e com isso, tomar ações corretivas se necessário.
 
