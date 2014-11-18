@@ -12,7 +12,7 @@ do mesmo.
 \section{Metodologia} \label{sec:metodologia}
 
 A metodologia utilizada neste estudo de caso foi feita baseada no trabalho
-realizado por \emph{Meirelles} (\citeyear{meirelles2013}), onde foram levantadas
+realizado por \citeonline{meirelles2013}, onde foram levantadas
 hipóteses iniciais e cujo objetivo é testar tais hipóteses. A definição das
 hipóteses iniciais levantadas será apresentada na subseção \ref{subsec:hipoteses}.
 
@@ -60,11 +60,11 @@ ferramentas para a automação das mesmas, sendo elas:
 
 \begin{itemize}
   \item \textit{Clang Static Analyzer}, para a extração das métricas de
-    vulnerabilidade de código fonte.
+    vulnerabilidade de código fonte;
   \item \textit{Scripts} para adequação do formato das métricas, servindo de
-    apoio a atividade de Realizar análise estatística.
+    apoio a atividade de Realizar análise estatística;
   \item \textit{Scripts} para análise estatísticas, que foram elaborados no
-    trabalho de \emph{Meirelles} (\citeyear{meirelles2013})
+    trabalho de \citeonline{meirelles2013}.
 \end{itemize}
 
 Inicialmente o intuito era utilizar a ferramenta \emph{Analizo} para a extração
@@ -90,8 +90,7 @@ apresentado a corretude ou não das hipóteses.
 
 As hipóteses iniciais levantadas para este estudo de caso, foram feitas baseadas em
 formas de se acompanhar e analisar métricas de \textit{design} de código fonte
-apresentadas em outros trabalhos, como em \emph{Meirelles}
-(\citeyear{meirelles2013}). Logo, as hipóteses são:
+apresentadas em outros trabalhos, como em \citeonline{meirelles2013}. Logo, as hipóteses são:
 
 \begin{itemize}
   \item \textit{H1}: As métricas de vulnerabilidade de código fonte podem ser
@@ -105,7 +104,7 @@ apresentadas em outros trabalhos, como em \emph{Meirelles}
 \end{itemize}
 
 Todas as hipóteses apresentadas foram levantadas devido aos resultados apresentados em
-\emph{Meirelles} (\citeyear{meirelles2013}), por serem satisfatórios e
+\citeonline{meirelles2013}, por serem satisfatórios e
 considerados como premissas iniciais. Sendo validadas e confirmadas as hipóteses
 acima, será possível encontrar valores de referência baseado em análises
 quantitativas dos valores das métricas de vulnerabilidade. 
@@ -176,7 +175,7 @@ algumas das principais metas são:
 \end{itemize}
 
 Algumas dessas metas estão sendo atingidas, por exemplo, um experimento
-realizado por \emph{Naroff} (\citeyear{naroff2009}), evidenciou o rápido
+realizado por \citeonline{naroff2009}, evidenciou o rápido
 tempo de compilação do \emph{Clang} em comparação com o \emph{GCC}, principal
 compilador para linguagem C/C++ disponível no mercado. Foi feita a compilação do \textit{PostgreSQL} em computadores com as
 mesmas configuraçãoes de \textit{hardware} e o resultado obtido é expresso pela figura \ref{clang_gcc}.
@@ -216,7 +215,7 @@ construção do software a análise será realizada, mesmo que essa questão ten
 Os \textit{scripts}\footnote{Disponível em:
 \url{https://gitlab.com/paulormm/tese}} foram escritos utilizando linguagem R
 \footnote{Informações em: \url{http://www.r-project.org/}} que foram
-inicialmente desenvolvidos em \emph{Meirelles} (\citeyear{meirelles2013}). Foi escolhida a linguagem R
+inicialmente desenvolvidos em \citeonline{meirelles2013}. Foi escolhida a linguagem R
 devido o seu foco e poder para a realização de análises estatísticas. Uma das
 atividades desse processo de análise estatística que será realizado
 por esses \textit{scripts} tentará identificar qual distribuição estatística melhor se encaixa nos dados referentes a 
@@ -259,8 +258,8 @@ de percentis utilizados são:
 
 No processo do cálculo dos percentis o maior e menor valores são descartados, a
 fim de remover \textit{outliers}, sendo \textit{outlier} um número que é muito maior 
-ou menor que o resto dos números em uma dada série de números, segundo \emph{Hawkins}
-(\citeyear{hawkins80}). A saída desse processo de análise estatística serão gráficos 
+ou menor que o resto dos números em uma dada série de números, segundo
+\citeonline{hawkins80}. A saída desse processo de análise estatística serão gráficos 
 dos percentis e um arquivo texto com a quantidade de valores dentro de cada intervalo 
 de percentil.
 
