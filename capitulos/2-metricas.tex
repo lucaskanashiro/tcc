@@ -166,6 +166,10 @@ conjunto de condições que podem levar a violação de uma política de seguran
 vulnerabilidades de código fonte, onde será possível monitorar de maneira mais clara e metódica o quão seguro é o software que 
 está sendo desenvolvido ou analisado.
 
+Como foi dito por \citeonline{chess&west2007}, erros são inevitáveis, mas deve
+existir uma forma de medi-los e controla-los. Isso pode ser feito através
+do uso das métricas de vulnerabilidades de código fonte.
+
 As métricas de vulnerabilidade de código fonte, se utilizadas adequadamente no processo de desenvolvimento de software, evitam
 brechas para \textit{exploits} e ataques. Sendo \textit{exploit} um software ou uma técnica que tira vantagem de uma 
 vulnerabilidade para violar uma política de segurança ~\cite{seacord&householder2005} e ataque uma série de passos intencionais 
@@ -404,6 +408,13 @@ e siglas:
   }
     \end{lstlisting}
 \end{itemize}
+
+
+É importante o conhecimento dos cenários apresentados para o desenvolvimento de
+\textit{features} seguras, sendo as mesmas diferentes de \textit{features} de
+segurança, como foi apresentado por \citeonline{chess&west2007}. Muitas vezes, seguir boas práticas e métodos de
+programação, como a defensiva, não evitam vulnerabilidades a nível de código
+fonte \cite{chess&west2007}.
 
 As métricas relacionadas aos cenários acima são objetivas; primitivas e derivadas; e racionais. Lembrando que o valor dessas 
 métricas representam a quantidade de vezes que foram encontrados esses cenários de vulnerabilidade no código fonte do software 
