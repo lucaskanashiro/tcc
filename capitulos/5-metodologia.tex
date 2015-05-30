@@ -1,0 +1,172 @@
+\chapter{Metodologia}\label{metodologia}
+
+Neste capítulo pretende-se apresentar toda a metodologia utilizada durante a
+pesquisa realizada, podendo ser um norte para a reprodução da mesma em trabalhos
+futuros.
+
+Na primeira parte do trabalho foram levantadas algumas hipóteses com relação ao
+monitoramento das métricas de ameaças de vulnerabilidades de código fonte,
+levando em consideração trabalhos já realizados sobre métricas de orientação a
+objetos e de tamanho, como o trabalho de \citeonline{meirelles2013}. As hipóteses
+foram as seguintes:
+
+\begin{itemize}
+  \item \textit{H1}: As métricas de ameaças de vulnerabilidade de código fonte
+  podem ser observadas de maneira similar as métricas de \textit{design} de código
+  fonte, sendo métricas de \textit{design} de código as métricas de orientação
+  a objetos e de tamanho.
+
+  \item \textit{H2}: A média dos valores das métricas de ameaças de vulnerabilidade de
+  código fonte, geralmente, não é representativa para o acompanhamento das mesmas.
+
+  \item \textit{H3}: Os valores das métricas de ameaças de vulnerabilidade de
+  código fonte se comportam como distribuições estatísticas de cauda longa, e não
+  distribuições estatísticas normalizáveis.
+\end{itemize}
+
+Ao final da primeira parte da pesquisa foram respondidas duas das hipóteses
+levantadas inicialmente. Através da análise das métricas de ameaças de
+vulnerabilidade de código fonte extraídas do projeto \textit{Linux} pode-se
+perceber que boa parte dos valores das métricas eram nulos (zero), o que faz
+sentido, já que espera-se que não exista ameaças de vulnerabilidades em todos os
+módulos do projeto. Dessa forma, as métricas de ameaças de vulnerabilidade não
+se assemelham com métricas de \textit{design} de código, pois as métricas de
+\textit{design} de código não costumam ter valoração nula na maioria dos casos
+devido a sua própria natureza, logo, ambas não podem ser observadas de maneira
+similar, negando a hipótese \textit{H1}. Além disso, em um conjunto de valores
+em que a grande maioria é zero não se pode considerar a média dos mesmos
+representativa, o que nega a hipótese \textit{H2}.
+
+Nesta primeira etapa da pesquisa não foi respondida a hipótese \textit{H3}, que
+foi tratada na segunda etapa. Preferiu-se antes disso realizar um estudo mais
+qualitativo das métricas em questão, foram analisados outros projetos, que podem ser
+vistos no apêndice \ref{anex:analise_qualitativa}. Após uma análise mais detalhada das
+métricas dos projetos chegou-se a um subconjunto mais frequente das mesmas,
+sendo elas:
+
+\begin{itemize}
+  \item Referência a ponteiros nulos.
+  \item Variáveis não inicializadas.
+  \item Vazamento de memória.
+\end{itemize}
+
+Esses cenários de vulnerabilidades identificados na primeira etapa da pesquisa
+serviram de insumo para a continuação da mesma, que será apresentada no decorrer
+deste capítulo.
+
+
+
+
+\section{Trabalhos Relacionados}\label{metodologia:trabalhosrelacionados}
+
+Durante a pesquisa realizada encontrou-se alguns trabalhos voltados para a
+avaliação de ferramentas de análise estática de ameaças de vulnerabilidade de
+código, como em \citeonline{comparision_bug_finding:2004}.
+
+Em \citeonline{fault_detection:2006}, foi analisada a efetividade de ferramentas
+de análise estática desse tipo, tendo como parâmetro os testes e o número de
+falhas reportadas pelos clientes. Conclui-se que ferramentas de análise estática
+são efetivas para encontrar defeitos a nível de código.
+
+No trabalho realizado pelo \textit{National Institute of Standards and
+Technology} (NIST) \cite{nist_effect_static_analysis:2007} foi feito um estudo
+inicial tentando identificar se a inserção de uma ferramenta de análise estática
+de vulnerabilidades de código fonte dentro do ciclo de desenvolvimento de um
+software aumenta a segurança do mesmo. E a conclusão desse trabalho foi que não
+necessariamente a utilização dessas ferramentas melhora a segurança do software.
+
+Entretanto, não se encontrou nenhum trabalho similar a este, que tente definir
+algumas forma para monitorar e controlar métricas de ameaças de vulnerabilidade
+de código fonte dentro do ciclo de desenvolvimento de um software.
+
+
+
+
+\section{Planejamento da Pesquisa}
+
+Para a continuação da pesquisa foi feito um planejamento, tendo em vista os
+resultados da primeira etapa e os trabalhos relacionados analisados.
+
+Antes de apresentar o planejamento da pesquisa deve-se deixar claro o que se quer
+responder com a mesma. A questão de pesquisa deste trabalho é:
+
+\begin{center}
+  \textit{Como podemos monitorar e acompanhar métricas de ameaças de
+  vulnerabilidade de código fonte dentro do ciclo de desenvolvimento de software?}
+\end{center}
+
+Tendo essa questão de pesquisa em mente o objetivo deste trabalho é encontrar
+uma forma de viabilizar o monitoramento e acompanhamento dessa nova classe de
+métricas que é cada vez mais importante dentro do ciclo de desenvolvimento de um
+software. E para encontrar um meio de realizar esse monitoramente e
+acompanhamento foi levantada uma hipótese, que será apresentada a seguir
+juntamente com a hipótese não respondida na etapa inicial da pesquisa:
+
+\begin{itemize}
+  \item \textit{H3}: Os valores das métricas de ameaças de vulnerabilidade de
+  código fonte se comportam como distribuições estatísticas de cauda longa, e não
+  distribuições estatísticas normalizáveis.
+
+  \item \textit{H4}: Um modelo estatístico baseado em uma grande quantidade de
+  dados possibilita o monitoramento e acompanhamento das métricas de ameaças de
+  vulnerabilidade de código fonte.
+\end{itemize}
+
+Através de uma análise exploratória dos dados espera-se responder a hipótese
+\textit{H3}, onde será possível ter uma visão geral dos dados. E através da
+definição e validação de um modelo estatístico será possível responder a hipótese
+\textit{H4}.
+
+Com o intuito de responder as hipóteses levantas, foi definido um fluxo de
+atividades para sistematizar esta pesquisa. A figura \ref{fig:processo}
+apresentada a seguir, ilustra o processo com o fluxo de atividades que foram
+desenvolvidas, a fim de uma melhor compreensão do trabalho realizado.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.9\textwidth]
+      {figuras/metodologia_processo.eps}
+  \caption{Processo contendo atividades executadas durante a pesquisa}
+  \label{fig:processo}
+\end{figure}
+
+Detalhamento das atividades apresentadas na Figura \ref{fig:processo}:
+
+\begin{enumerate}
+  \item \textbf{Selecionar projeto}: Selecionar projeto de software livre
+  representativo no contexto de segurança, para que possa ser feita a análise
+  sobre o mesmo. O projeto deve ser um projeto já consolidado e com várias
+  versões para que possa ser feita uma análise através do tempo.
+
+  \item \textbf{Obter código fonte}: Obter código fonte das versões disponíveis
+  do projeto selecionado, para que possa ser realizada a análise estática. A
+  obtenção do código fonte deve ser feita de forma automatizada.
+
+  \item \textbf{Selecionar ferramenta de análise estática}: Analisando os pontos
+  fortes e fracos das ferramentas disponíveis, selecionar a ferramenta que
+  melhor se adeque ao contexto em questão.
+
+  \item \textbf{Realizar análise estática}: Realizar a análise estática sobre o
+  código fonte obtido com a ferramenta selecionado de maneira automatizada.
+
+  \item \textbf{Tratamento dos dados}: Ajustar o formato de saída da ferramenta
+  utilizada para um arquivo CSV (\textit{Common Separated Values}) se a
+  ferramenta não prover, além de tratar os dados descartando o que não for
+  preciso e compondo os dados para gerar novos dados se necessário. Também deve
+  ser feito de forma automatizada.
+
+  \item \textbf{Realizar análise exploratória dos dados}: Utilizando uma
+  ferramenta estatística, explorar os dados a fim de entender o comportamento do
+  mesmo, para que facilite a dedução de um modelo aceitável.
+
+  \item \textbf{Definir e validar modelos derivados dos dados}: Encontrar
+  modelos estatísticos (funções matemáticas) para monitoramento, acompanhamento e
+  previsão das métricas de ameaças de vulnerabilidade de código fonte. Validar
+  os modelos com dados cujo os quais não foram contruídos.
+
+  \item \textbf{Realizar conclusões}: Comparar os modelos definidos e validados
+  e indicar qual seria o melhor modelo para o monitoramento, acompanhamento e
+  previsão das métricas em questão.
+\end{enumerate}
+
+

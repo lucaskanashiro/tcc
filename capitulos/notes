@@ -1,0 +1,59 @@
+\chapter{Análise Estática de Código Fonte} \label{chap:metricas}
+
+Apresentar análise estática do ponto de vista do design e segurança:
+apresentar métricas de design, de vulnerabilidade e discutir uma possível
+correlação.
+
+\subchapter{Ferramentas de Análise Estática de Código Fonte}
+
+Apresentar estrutura das ferramentas, AST, conceituação geral
+Diferenciar ferramentas completa e correta (sound)
+Ferramentas de analise estatica de design e segurança
+Apresentar Analizo, Clang Static Analyzer, Frama-C, Cppcheck
+
+\chapter{Data Analysis}
+
+O que é Data Analysis?
+
+\subchapter{Técnicas para Data Analysis}
+
+
+\chapter{Metodologia}
+
+Explicar a 1ª abordagem: resumo TCC1, respondendo as hipóteses listadas
+
+Trabalhos relacionados (mudança da abordagem)
+...
+
+****************************************************************************************
+(Monitorar as ameaças de vulnerabilidade em paralelo ao monitoramento
+de design, para não apenas solucionar problemas imediatistas, mas sim aumentar
+as chances de encontrar as causas das vulnerabilidades.)
+****************************************************************************************
+
+- Planejamento de pesquisa:
+Questão de pesquisa: Como podemos monitorar métricas de ameaças de
+vulnerabilidade de código fonte?
+Hipóteses: 
+H1 - O método de aprendizado de máquina possibilita o monitoramento
+das métricas de ameaças (explicar hipótese, alternativa a uma análise
+global/genérica)
+
+- Teste da Hipótese
+Coleta dos dados (processo), descrever os dados, nº de versões, loc (1ª e
+última versão)
+Coleta das métricas (processo), cppcheck, script
+Análise dos dados (R)
+
+- Aplicação do Método de Aprendizado de Máquina
+Método utilizado
+
+
+\chapter{Estudo de Caso de Aplicação de Aprendizado de Máquina para o
+Monitoramento de Métricas de Ameaça de Vulnerabilidade de Código}
+
+Gráficos, Tabelas, Interpretação,...
+
+\chapter{Conclusão}
+
+Responder a questão de pesquisa
