@@ -4,6 +4,16 @@ Neste capítulo pretende-se apresentar toda a metodologia utilizada durante a
 pesquisa realizada, podendo ser um norte para a reprodução da mesma em trabalhos
 futuros.
 
+Inicialmente, a questão de pesquisa a ser respodida com este trabalho era a
+seguinte:
+
+\begin{center}
+  \textit{Como podemos monitorar e acompanhar métricas de ameaças de
+    vulnerabilidade de código fonte dentro do ciclo de desenvolvimento de
+    software?
+}
+\end{center}
+
 Na primeira parte do trabalho foram levantadas algumas hipóteses com relação ao
 monitoramento das métricas de ameaças de vulnerabilidades de código fonte,
 levando em consideração trabalhos já realizados sobre métricas de orientação a
@@ -12,36 +22,31 @@ foram as seguintes:
 
 \begin{itemize}
   \item \textit{H1}: As métricas de ameaças de vulnerabilidade de código fonte
-  podem ser observadas de maneira similar as métricas de \textit{design} de código
-  fonte, sendo métricas de \textit{design} de código as métricas de orientação
-  a objetos e de tamanho.
+  podem ser observadas de maneira similar às métricas de \textit{design} de código
+  fonte.
 
   \item \textit{H2}: A média dos valores das métricas de ameaças de vulnerabilidade de
   código fonte, geralmente, não é representativa para o acompanhamento das mesmas.
 
-  \item \textit{H3}: Os valores das métricas de ameaças de vulnerabilidade de
-  código fonte se comportam como distribuições estatísticas de cauda longa, e não
-  distribuições estatísticas normalizáveis.
 \end{itemize}
 
-Ao final da primeira parte da pesquisa foram respondidas duas das hipóteses
-levantadas inicialmente. Através da análise das métricas de ameaças de
-vulnerabilidade de código fonte extraídas do projeto \textit{Linux} pode-se
-perceber que boa parte dos valores das métricas eram nulos (zero), o que faz
-sentido, já que espera-se que não exista ameaças de vulnerabilidades em todos os
-módulos do projeto. Dessa forma, as métricas de ameaças de vulnerabilidade não
-se assemelham com métricas de \textit{design} de código, pois as métricas de
+Ao final da primeira parte da pesquisa foram respondidas as hipóteses levantadas
+inicialmente. Através da análise das métricas de ameaças de vulnerabilidade de
+código fonte extraídas do projeto \textit{Linux Kernel} pode-se perceber que boa
+parte dos valores das métricas eram nulos (zero), o que faz sentido, já que
+espera-se que não exista ameaças de vulnerabilidades em todos os módulos do
+projeto. Dessa forma, as métricas de ameaças de vulnerabilidade não se
+assemelham com métricas de \textit{design} de código, pois as métricas de
 \textit{design} de código não costumam ter valoração nula na maioria dos casos
 devido a sua própria natureza, logo, ambas não podem ser observadas de maneira
 similar, negando a hipótese \textit{H1}. Além disso, em um conjunto de valores
 em que a grande maioria é zero não se pode considerar a média dos mesmos
 representativa, o que nega a hipótese \textit{H2}.
 
-Nesta primeira etapa da pesquisa não foi respondida a hipótese \textit{H3}, que
-foi tratada na segunda etapa. Preferiu-se antes disso realizar um estudo mais
-qualitativo das métricas em questão, foram analisados outros projetos, que podem ser
-vistos no apêndice \ref{anex:analise_qualitativa}. Após uma análise mais detalhada das
-métricas dos projetos chegou-se a um subconjunto mais frequente das mesmas,
+Foi realizado um estudo mais qualitativo das métricas em questão, foram
+analisados outros projetos, que podem ser vistos no apêndice
+\ref{anex:analise_qualitativa}. Após uma análise mais detalhada dos valores
+das métricas dos projetos chegou-se a um subconjunto mais frequente das mesmas,
 sendo elas:
 
 \begin{itemize}
@@ -53,6 +58,12 @@ sendo elas:
 Esses cenários de vulnerabilidades identificados na primeira etapa da pesquisa
 serviram de insumo para a continuação da mesma, que será apresentada no decorrer
 deste capítulo.
+
+Apesar de obter algumas respostas neste início de pesquisa, percebeu-se que era
+necesária uma mudança de foco, pois a negação das hipóteses iniciais tornou
+inviável o seguimento do trabalho como havia sido planejado, onde pretendia-se
+encontrar intervalos de valores de referência para as métricas em questão, assim
+como foi feito em \citeonline{meirelles2013}.
 
 
 
@@ -82,39 +93,40 @@ de código fonte dentro do ciclo de desenvolvimento de um software.
 
 
 
-\section{Planejamento da Pesquisa}
+\section{Planejamento da Pesquisa}\label{metodologia:planejamentopesquisa}
 
 Para a continuação da pesquisa foi feito um planejamento, tendo em vista os
 resultados da primeira etapa e os trabalhos relacionados analisados.
 
 Antes de apresentar o planejamento da pesquisa deve-se deixar claro o que se quer
-responder com a mesma. A questão de pesquisa deste trabalho é:
+responder com a mesma, já que como foi dito anteriormente, houve uma mudança de
+foco da pesquisa. A questão de pesquisa deste trabalho é:
 
 \begin{center}
-  \textit{Como podemos monitorar e acompanhar métricas de ameaças de
-  vulnerabilidade de código fonte dentro do ciclo de desenvolvimento de software?}
+  \textit{Existe uma função matemática que possibilite a definição de um modelo de
+  predição para o monitoramento de métricas de ameaças de vulnerabilidades de
+  código fonte?}
 \end{center}
 
 Tendo essa questão de pesquisa em mente o objetivo deste trabalho é encontrar
-uma forma de viabilizar o monitoramento e acompanhamento dessa nova classe de
+uma função matemática que viabilize o monitoramento e acompanhamento dessa nova classe de
 métricas que é cada vez mais importante dentro do ciclo de desenvolvimento de um
-software. E para encontrar um meio de realizar esse monitoramente e
-acompanhamento foi levantada uma hipótese, que será apresentada a seguir
-juntamente com a hipótese não respondida na etapa inicial da pesquisa:
+software. E para encontrar esse meio de realizar esse monitoramente e
+acompanhamento forma levantadas seguintes as hipóteses:
 
 \begin{itemize}
   \item \textit{H3}: Os valores das métricas de ameaças de vulnerabilidade de
-  código fonte se comportam como distribuições estatísticas de cauda longa, e não
-  distribuições estatísticas normalizáveis.
+    código fonte se comportam como distribuições estatísticas de cauda longa, e
+    não distribuições estatísticas normalizáveis.
 
-  \item \textit{H4}: Um modelo estatístico baseado em uma grande quantidade de
-  dados possibilita o monitoramento e acompanhamento das métricas de ameaças de
-  vulnerabilidade de código fonte.
+  \item \textit{H4}: A definição de um modelo baseado em uma função polinomial
+    possibilita o monitoramento e acompanhamento das métricas de ameaças de
+    vulnerabilidade de código fonte.
 \end{itemize}
 
 Através de uma análise exploratória dos dados espera-se responder a hipótese
 \textit{H3}, onde será possível ter uma visão geral dos dados. E através da
-definição e validação de um modelo estatístico será possível responder a hipótese
+definição e validação de modelos estatísticos será possível responder a hipótese
 \textit{H4}.
 
 Com o intuito de responder as hipóteses levantas, foi definido um fluxo de
@@ -157,7 +169,7 @@ Detalhamento das atividades apresentadas na Figura \ref{fig:processo}:
 
   \item \textbf{Realizar análise exploratória dos dados}: Utilizando uma
   ferramenta estatística, explorar os dados a fim de entender o comportamento do
-  mesmo, para que facilite a dedução de um modelo aceitável.
+  mesmo, para que facilite a dedução de um modelo próximo do real.
 
   \item \textbf{Definir e validar modelos derivados dos dados}: Encontrar
   modelos estatísticos (funções matemáticas) para monitoramento, acompanhamento e
@@ -170,3 +182,57 @@ Detalhamento das atividades apresentadas na Figura \ref{fig:processo}:
 \end{enumerate}
 
 
+\section{Testes das hipóteses}\label{metodologia:testeshipoteses}
+
+Nesta sessão será descrito como foram feitos os testes das hipóteses levantadas
+anteriormente. Para isso foram realizadas as atividades listadas na seção
+\ref{metodologia:planejamentopesquisa}, figura \ref{fig:processo}.
+
+O projeto selecionado para testar as hipóteses foi o \textit{Linux Kernel},
+assim como o mesmo foi selecionado em \citeonline{cathedral_bazaar:1997} para se
+estudar a engenharia de software. Devido o \textit{Linux Kernel} seguir um
+modelo \textit{Bazaar} de desenvolvimento \cite{cathedral_bazaar:1997}, a
+correção de \textit{bugs}, possíveis ameaças de vulnerabilidade, se dá de
+maneira muito mais rápida, o que torna interessante a análise dessa nova classe
+de métricas em um software bastante consolidado. Sendo esse o primeiro projeto a
+explorar a rede de colaboração de software livre nos moldes atuais
+\cite{cathedral_bazaar:1997}, tornando-se uma referência. Partiu-se do
+\textit{Linux Kernel} para se estudar sobre práticas de desenvolvimento de
+software e a própria engenharia de software, e agora será dado o primeiro passo
+com relação a definição de um modelo estatístico que auxilie no monitoramento de
+métricas de ameaças de vulnerabilidade de código fonte.
+
+O código fonte do projeto \textit{Linux Kernel} foi obtido no espelho
+(\textit{mirror}) do Github\footnote{\url{https://github.com/torvalds/linux}}
+do repositório oficial Git do
+projeto\footnote{\url{https://git.kernel.org/cgit/}}.  Fez-se uma cópia local
+do repositório e foram utilizados alguns comandos \textit{bash} (via terminal)
+para que a obtenção do código de todas as \textit{tags} disponíveis fosse feita
+de uma única vez. Nesse repositório não havia as \textit{tags} de todas as
+versões, pois o projeto passou a utilizar o Git\footnote{Ferramenta de controle
+de versão descentralizado} apenas a partir da versão 2.6.11, entretanto, foi
+possível obter o código de 391 \textit{tags} (da versão 2.6.11 até 3.9, contando
+com todas as \textit{releases candidates} ou \textit{releases} intermediárias),
+sendo considerado um número representativo e suficiente para a realização do
+estudo.
+
+A ferramenta de análise estática de código fonte selecionada para a realização
+deste estudo foi o
+\textit{Cppcheck}\footnote{\url{http://cppcheck.sourceforge.net/}}.  A parte
+inicial da pesquisa se deu com a ferramenta \textit{Clang Static
+Analyzer}\footnote{\url{http://clang-analyzer.llvm.org/}}(um submódulo do
+compilador \textit{Clang}), esta ferramenta é bem completa e consegue capturar
+bem as ameaças de vulnerabilidade de código fonte, entretanto, ela faz uma
+análise inter-procedural do código, o que necessita da compilação do mesmo.
+Infelizmente, o projeto \textit{Linux Kernel} ainda não suporta a sua total
+compilação utilizando outro compilador a não ser o
+GCC\footnote{\url{https://gcc.gnu.org/}}. Existe um projeto chamado
+\textit{LLVMLinux
+Project}\footnote{\url{http://llvm.linuxfoundation.org/index.php/Main_Page}} que
+está tentando fazer com que o \textit{Linux Kernel} possa ser compilado com o
+\textit{Clang}, mas esse trabalho ainda está em andamento. Logo, decidiu-se
+abandonar o \textit{Clang Static Analyzer} e encontrar uma analisador estático
+cujo qual não fosse necessária a compilação do código fonte, sendo esse o
+\textit{Cppcheck}, que apesar de não realizar uma análise inter-procedural, ele
+se propõe a não emitir uma grande quantidade de falsos positivos, chamada
+ferramenta \textit{sound}.
