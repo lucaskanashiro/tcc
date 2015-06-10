@@ -312,7 +312,83 @@ linux-vXXX    & XXX          & XXX          & XXX          & XXX           & XXX
 Apesar de ainda manter os dados referentes a quantidade total de ameaças de
 vulnerabilidade na estrutura de dados, os mesmos não foram utilizados.
 
-\subsection{Análise Exploratório dos Dados}
+\subsection{Análise Exploratória dos Dados}
 
+Tendo todos os dados tratados e uma estrutura de dados bem definida, iniciou-se
+a fase de análise dos dados. Utilizou-se análise exploratória dos dados,
+diferente das técnicas estatísticas convencionais.
 
+O primeiro passo foi tentar entender os dados e como os mesmos se relacionam
+entre si, para isso se utilizou de uma matriz de correlação, onde é dado o
+índice de correlação entre a permutação de todas as variáveis em questão. Esse
+índice varia entre -1 e 1, sendo próximo de 1 diretamente relacionada e próximo de
+-1 inversamente relacionada. A tabela \ref{tab:correlacao} apresenta a matriz de
+correlação do dados coletados, lembrando que os valores totais absolutos de
+ameaças de vulnerabilidade não foram utilizados na análise, apesar de estarem
+presentes na estrutura de dados trabalhada.
 
+\begin{table}[h]
+\centering
+\caption{Matriz de correlação.}
+\label{tab:correlacao}
+\begin{tabular}{ccccl}
+ & \cellcolor[HTML]{EFEFEF}{Modules} & \cellcolor[HTML]{EFEFEF}{tax\_CWE476} & \cellcolor[HTML]{EFEFEF}{tax\_CWE457} & \multicolumn{1}{c}{\cellcolor[HTML]{EFEFEF}{tax\_CWE401}} \\
+\cellcolor[HTML]{EFEFEF}{Modules} & 1 & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} &  \\
+\cellcolor[HTML]{EFEFEF}{tax\_CWE476} & - 0.2263097 & 1 & \multicolumn{1}{l}{} &  \\
+\cellcolor[HTML]{EFEFEF}{tax\_CWE457} & - 0.8493021 & 0.01902783 & 1 &  \\
+\cellcolor[HTML]{EFEFEF}{tax\_CWE401} & - 0.513645 & - 0.1286109 & 0.5671033 & \multicolumn{1}{c}{1}
+\end{tabular}
+\end{table}
+
+Através da matriz de correlação pode-se extrair algumas informações. Pode-se ver
+que, em geral, as taxas de ameaças de vulnerabilidades são inversemante
+proporcionais a quantidade de módulos. Ou seja, quanto menor a quantidade de
+módulos, provavelmente um software ainda imaturo, maior a quantidade de ameaças
+de vulnerabilidade, assim como um software mais maduro tende a ter um maior
+número de módulos com uma menor quantidade de ameaças de vulnerabilidade de
+código fonte. As ameaças de vulnerabilidade em geral não possuem correlação, a
+exceção seria entre a CWE457(variáveis não inicializadas) e a CWE401(vazamento
+de memória), que segundo a matriz podem se correlacionar de maneira direta. Isso
+pode ser levado em consideração tendo em vista que quando se declara uma
+variável e não a utiliza, existe uma boa chance da mesma cair em esquecimento e
+aquela região de memória não ser mais desalocada.
+
+Após entender um pouco mais sobre a corelação entre os dados, foi feito um
+\textit{scatterplot} (figura \ref{fig:scatterplot}) de todas as taxas de ameaças
+de vulnerabilidade pelo número de módulos para a melhor visualização dos dados.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/scatterplot.eps}
+      \caption{\textit{Scatterplot} das taxas de ameaças de vulnerabilidade por
+      módulo pelo número total de módulos}
+  \label{fig:scatterplot}
+\end{figure}
+
+As taxas como esperado são números bem pequenos, já que o número total de
+ameaças de vulnerabilidade de código fonte são bem menores do que o número total
+de módulos.
+
+Analisando o \textit{scatterplot} pode-se observar que, como foi percebido com a
+análise da matriz de correlação, a taxa das ameaças de vulnerabilidade por módulo
+tendem a diminuir quando se aumenta o número de módulos, provavelmente o projeto
+de software está crescendo e tendo um processo de desenvolvimento mais maduro.
+No início, o projeto tende a crescer e aumentar a sua complexidade, aumentando
+as ameaças de vulnerabilidades, depois de certo ponto o projeto amadurece e
+passa a melhorar o seu processo de desenvolvimento e \textit{design} do código
+fonte, e as taxas de ameaças de vulnerabilidade tendem a cair.
+
+Como pode-se ver, a CWE401 (vazamento de mémoria) se mantém sem muitas variações
+mesmo aumentando o número de módulos. Além disso ela possui valores bem abaixo
+em comparação com as outras taxas, o que nos mostra que um projeto de software
+em geral, independente da sua maturidade e tamanho, não consegue sobreviver se
+houver várias possíveis ocorrências de vazamento de memória, se isso ocorrer,
+facilmente o software pode estourar a pilha onde é alocada memória para as
+variáveis do programa. Devido a maior constância nas taxas dessa ameaça de
+vulnerabilidade, não foi elaborado um modelo específico para ela, já que em
+geral os valores se mantém.
+
+Tendo isso em vista, as outras duas ameaças de vulnerabilidade de código fonte
+(CWE476 e CWE457) serão estudadas separadamente a fim de ao final ter um modelo
+para monitoramento e predição de cada uma.
