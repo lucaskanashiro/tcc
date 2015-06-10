@@ -49,10 +49,10 @@ analisados outros projetos, que podem ser vistos no apêndice
 das métricas dos projetos chegou-se a um subconjunto mais frequente das mesmas,
 sendo elas:
 
-\begin{itemize}
-  \item Referência a ponteiros nulos.
-  \item Variáveis não inicializadas.
-  \item Vazamento de memória.
+\begin{itemize}\label{principais_vuln}
+  \item Referência a ponteiros nulos (CWE 476)
+  \item Variáveis não inicializadas (CWE 457)
+  \item Vazamento de memória (CWE 401)
 \end{itemize}
 
 Esses cenários de vulnerabilidades identificados na primeira etapa da pesquisa
@@ -182,9 +182,9 @@ Detalhamento das atividades apresentadas na Figura \ref{fig:processo}:
 \end{enumerate}
 
 
-\section{Testes das hipóteses}\label{metodologia:testeshipoteses}
+\section{Teste das hipóteses}\label{metodologia:testehipoteses}
 
-Nesta sessão será descrito como foram feitos os testes das hipóteses levantadas
+Nesta sessão será descrito como foi feito o teste das hipóteses levantadas
 anteriormente. Para isso foram realizadas as atividades listadas na seção
 \ref{metodologia:planejamentopesquisa}, figura \ref{fig:processo}.
 
@@ -236,3 +236,83 @@ cujo qual não fosse necessária a compilação do código fonte, sendo esse o
 \textit{Cppcheck}, que apesar de não realizar uma análise inter-procedural, ele
 se propõe a não emitir uma grande quantidade de falsos positivos, chamada
 ferramenta \textit{sound}.
+
+Após a seleção da ferramenta a ser utilizada, extrair do código fonte as
+ameaças de vulnerabilidade foi relativamente simples. O código fonte referente a
+todas as \textit{tags} foi armazenado em um mesmo diretório, sendo o
+\textit{Cppcheck} capaz de percorrer recursivamente o diretório a procura de
+arquivos de código fonte C e C++ para realizar a análise, foi necessário apenas
+executar a ferramenta nesse diretório. Foram feitas algumas configurações para a
+geração de um arquivo de saída para cada uma das \textit{tags}. O arquivo de
+saída de todas as análises realizadas estão disponíveis no
+repositório.\footnote{\url{https://github.com/lucaskanashiro/linux-analysis/tree/master/data}}
+
+\subsection{Descrição dos dados e Engenharia de Características}
+
+Levando em consideração as principais ameaças de vulnerabilidades levantadas na
+primeira parte da pesquisa, que podem ser vistas na lista \ref{principais_vuln},
+a saída da ferramenta foi tratada a fim de filtrar por essas ameaças de
+vulnerabilidades, além de criar um arquivo \textit{CSV} com esses dados. O
+tratamento dos dados e geração do arquivo \textit{CSV} foram feitos através dos
+scripts disponíveis no
+repositório\footnote{\url{https://github.com/lucaskanashiro/linux-analysis}},
+assim como o próprio arquivo \textit{CSV} gerado. A tabela \ref{tab:csv}
+apresenta a estrutura do arquivo \textit{CSV} gerado.
+
+\begin{table}[h]
+\centering
+\caption{Estrutura do arquivo \textit{CSV} gerado.}
+\label{tab:csv}
+\begin{tabular}{ccccc}
+\rowcolor[HTML]{EFEFEF} 
+{ Version} & { CWE476} & { CWE457} & { CWE401} & { Modules} \\
+linux-vXXX    & XXX          & XXX          & XXX          & XXX          
+\end{tabular}
+\end{table}
+
+A coluna "Version" contém a versão do \textit{Linux Kernel} analisada, as
+colunas "CWE476", "CWE457" e "CWE401" referem-se a quantidade total de cada uma
+das ameaças de vulnerabilidades em toda a versão em questão, e a coluna
+"Modules" representa a quantidade total de módulos daquela versão. A seguir são
+apresentados os tipos de cada um dos dados:
+
+\begin{itemize}
+  \item \textbf{Version}: Texto
+  \item \textbf{CWE476}: Inteiro >= 0
+  \item \textbf{CWE457}: Inteiro >= 0
+  \item \textbf{CWE401}: Inteiro >= 0
+  \item \textbf{Modules}: Inteiro > 0
+\end{itemize}
+
+Uma análise levando em consideração apenas esses dados não seria interessante,
+já que utilizando a quantidade total absoluta de ameaças de vulnerabilidade
+corre-se o risco de versões com uma maior quantidade de módulos se sobressair
+em relação as outras. Pensando nisso, foi realizada uma Engenharia de
+Características, onde ao final se definiu uma taxa de ameaças de
+vulnerabilidades por módulo, que é facilmente calculada dividindo o total de
+cada uma das ameaças de vulnerabilidade pela quantidade total de módulos. Essa
+taxa claramente representa a porcentagem de vulnerabilidades por módulo se
+multiplicada por 100, nesse caso a mesma deve variar entre 0 e 1. Ao final, os
+dados trabalhados durante a pesquisa ficaram da forma apresentada na
+tabela \ref{tab:data_frame}.
+
+\begin{table}[h]
+\centering
+\caption{Estrutura de dados após Engenharia de Características.}
+\label{tab:data_frame}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{cccccccc}
+\rowcolor[HTML]{EFEFEF} 
+{Version} & {CWE476} & {CWE457} & {CWE401} & {Modules} & {tax\_CWE476} & {tax\_CWE457} & {tax\_CWE401} \\
+linux-vXXX    & XXX          & XXX          & XXX          & XXX           & XXX              & XXX              & XXX             
+\end{tabular}
+}
+\end{table}
+
+Apesar de ainda manter os dados referentes a quantidade total de ameaças de
+vulnerabilidade na estrutura de dados, os mesmos não foram utilizados.
+
+\subsection{Análise Exploratório dos Dados}
+
+
+
