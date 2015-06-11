@@ -312,7 +312,7 @@ linux-vXXX    & XXX          & XXX          & XXX          & XXX           & XXX
 Apesar de ainda manter os dados referentes a quantidade total de ameaças de
 vulnerabilidade na estrutura de dados, os mesmos não foram utilizados.
 
-\subsection{Análise Exploratória dos Dados}
+\subsection{Análise Exploratória dos Dados}\label{eda}
 
 Tendo todos os dados tratados e uma estrutura de dados bem definida, iniciou-se
 a fase de análise dos dados. Utilizou-se análise exploratória dos dados,
@@ -423,7 +423,7 @@ vulnerabilidade. Pode ser visto com mais detalhes na figura
   \centering
   \includegraphics[width=1.0\textwidth]
       {figuras/cwe476-hist.eps}
-      \caption{Histograma da taxa CWE476}
+      \caption{Histograma da taxa da CWE476}
       \label{fig:cwe476-hist}
 \end{figure}
 
@@ -455,7 +455,7 @@ mais a distribuição dos dados se assemelha a uma distribuição normal.
 Na figura \ref{fig:cwe476-run-sequence} é apresentado o gráfico de \textit{Run
 Sequence}, onde o eixo x é composto de uma variável sequencial e incremental,
 que começa em um e vai até o tamanho do conjunto da variável em questão (neste
-caso está variável representa as versões do \textit{Linux Kernel}), e o
+caso essa variável representa as versões do \textit{Linux Kernel}), e o
 eixo y é composto pelos próprios dados analisados. Com este gráfico pode-se
 analisar variações locais e de escala.
 
@@ -495,3 +495,92 @@ que a variação dos dados não é constante como o que acontece em um polinômi
 primeiro graus, será realizada uma regressão para polinômios de diferentes graus
 maiores do que um para tentar encontrar um que melhor se adeque.
 
+
+\subsubsection{CWE457 - Variável não Inicializada}
+
+A abordagem utilizada para o cenário de ameaça de vulnerabilidade anterior
+também será aplicada no contexto de variáveis não inicializadas. Primeiramente
+será apresentada o gráfico \textit{4 Plots}, visto na figura
+\ref{fig:cwe457-4-plot}. Em seguida serão destrinchados cada um dos referidos
+gráficos,
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe457-4-plot.eps}
+      \caption{CWE457 - 4 \textit{plots}}
+  \label{fig:cwe457-4-plot}
+\end{figure}
+
+Iniciando a análise pelo histograma, que pode ser visto com mais detalhes na
+figura \ref{fig:cwe457-hist}. Assim como o histograma apresentado pela taxa da
+CWE476 (figura \ref{fig:cwe476-hist}), esse aparenta respeitar uma distribuição
+estatística de cauda longa ao invés de uma normal. Pode-se ver que o intervalo
+de maio ocorrência é o intervalo entre 0.0065 e 0.0070, da mesma forma que o
+cenário anterior.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe457-hist.eps}
+      \caption{Histograma da taxa da CWE457}
+  \label{fig:cwe457-hist}
+\end{figure}
+
+Mais uma vez é confirmanda a negação da hipótese \textit{H2}, onde a média dos
+valores dessas métricas seria representativa. O gráfico \textit{Q-Q Plot} nos
+auxilia a ver de maneira mais clara a não conformidade com a distribuição normal
+através da figura \ref{fig:cwe457-qq-plot}. Esse gráfico nos mostra que a
+distribuição dos dados da CWE457 está mais próxima de uma normal do que a
+CWE476, entretanto, pode-se dizer que a normal também não é representativa nesse
+caso, pois existe uma cauda longa próxima aos maiores quantis.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe457-qq-plot.eps}
+      \caption{\textit{Q-Q Plot} da taxa CWE457}
+  \label{fig:cwe457-qq-plot}
+\end{figure}
+
+Analisando a figura \ref{fig:cwe457-run-sequence} que contém um gráfico
+\textit{Run Sequence}, percebe-se que a variação dos valores também não são
+constantes, descartando uma regressão para um polinômio de primeiro grau.
+Entretanto, não existem picos que destoam totalmente das outras variações, não
+demonstrando efeito significativo da refatoção a partir da versão 150 (versão
+2.6.29) com relação as variáveis não inicializadas.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe457-run-sequence.eps}
+      \caption{\textit{Run Sequence} da taxa CWE457}
+  \label{fig:cwe457-run-sequence}
+\end{figure}
+
+Finalizando a análise do cenário de ameaça de vulnerabilidade de variáveis não
+inicializadas, é apresentado o \textit{Lag Plot} na figura
+\ref{fig:cwe457-lag-plot}. Assim como o apresentado pela CWE476 (figura
+\ref{fig:cwe476-lag-plot}), existe uma relação linear entre os dados e seus
+antecessores diretos. Com isso, a decisão tomada também será a mesma, realizar
+regressões para polinômios de diferentes graus diferentes de um e tentar
+confronta-los para identificar qual o melhor modelo.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe457-lag-plot.eps}
+      \caption{\textit{Lag Plot} da taxa CWE457}
+  \label{fig:cwe457-lag-plot}
+\end{figure}
+
+
+
+\subsection{Definição dos Modelos}
+
+Como pode ser visto na seção \ref{eda}, as duas métricas de ameaças de
+vulnerabilidade de código fonte trabalhadas se comportaram de maneira similar.
+Mas como o intuito desta pesquisa é encontrar uma função matemática que
+possibilite o monitoramento e predição de cada uma das métricas, o modelo de
+ambas serão desenvolvidos separadamente, apesar de seguirem os mesmos métodos e
+critérios.
