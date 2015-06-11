@@ -397,12 +397,11 @@ para monitoramento e predição de cada uma.
 \subsubsection{CWE476 - Referência de Ponteiros Nulos}
 
 Para analisar especificamente a ameaça de vulnerabilidade de código fonte em
-questão, serão utilizados alguns gráficos para identificar a relação entre a
-CWE476 com o número de módulos de uma versão, para que se possa definir um
-modelo próximo ao real. Foram escolhidos alguns gráficos para iniciar esta
-análise, baseado no 4 \textit{plots} apresentado pelo NIST (\textit{National
-Institute of Standards and Technology}), como pode ser visto na figura
-\ref{fig:cwe476-4-plot}.
+questão, serão utilizados alguns gráficos para entender a taxa referente a
+CWE476, para que se possa definir um modelo próximo ao real. Foram escolhidos
+alguns gráficos para realizar esta análise, baseado no 4 \textit{plots}
+apresentado pelo NIST (\textit{National Institute of Standards and Technology}),
+como pode ser visto na figura \ref{fig:cwe476-4-plot}.
 
 \begin{figure}[h]
   \centering
@@ -414,3 +413,85 @@ Institute of Standards and Technology}), como pode ser visto na figura
 
 Na sequência será apresentado cada um dos gráficos e feita uma discursão acerca
 dos mesmos.
+
+O primeiro gráfico apresentado na figura \ref{fig:cwe476-4-plot} é um
+histograma, onde pode-se observar a frequência da taxa desta ameaça de
+vulnerabilidade. Pode ser visto com mais detalhes na figura
+\ref{fig:cwe476-hist}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe476-hist.eps}
+      \caption{Histograma da taxa CWE476}
+      \label{fig:cwe476-hist}
+\end{figure}
+
+Percebe-se claramente que a distribuição referente a esta taxa não se assemelha
+a uma distribuição normal comum, já que a maior ocorrência está deslocada à
+esquerda, sendo essa similar a uma distribuição de cauda longa. O maior
+intervalo de ocorrência é o intervalo entre 0.0065 e 0.0070. Confirma também a
+hipótese respondida na primeira parte da pesquisa, onde a média dos valores não
+é representatica. O gráfico \textit{Q-Q plot} apresentado na figura
+\ref{fig:cwe476-qq-plot} vem para corroborar com o que foi dito anteriormente,
+mostrando que o distribuição da taxa da CWE476 provavelmente não é uma
+distribuição normal, onde a média é representativa, mas sim uma de cauda
+longa.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe476-qq-plot.eps}
+      \caption{\textit{Q-Q plot} da taxa da CWE476}
+      \label{fig:cwe476-qq-plot}
+\end{figure}
+
+No \textit{Q-Q plot} são confrontados os quantis da distribuição normal e os
+quantis do conjunto de dados da taxa da CWE476. Se a distribuição dos dados que
+representam a taxa fosse uma distribuição normal os quantis iriam ser similares,
+assim os pontos se aproximariam da reta traçada. Quanto mais próximo da reta,
+mais a distribuição dos dados se assemelha a uma distribuição normal.
+
+Na figura \ref{fig:cwe476-run-sequence} é apresentado o gráfico de \textit{Run
+Sequence}, onde o eixo x é composto de uma variável sequencial e incremental,
+que começa em um e vai até o tamanho do conjunto da variável em questão (neste
+caso está variável representa as versões do \textit{Linux Kernel}), e o
+eixo y é composto pelos próprios dados analisados. Com este gráfico pode-se
+analisar variações locais e de escala.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe476-run-sequence.eps}
+      \caption{\textit{Run Sequence} da taxa da CWE476}
+      \label{fig:cwe476-run-sequence}
+\end{figure}
+
+Para um conjunto de dados que respeita a distribuição normal a variação é
+praticamente constante, neste caso apresentado na figura
+\ref{fig:cwe476-run-sequence}, pode-se observar que a variação dos dados não é
+constante, e possui um pico próximo a versão 150 e depois volta a diminuir a
+taxa. Isso se deve a uma refatoração do código fonte do \textit{Linux Kernel}
+que se iniciou após a versão 2.6.29 (versão 150), que possibilitou a redução de
+ameças de vulnerabilidade de código fonte.
+
+Para encerrar a análise dos dados referentes a taxa da CWE476, é apresentado um
+\textit{Lag Plot} na figura \ref{fig:cwe476-lag-plot}. Esse gráfico nos auxilia
+a identificar a aleatoriedade dos dados e a identificar um modelo que se adeque
+aos mesmos. A construção se dá de maneira simples, onde no eixo y estão os
+dados, e no eixo x estão os antecessores dos dados do eixo y.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe476-lag-plot.eps}
+      \caption{\textit{Lag Plot} da taxa da CWE476}
+      \label{fig:cwe476-lag-plot}
+\end{figure}
+
+Pela figura pode-se perceber que há uma relação linear entre os dados e os seus
+antecessores, nos mostrando que este conjunto de dados não é aleatório. Sabendo
+que a variação dos dados não é constante como o que acontece em um polinômio de
+primeiro graus, será realizada uma regressão para polinômios de diferentes graus
+maiores do que um para tentar encontrar um que melhor se adeque.
+
