@@ -114,7 +114,7 @@ métricas que é cada vez mais importante dentro do ciclo de desenvolvimento de 
 software. E para encontrar esse meio de realizar esse monitoramente e
 acompanhamento forma levantadas seguintes as hipóteses:
 
-\begin{itemize}
+\begin{itemize}\label{hipoteses2}
   \item \textit{H3}: Os valores das métricas de ameaças de vulnerabilidade de
     código fonte se comportam como distribuições estatísticas de cauda longa, e
     não distribuições estatísticas normalizáveis.
@@ -182,7 +182,7 @@ Detalhamento das atividades apresentadas na Figura \ref{fig:processo}:
 \end{enumerate}
 
 
-\section{Teste das hipóteses}\label{metodologia:testehipoteses}
+\section{Teste das Hipóteses}\label{metodologia:testehipoteses}
 
 Nesta sessão será descrito como foi feito o teste das hipóteses levantadas
 anteriormente. Para isso foram realizadas as atividades listadas na seção
@@ -584,3 +584,251 @@ Mas como o intuito desta pesquisa é encontrar uma função matemática que
 possibilite o monitoramento e predição de cada uma das métricas, o modelo de
 ambas serão desenvolvidos separadamente, apesar de seguirem os mesmos métodos e
 critérios.
+
+As atividades realizadas para definir cada um dos modelos que serão apresentados a
+seguir foram:
+
+\begin{enumerate}
+ \item Identificar e remover possíveis \textit{outliers}.
+ \item Dividir o conjuto de dados em conjunto de teste e de treinamento, sendo o
+  conjunto de teste um terço e o de treinamento dois terços do total.
+ \item Definição de um modelo não paramétrico, que servirá de referência para a
+  definição do modelo paramétrico.
+ \item Definição de um modelo paramétrico, tentando se aproximar da referência
+  do modelo não paramétrico.
+\end{enumerate}
+
+Foi utilizado o método de \citeonline{tukey:1977} apresentado na seção \ref{tukey},
+para a identificação dos \textit{outliers}. 
+
+Utilizou-se de um método não paramétrico que traçasse uma curva suave baseado no
+\textit{scatterplot} apenas como referência pois o mesmo não nos dá uma função
+matemática como saída, apesar dos resultados do mesmo ser bastante satisfatório.
+O método não paramétrico utilizado foi o \textit{LOESS} (\textit{Locally Weighted
+Regression}), como foi explicado na seção \ref{loess}, o mesmo tem como um dos
+seus pontos fortes a análise de uma série temporal, como a que estamos
+trabalhando, valores de métricas de uma série de versões do projeto \textit{Linux
+Kernel}. É importante salientar que pode-se representar qualquer conjunto de
+dados com um polinômio de algum grau, entretanto, para realizar predições
+baseado no modelo gerado precisa-se evitar o \textit{overfitting}, que seria o
+modelo se ajustar extremamente ao conjunto de dados e não conseguir extrapolar
+para novas entradas. Utilizando essa abordagem de utilizar um modelo não
+paramétrico como referência ajuda a evitar um possível \textit{overfitting} do
+modelo gerado, chegando a um modelo mais flexível.
+
+Para a definição dos modelos foi utilizada a técnica de regressão polinomial,
+foram construídos modelos com polinômios de diferentes graus baseado na curva
+dada pelo método não paramétrico. Os modelos gerados serão comparados na seção
+\ref{comparacaomodelos}.
+
+\subsubsection{CWE476 - Referência de Ponteiros Nulos}
+
+Na tentativa de identificar possíveis \textit{outliers} utilizando o método de
+\citeonline{tukey:1977}, foi contruído o gráfico \textit{boxplot} (figura
+\ref{fig:cwe476-boxplot}). Como pode-se ver não foram identificados
+\textit{outliers} extremos, todos os pontos da distribuição dos valores da taxa
+de CWE476 por módulo estão dentro dos limites determinados pelo método, que
+extrapola para mais e para menos 150\% do referido interquantil.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe476-boxplot.eps}
+      \caption{\textit{Boxplot} da taxa da CWE476 por módulo}
+  \label{fig:cwe476-boxplot}
+\end{figure}
+
+Como não foram identificados possíveis \textit{outliers}, o conjunto de dados
+permaneceu o mesmo, sem sofrer alterações. Com isso, passou-se a definir o
+modelo não paramétrico, como resultado final se teve uma curva suavizada
+bastante satisfatória, como se pode ver na figura \ref{fig:cwe476-loess}. Sendo
+a curva o resultado da predição do modelo definido sobre os dados de
+treinamento. O erro residual padrão desse modelo é 0.0008044, sendo o erro
+residual a diferença entre o valor real e o predito.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe476-loess.eps}
+      \caption{Curva suavizada gerada pelo método \textit{LOESS} sobre o
+      conjunto de dados da taxa da CWE476 por módulo}
+  \label{fig:cwe476-loess}
+\end{figure}
+
+Analisando visualmente a curva gerada pelo método não paramétrico pode-se
+especular que provavelmente uma função quadrática poderia se adaptar bem ao
+conjunto de dados trabalhado e se aproximar da curva apresentada. Para validação
+do modelo acerca do conjunto de dados, foi desenvolvido em conjunto um modelo
+cúbico visando compara-los e chegar a um modelo que se aproxime do desejado e
+não seja tão custuso para calculá-lo. 
+
+A regressão para um polinômio quadrático do conjunto de treinamento nos deu a
+seguinte equação:
+
+\begin{math}
+ tax\_CWE476(modules) = (-2.131399e^{-11}) * modules^{2} + (1.057282e^{-6}) *
+modules - 0.004237619 
+\end{math}
+
+Após realizada uma predição sobre o conjunto de teste, foi plotada a curva de
+predição juntamento com o \textit{scatterplot} dos dados, como pode ser visto na
+figura \ref{fig:cwe476-quadratic}. O erro residual padrão para esse modelo foi
+0.0009653.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe476-quadratic.eps}
+      \caption{Curva de predição do modelo quadrático sobre o \textit{scatterplot}
+      dos dados da CWE476}
+  \label{fig:cwe476-quadratic}
+\end{figure}
+
+A regressão para um polinômio cúbico do conjunto de treinamento nos deu a
+seguinte equação:
+
+\begin{math}
+ tax\_CWE476(modules) = (1.911224e^{-15}) * modules^{3} - (1.72028e^{-10}) *
+ modules^{2} + (4.857479e^{-6}) * modules - 0.03460173
+\end{math}
+
+Após realizada uma predição sobre o conjunto de teste, foi plotada a curva de
+predição juntamento com o \textit{scatterplot} dos dados, como pode ser visto na
+figura \ref{fig:cwe476-cubic}. O erro residual padrão para esse modelo foi
+0.00084.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe476-cubic.eps}
+      \caption{Curva de predição do modelo cúbico sobre o \textit{scatterplot}
+      dos dados da CWE476}
+  \label{fig:cwe476-cubic}
+\end{figure}
+
+Na tabela \ref{tab:cwe476-erros} são resumidos os erros de cada um dos modelos
+definidos a partir do conjunto de dados da CWE476.
+
+\begin{table}[h]
+ \centering
+ \caption{Resumo do erro residual padrão dos modelos contruídos para as taxas da
+ CWE476}
+ \label{tab:cwe476-erros}
+ \begin{tabular}{cc}
+  \rowcolor[HTML]{EFEFEF} 
+  {Modelo} & {Erro residual padrão} \\
+  {LOESS}  & 0.0008044                  \\
+  Quadrático   & 0.0009653                  \\
+  Cúbico       & 0.0008400                 
+ \end{tabular}
+\end{table}
+
+\subsubsection{CWE457 - Variável não Inicializada}
+
+Na busca por possíveis \textit{outliers} foi contruído o gráfico
+\textit{boxplot} que pode ser visto na figura \ref{fig:cwe457-boxplot}. No caso
+da CWE457 foram encontrados alguns \textit{outliers}, como pode set visto no
+gráfico, alguns pontos indo além do limite do \textit{boxplot}. Foram removidos
+19 pontos do conjunto de dados, não se encontrou uma justificativa plausível
+para a ocorrência desses \textit{outliers}, essa decisão foi tomada apenas com o
+apoio do método estatístico.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe457-boxplot.eps}
+      \caption{\textit{Boxplot} da taxa da CWE457 por módulo}
+  \label{fig:cwe457-boxplot}
+\end{figure}
+
+Após a remoção dos \textit{outliers} identificados, foi utilizado o método
+\textit{LOESS} para a geração da curva de referência. Na figura
+\ref{fig:cwe457-loess} está plotado a curva de predição do modelo gerado sobre o
+\textit{scatterplot} dos dados das taxas da CWE457 por módulo. O erro residual
+padrão desse modelo é 0.0003126, sendo o erro residual a diferença entre o valor
+real e o predito.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe457-loess.eps}
+      \caption{Curva suavizada gerada pelo método \textit{LOESS} sobre o
+      conjunto de dados da taxa da CWE457 por módulo}
+  \label{fig:cwe457-loess}
+\end{figure}
+
+Mais uma vez o modelo não paramétrico utilizado nos traz uma curva bastante
+suave que se adapta bem aos dados trabalhados. Apesar de aparentar ser um bom
+modelo, não é facilmente visível qual o grau do polinômio que melhor se
+assemelha a curva gerada. Com isso, se tomou como base o trabalho realizado
+sobre a CWE476, onde foram testados um modelo quadrático e um cúbico, que
+provavelmente vão conseguir se ajustar a curva de referência, já que a mesma não
+possuí muitas nuâncias.
+
+A regressão para um polinômio quadrático do conjunto de treinamento nos deu a
+seguinte equação:
+
+\begin{math}
+ tax\_CWE457(modules) = (5.440273e^{-12}) * modules^{2} - (3.745102ei^{-07}) *
+modules + 0.01283622 
+\end{math}
+
+Após realizada uma predição sobre o conjunto de teste, foi plotada a curva de
+predição juntamento com o \textit{scatterplot} dos dados, como pode ser visto na
+figura \ref{fig:cwe457-quadratic}. O erro residual padrão para esse modelo foi
+0.0003629.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe457-quadratic.eps}
+      \caption{Curva de predição do modelo quadrático sobre o \textit{scatterplot}
+      dos dados da CWE457}
+  \label{fig:cwe457-quadratic}
+\end{figure}
+
+A regressão para um polinômio cúbico do conjunto de treinamento nos deu a
+seguinte equação:
+
+\begin{math}
+ tax\_CWE476(modules) = (-6.466983e^{-16}) * modules^{3} + (5.603787e^{-11}) *
+ modules^{2} - (1.639652e^{-6}) * modules + 0.02287291
+\end{math}
+
+Após realizada uma predição sobre o conjunto de teste, foi plotada a curva de
+predição juntamento com o \textit{scatterplot} dos dados, como pode ser visto na
+figura \ref{fig:cwe457-cubic}. O erro residual padrão para esse modelo foi
+0.0003211.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe457-cubic.eps}
+      \caption{Curva de predição do modelo cúbico sobre o \textit{scatterplot}
+      dos dados da CWE457}
+  \label{fig:cwe457-cubic}
+\end{figure}
+
+Na tabela \ref{tab:cwe457-erros} são resumidos os erros de cada um dos modelos
+definidos a partir do conjunto de dados da CWE457.
+
+\begin{table}[h]
+ \centering
+ \caption{Resumo do erro residual padrão dos modelos contruídos para as taxas da
+ CWE457}
+ \label{tab:cwe457-erros}
+ \begin{tabular}{cc}
+  \rowcolor[HTML]{EFEFEF} 
+  {Modelo} & {Erro residual padrão} \\
+  {LOESS}  & 0.0003126                  \\
+  Quadrático   & 0.0003629                  \\
+  Cúbico       & 0.0003211                 
+ \end{tabular}
+\end{table}
+
+\subsection{Comparação dos Modelos}\label{comparacaomodelos}
+
+\subsubsection{CWE476 - Referência de Ponteiros Nulos}
+\subsubsection{CWE457 - Variável não Inicializada}
+
+\section{Resultados do Teste das Hipóteses}
