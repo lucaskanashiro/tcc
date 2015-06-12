@@ -261,13 +261,13 @@ apresenta a estrutura do arquivo \textit{CSV} gerado.
 
 \begin{table}[h]
 \centering
-\caption{Estrutura do arquivo \textit{CSV} gerado.}
-\label{tab:csv}
 \begin{tabular}{ccccc}
 \rowcolor[HTML]{EFEFEF} 
 { Version} & { CWE476} & { CWE457} & { CWE401} & { Modules} \\
 linux-vXXX    & XXX          & XXX          & XXX          & XXX          
 \end{tabular}
+\caption{Estrutura do arquivo \textit{CSV} gerado.}
+\label{tab:csv}
 \end{table}
 
 A coluna "Version" contém a versão do \textit{Linux Kernel} analisada, as
@@ -298,8 +298,6 @@ tabela \ref{tab:data_frame}.
 
 \begin{table}[h]
 \centering
-\caption{Estrutura de dados após Engenharia de Características.}
-\label{tab:data_frame}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{cccccccc}
 \rowcolor[HTML]{EFEFEF} 
@@ -307,6 +305,8 @@ tabela \ref{tab:data_frame}.
 linux-vXXX    & XXX          & XXX          & XXX          & XXX           & XXX              & XXX              & XXX             
 \end{tabular}
 }
+\caption{Estrutura de dados após Engenharia de Características.}
+\label{tab:data_frame}
 \end{table}
 
 Apesar de ainda manter os dados referentes a quantidade total de ameaças de
@@ -329,8 +329,6 @@ presentes na estrutura de dados trabalhada.
 
 \begin{table}[h]
 \centering
-\caption{Matriz de correlação.}
-\label{tab:correlacao}
 \begin{tabular}{ccccl}
  & \cellcolor[HTML]{EFEFEF}{Modules} & \cellcolor[HTML]{EFEFEF}{tax\_CWE476} & \cellcolor[HTML]{EFEFEF}{tax\_CWE457} & \multicolumn{1}{c}{\cellcolor[HTML]{EFEFEF}{tax\_CWE401}} \\
 \cellcolor[HTML]{EFEFEF}{Modules} & 1 & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} &  \\
@@ -338,6 +336,8 @@ presentes na estrutura de dados trabalhada.
 \cellcolor[HTML]{EFEFEF}{tax\_CWE457} & - 0.8493021 & 0.01902783 & 1 &  \\
 \cellcolor[HTML]{EFEFEF}{tax\_CWE401} & - 0.513645 & - 0.1286109 & 0.5671033 & \multicolumn{1}{c}{1}
 \end{tabular}
+\caption{Matriz de correlação.}
+\label{tab:correlacao}
 \end{table}
 
 Através da matriz de correlação pode-se extrair algumas informações. Pode-se ver
@@ -576,7 +576,7 @@ confronta-los para identificar qual o melhor modelo.
 
 
 
-\subsection{Definição dos Modelos}
+\subsection{Definição dos Modelos}\label{definicaomodelos}
 
 Como pode ser visto na seção \ref{eda}, as duas métricas de ameaças de
 vulnerabilidade de código fonte trabalhadas se comportaram de maneira similar.
@@ -706,22 +706,6 @@ figura \ref{fig:cwe476-cubic}. O erro residual padrão para esse modelo foi
   \label{fig:cwe476-cubic}
 \end{figure}
 
-Na tabela \ref{tab:cwe476-erros} são resumidos os erros de cada um dos modelos
-definidos a partir do conjunto de dados da CWE476.
-
-\begin{table}[h]
- \centering
- \caption{Resumo do erro residual padrão dos modelos contruídos para as taxas da
- CWE476}
- \label{tab:cwe476-erros}
- \begin{tabular}{cc}
-  \rowcolor[HTML]{EFEFEF} 
-  {Modelo} & {Erro residual padrão} \\
-  {LOESS}  & 0.0008044                  \\
-  Quadrático   & 0.0009653                  \\
-  Cúbico       & 0.0008400                 
- \end{tabular}
-\end{table}
 
 \subsubsection{CWE457 - Variável não Inicializada}
 
@@ -814,9 +798,6 @@ definidos a partir do conjunto de dados da CWE457.
 
 \begin{table}[h]
  \centering
- \caption{Resumo do erro residual padrão dos modelos contruídos para as taxas da
- CWE457}
- \label{tab:cwe457-erros}
  \begin{tabular}{cc}
   \rowcolor[HTML]{EFEFEF} 
   {Modelo} & {Erro residual padrão} \\
@@ -824,11 +805,76 @@ definidos a partir do conjunto de dados da CWE457.
   Quadrático   & 0.0003629                  \\
   Cúbico       & 0.0003211                 
  \end{tabular}
+ \caption{Resumo do erro residual padrão dos modelos contruídos para as taxas da
+ CWE457}
+ \label{tab:cwe457-erros}
 \end{table}
 
 \subsection{Comparação dos Modelos}\label{comparacaomodelos}
 
+Na seção \ref{definicaomodelos} foram definidos dois modelos para cada uma das
+métricas de ameaças de vulnerabilidade de código fonte, nesta seção esses
+modelos serão comparados, baseado no erro na predição do modelo e no método
+\textit{K-fold} de validação cruzada.
+
+Fica claro que quanto maior o grau do polinômio melhor serão os resultados
+obtidos, entretanto, o objetivo deste trabalho é encontrar um modelo simples,
+que não seja muito custoso, onde o mesmo possa ser inserido sem muitos problemas
+no ciclo de desenvolvimento de software. Devido a isso foram selecionados
+modelos de baixo grau, onde a complexidade das funções obtidas são bem menores.
+
+Tendo isso em vista, foram analisados e comparados os modelos de cada uma das
+métricas separadamente, como pode ser visto a seguir.
+
 \subsubsection{CWE476 - Referência de Ponteiros Nulos}
+
+Para iniciar a comparação foram confrontados todos os modelos em um único
+gráfico (figura \ref{fig:cwe476-all-models}), que pode nos dar uma visão geral de
+como os modelos estão realizando as suas respectivas predições.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe476-all-models.eps}
+      \caption{Curva de predição de todos os modelos sobre o \textit{scatterplot}
+      dos dados da CWE457}
+  \label{fig:cwe476-all-models}
+\end{figure}
+
+A figura \ref{fig:cwe476-all-models} nos mostra de maneira visual que o modelo
+cúbico gerado é o que melhor se aproxima da curva de predição do modelo de
+referência (modelo \textit{LOESS}, não paramétrico), principalmente no que diz
+respeito a extrapolação, tanto para dados menores ou maiores ao intervalo de
+dados trabalhados nesta pesquisa. Essa extrapolação é importante para que seja
+possível a predição da métrica, por exemplo, para projetos com mais de 40.000 ou
+com menos de 14.000 módulos. O modelo cúbico acompanha de maneira mais adequada
+nos limites do gráfico o modelo de referência, e o modelo quadrático tende a se
+distanciar nesses locais.
+
+Saindo da parte visual e partindo para o erro residual padrão gerado por cada um dos
+modelos, que podem ser vistos na tabela \ref{tab:cwe476-erros}, percebe-se que o
+erro referente ao modelo cúbico se aproxima bastante ao nosso modelo de
+referência (\textit{LOESS}). O erro associado ao modelo quadrático é
+aproximadamente 20,00\% maior do que o do modelo de referência, já o cúbico é
+aproximandamente 4,43\% maior. Logo, o erro entre os modelos quadrático e cúbico
+é de aproximadamente 15\%, sendo o cúbico mais próximo do desejável.
+
+\begin{table}[h]
+ \centering
+ \begin{tabular}{cc}
+  \rowcolor[HTML]{EFEFEF} 
+  {Modelo} & {Erro residual padrão} \\
+  {LOESS}  & 0.0008044                  \\
+  Quadrático   & 0.0009653                  \\
+  Cúbico       & 0.0008400                 
+ \end{tabular}
+ \caption{Resumo do erro residual padrão dos modelos contruídos para as taxas da
+ CWE476}
+ \label{tab:cwe476-erros}
+\end{table}
+
+
+
 \subsubsection{CWE457 - Variável não Inicializada}
 
 \section{Resultados do Teste das Hipóteses}
