@@ -394,7 +394,7 @@ Tendo isso em vista, as outras duas ameaças de vulnerabilidade de código fonte
 para monitoramento e predição de cada uma.
 
 
-\subsubsection{CWE476 - Referência de Ponteiros Nulos}
+\subsubsection{CWE476 - Referência de Ponteiros Nulos}\label{eda:cwe476}
 
 Para analisar especificamente a ameaça de vulnerabilidade de código fonte em
 questão, serão utilizados alguns gráficos para entender a taxa referente a
@@ -496,7 +496,7 @@ primeiro graus, será realizada uma regressão para polinômios de diferentes gr
 maiores do que um para tentar encontrar um que melhor se adeque.
 
 
-\subsubsection{CWE457 - Variável não Inicializada}
+\subsubsection{CWE457 - Variável não Inicializada}\label{eda:cwe457}
 
 A abordagem utilizada para o cenário de ameaça de vulnerabilidade anterior
 também será aplicada no contexto de variáveis não inicializadas. Primeiramente
@@ -644,7 +644,7 @@ modelo não paramétrico, como resultado final se teve uma curva suavizada
 bastante satisfatória, como se pode ver na figura \ref{fig:cwe476-loess}. Sendo
 a curva o resultado da predição do modelo definido sobre os dados de
 treinamento. O erro residual padrão desse modelo é 0.0008044, sendo o erro
-residual a diferença entre o valor real e o predito.
+residual padrão o desvio padrão da diferença entre o valor real e o predito.
 
 \begin{figure}[h]
   \centering
@@ -729,8 +729,8 @@ Após a remoção dos \textit{outliers} identificados, foi utilizado o método
 \textit{LOESS} para a geração da curva de referência. Na figura
 \ref{fig:cwe457-loess} está plotado a curva de predição do modelo gerado sobre o
 \textit{scatterplot} dos dados das taxas da CWE457 por módulo. O erro residual
-padrão desse modelo é 0.0003126, sendo o erro residual a diferença entre o valor
-real e o predito.
+padrão desse modelo é 0.0003126, sendo o erro residual padrão o desvio padrão da
+diferença entre o valor real e o predito.
 
 \begin{figure}[h]
   \centering
@@ -810,12 +810,20 @@ definidos a partir do conjunto de dados da CWE457.
  \label{tab:cwe457-erros}
 \end{table}
 
-\subsection{Comparação dos Modelos}\label{comparacaomodelos}
+\subsection{Comparação e Escolha dos Modelos}\label{comparacaomodelos}
 
 Na seção \ref{definicaomodelos} foram definidos dois modelos para cada uma das
 métricas de ameaças de vulnerabilidade de código fonte, nesta seção esses
 modelos serão comparados, baseado no erro na predição do modelo e no método
-\textit{K-fold} de validação cruzada.
+\textit{K-fold} de validação cruzada, e então serão selecionados os melhores
+modelos.
+
+Pensou-se em realizar uma Análise de Variância (\textit{ANOVA}) para tentar
+auxiliar na comparação entre os modelos, mas não foi possível já que o conjunto
+de dados das taxas das CWE476 e CWE457 por módulo não respeitam as suposições a
+cerca da \textit{ANOVA} apresentadas na seção \ref{anova}, como pode ser visto
+durante a análise exploratória dos dados nas seções \ref{eda:cwe457} e
+\ref{eda:cwe476}.
 
 Fica claro que quanto maior o grau do polinômio melhor serão os resultados
 obtidos, entretanto, o objetivo deste trabalho é encontrar um modelo simples,
@@ -851,13 +859,15 @@ com menos de 14.000 módulos. O modelo cúbico acompanha de maneira mais adequad
 nos limites do gráfico o modelo de referência, e o modelo quadrático tende a se
 distanciar nesses locais.
 
-Saindo da parte visual e partindo para o erro residual padrão gerado por cada um dos
-modelos, que podem ser vistos na tabela \ref{tab:cwe476-erros}, percebe-se que o
-erro referente ao modelo cúbico se aproxima bastante ao nosso modelo de
-referência (\textit{LOESS}). O erro associado ao modelo quadrático é
-aproximadamente 20,00\% maior do que o do modelo de referência, já o cúbico é
-aproximandamente 4,43\% maior. Logo, o erro entre os modelos quadrático e cúbico
-é de aproximadamente 15\%, sendo o cúbico mais próximo do desejável.
+Saindo da parte visual e partindo para o erro residual padrão, sendo o erro
+residual padrão o desvio padrão da diferença entre o valor real e o predito,
+gerado por cada um dos modelos, que podem ser vistos na tabela
+\ref{tab:cwe476-erros}. Percebe-se que o erro referente ao modelo cúbico se
+aproxima bastante ao nosso modelo de referência (\textit{LOESS}). O erro
+associado ao modelo quadrático é aproximadamente 20,00\% maior do que o do
+modelo de referência, já o cúbico é aproximandamente 4,43\% maior. Logo, o erro
+entre os modelos quadrático e cúbico é de aproximadamente 15\%, sendo o cúbico
+mais próximo do desejável.
 
 \begin{table}[h]
  \centering
@@ -873,7 +883,66 @@ aproximandamente 4,43\% maior. Logo, o erro entre os modelos quadrático e cúbi
  \label{tab:cwe476-erros}
 \end{table}
 
+Para finalizar a comparação entre os modelos foi realizado uma validação cruzada
+utilizando o método \textit{K-fold} para analisar a performance de ambos o
+modelos em um conjunto de dados cujo qual não foi treinado, ou seja, contra
+dados que o mesmo deveria predizer em uma situação real. Nesta pesquisa foi
+utilizado um \textit{K} = 10, já que segundo \citeonline{kohavi:1995} uma
+validação cruzada \textit{ten-fold} pode ser mais eficiente até que uma
+validação cruzada \textit{leave-one-out}, mais detalhes sobre o assunto pode ser
+visto na seção \ref{validacaocruzada}. Os gráficos apresentados nas figuras
+\ref{fig:cwe476-k-fold-quadratic} e \ref{fig:cwe476-k-fold-cubic} nos mostra um
+resumo do método aplicado.
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe476-k-fold-quadratic.eps}
+      \caption{Validação cruzada \textit{Ten-fold} utilizando o modelo
+      quadrático da taxa da CWE476}
+  \label{fig:cwe476-k-fold-quadratic}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe476-k-fold-cubic.eps}
+      \caption{Validação cruzada \textit{Ten-fold} utilizando o modelo
+      cúbico da taxa da CWE476}
+  \label{fig:cwe476-k-fold-cubic}
+\end{figure}
+
+O gráficos apresentados possuem no eixo X os valores preditos pelo modelo em
+questão e no eixo Y o valor real. As retas traçadas representam o que seria o
+ideal, ou seja, o valor predito igual ao valor real, e cada um dos diferentes
+pontos apresentam o que foi gerado pelo modelo em cada um dos \textit{folds}.
+Pode-se ver que em ambos os gráficos vários pontos ficaram distantes da reta,
+mostrando que existe um erro associado a predição. Na tabela
+\ref{tab:cwe476-emq} são apresentados os erros médios quadráticos de cada um dos
+modelos aqui avaliados, a definição de erro médio quadrático pode ser encontrada
+na seção \ref{emq}.
+
+\begin{table}[h]
+ \centering
+ \begin{tabular}{cc}
+  \rowcolor[HTML]{EFEFEF} 
+  {Modelo} & {Erro médio quadrático} \\
+  Quadrático   & 0.000000958                  \\
+  Cúbico       & 0.000000862                 
+ \end{tabular}
+ \caption{Resumo do erro residual padrão dos modelos contruídos para as taxas da
+ CWE476}
+ \label{tab:cwe476-erros}
+\end{table}
+
+Pode-se ver que mais uma vez o modelo cúbico se sobressaiu ao modelo quadrático,
+sendo o erro médio quadrático associado ao modelo quadrático aproximadamente
+11,14\% maior do que o modelo cúbico em situações reais de análise.
+
+Levando em consideração todos os aspectos trabalhados na comparação dos dois
+modelos, o modelo cúbico se apresentou como um melhor modelo para o
+acompanhamento, monitoramento e predição da taxa da ameaça de vulnerabilidade de
+código fonte relacionada a referência de ponteiros nulos.
 
 \subsubsection{CWE457 - Variável não Inicializada}
 
