@@ -834,7 +834,7 @@ modelos de baixo grau, onde a complexidade das funções obtidas são bem menore
 Tendo isso em vista, foram analisados e comparados os modelos de cada uma das
 métricas separadamente, como pode ser visto a seguir.
 
-\subsubsection{CWE476 - Referência de Ponteiros Nulos}
+\subsubsection{CWE476 - Referência de Ponteiros Nulos}\label{comparacaocwe476}
 
 Para iniciar a comparação foram confrontados todos os modelos em um único
 gráfico (figura \ref{fig:cwe476-all-models}), que pode nos dar uma visão geral de
@@ -845,7 +845,7 @@ como os modelos estão realizando as suas respectivas predições.
   \includegraphics[width=1.0\textwidth]
       {figuras/cwe476-all-models.eps}
       \caption{Curva de predição de todos os modelos sobre o \textit{scatterplot}
-      dos dados da CWE457}
+      dos dados da CWE476}
   \label{fig:cwe476-all-models}
 \end{figure}
 
@@ -930,8 +930,8 @@ na seção \ref{emq}.
   Quadrático   & 0.000000958                  \\
   Cúbico       & 0.000000862                 
  \end{tabular}
- \caption{Resumo do erro residual padrão dos modelos contruídos para as taxas da
- CWE476}
+ \caption{Resumo do erro residual quadrático dos modelos contruídos para as taxas da
+ CWE476 através da validação cruzada.}
  \label{tab:cwe476-erros}
 \end{table}
 
@@ -945,5 +945,111 @@ acompanhamento, monitoramento e predição da taxa da ameaça de vulnerabilidade
 código fonte relacionada a referência de ponteiros nulos.
 
 \subsubsection{CWE457 - Variável não Inicializada}
+
+Para uma melhor visualização dos modelos construídos foi contruído um gráfico
+contendo a curva de predição de todos eles sobre o \textit{scatterplot} dos
+dados. Esse gráfico pode ser visto na figura \ref{fig:cwe457-all-models}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe457-all-models.eps}
+      \caption{Curva de predição de todos os modelos sobre o \textit{scatterplot}
+      dos dados da CWE457}
+  \label{fig:cwe457-all-models}
+\end{figure}
+
+Todos os modelos apresentados na figura \ref{fig:cwe457-all-models} ficaram bem
+próximos uns dos outros, diferente do ocorrido com os modelos referentes a
+CWE476. Entretanto, o modelo cúbico continua mais próximo do modelo de
+referência (\textit{LOESS}) nos limites mínimo e máximo em relação ao modelo
+quadrático, sendo similar a comparação dos modelos na seção
+\ref{comparacaocwe476}, o que favorece predições de valores fora do intervalo de
+valores trabalhados neste estudo.
+
+Visualmente também pode-se ver que provavelmente o erro residual desses modelos
+são bem menores do que os análisados na seção \ref{comparacaocwe476}. Na tabela
+\ref{tab:cwe457-erros} são apresentados os erros residuais padrão de cada um dos
+modelos, mais sobre erro residual padrão pode ser visto na seção \ref{erp}.
+
+\begin{table}[h]
+ \centering
+ \begin{tabular}{cc}
+  \rowcolor[HTML]{EFEFEF} 
+  {Modelo} & {Erro residual padrão} \\
+  {LOESS}  & 0.0003287                  \\
+  Quadrático   & 0.0003674                  \\
+  Cúbico       & 0.0003388                 
+ \end{tabular}
+ \caption{Resumo do erro residual padrão dos modelos contruídos para as taxas da
+ CWE457}
+ \label{tab:cwe457-erros}
+\end{table}
+
+Como foi dito anteriormente, os erros residuais padrão dos modelos apresentados
+possuíram valores baixos e com uma pequena diferença entre os mesmos, apesar do
+modelo cúbico estar mais próximo do modelo de referência. O modelo quadrático
+teve um erro 11,77\% maior do que o modelo de referência e o modelo cúbico
+3,07\% maior, logo, o modelo quadrático teve um erro 8,44\% maior do que o
+modelo cúbico. Mais uma vez o modelo cúbico apresentado um erro menor do que o
+modelo quadrático.
+
+Para verificar o desempenho de cada um dos modelos foi feita uma validação
+cruzada \textit{K-fold}. Assim como na seção \ref{comparacaocwe476}, foi
+utilizado um \textit{K} = 10. Os gráficos apresentados nas figuras
+\ref{fig:cwe457-k-fold-quadratic} e \ref{fig:cwe457-k-fold-cubic} nos mostra um
+resumo dos testes realizados.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe457-k-fold-quadratic.eps}
+      \caption{Validação cruzada \textit{Ten-fold} utilizando o modelo
+      quadrático da taxa da CWE457}
+  \label{fig:cwe457-k-fold-quadratic}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe457-k-fold-cubic.eps}
+      \caption{Validação cruzada \textit{Ten-fold} utilizando o modelo
+      cúbico da taxa da CWE457}
+  \label{fig:cwe457-k-fold-cubic}
+\end{figure}
+
+Definições acerca do método \textit{K-fold} de validação cruzada podem ser
+encontradas na seção \ref{k-fold}. A tabela \ref{tab:cwe457-emq} apresenta os
+erros médios quadráticos obtidos através da validação cruzada.
+
+\begin{table}[h]
+ \centering
+ \begin{tabular}{cc}
+  \rowcolor[HTML]{EFEFEF} 
+  {Modelo} & {Erro médio quadrático} \\
+  Quadrático   & 0.000000137 \\
+  Cúbico       & 0.000000112
+ \end{tabular}
+ \caption{Resumo do erro residual quadrático dos modelos contruídos para as taxas da
+ CWE457 através da validação cruzada.}
+ \label{tab:cwe457-emq}
+\end{table}
+
+O erro médio quadrático referente ao modelo cúbico se apresentou 22,32\% menor
+do que do modelo quadrático. Apesar da diferença percentual aparentar ser
+grande, numericamente pode não ser tão significativo, essa diferença percentual
+é devido ao erro ser bem pequeno, onde qualquer pequena diferença representa um
+grande percentual.
+
+Apesar do modelo cúbico se apresentar mais vantajoso durante a comparação
+realizada, o modelo quadrático também se mostrou como uma boa solução para o
+acompanhamento, monitoramento e predição desta métrica de ameaça de
+vulnerabilidade de código fonte, já que a diferença no geral foi pequena. Logo,
+a seleção de qualquer um dos modelos seria uma boa escolha, o modelo quadrático
+tendo uma complexidade menor, e o modelo cúbico acompanhando de maneira
+mais adequado o modelo de referência nos limites apresentados, o que favorece a
+extrapolação dos valores. Tendo em vista que este trabalho visa principalmente
+a predição dos valores das métricas em questão, o modelo cúbico será selecionado
+devido a maior aderência ao modelo de referência escolhido.
 
 \section{Resultados do Teste das Hipóteses}
