@@ -120,8 +120,8 @@ acompanhamento forma levantadas seguintes as hipóteses:
     não distribuições estatísticas normalizáveis.
 
   \item \textit{H4}: A definição de um modelo baseado em uma função polinomial
-    possibilita o monitoramento e acompanhamento das métricas de ameaças de
-    vulnerabilidade de código fonte.
+   simples possibilita o monitoramento e acompanhamento das métricas de ameaças
+   de vulnerabilidade de código fonte.
 \end{itemize}
 
 Através de uma análise exploratória dos dados espera-se responder a hipótese
@@ -235,7 +235,8 @@ abandonar o \textit{Clang Static Analyzer} e encontrar uma analisador estático
 cujo qual não fosse necessária a compilação do código fonte, sendo esse o
 \textit{Cppcheck}, que apesar de não realizar uma análise inter-procedural, ele
 se propõe a não emitir uma grande quantidade de falsos positivos, chamada
-ferramenta \textit{sound}.
+ferramenta \textit{sound}, podendo ser entendido mais na seção
+\ref{ferramentas_analise_estatica}.
 
 Após a seleção da ferramenta a ser utilizada, extrair do código fonte as
 ameaças de vulnerabilidade foi relativamente simples. O código fonte referente a
@@ -1053,3 +1054,28 @@ a predição dos valores das métricas em questão, o modelo cúbico será selec
 devido a maior aderência ao modelo de referência escolhido.
 
 \section{Resultados do Teste das Hipóteses}
+
+Após a realização do teste das hipóteses levantadas no início da pesquisa (lista
+\ref{hipoteses2}) se tem insumo para chegar em algumas conclusões. A hipótese
+\textit{H3} não foi negada, já que como pode-se ver nos histogramas e gráficos
+\textit{Q-Q plot}, apresentados na seção \ref{eda}, que a distribuição das taxas
+de ameaças de vulnerabilidade de código fonte trabalhadas seguem uma
+distribuição estatística de cauda longa, e não uma simples distribuição normal
+onde a média dos valores é representativa.  Sendo esse um ponto que já havia
+sido discutido no início deste capítulo e que foi corroborado após o trabalho
+realizado.
+
+Com o que se diz respeito a hipótese \textit{H4}, foram definidos dois modelos e
+selecionado um para cada uma das métricas de ameaças de vulnerabilidade de
+código fonte. Essa hipótese também não foi negada, já que como foi apresentado
+na comparação entre os modelos (seção \ref{comparacaomodelos}), os mesmos se
+apresentaram bem diante de situações reais de análise, logo, atingindo o
+objetivo de acompanhar, monitorar e predizer valores das métricas de maneira
+satisfatória. Entretanto, como foi explicado nas seções \ref{definicaomodelos} e
+\ref{comparacaomodelos}, quanto maior o grau do polinômio melhor ele se adaptará
+aos dados e menor será o erro associado ao conjunto de treinamento. A estratégia
+de utilizar um modelo não paramétrico foi justamente para evitar esse
+\textit{overfitting} dos dados, além disso, tentou-se manter o foco em modelos
+polinômiais de baixa complexidade, que são mais fáceis de serem incorporados no
+dia-a-dia do desenvolvimento de software.
+
