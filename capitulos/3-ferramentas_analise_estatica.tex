@@ -76,8 +76,8 @@ seguintes atividades sequencialmente:
 
 Na análise léxica, todo o código fonte é transformado em uma série de
 \textit{tokens}, descartando partes não importantes do código, como espaços em
-branco e comentários \cite{chess&west2007}. Existem algumas ferramentas como o
-\textit{Flex}\footnote{\url{http://flex.sourceforge.net/}} que auxiliam nessa
+branco e comentários \cite{chess&west2007}. Existem algumas ferramentas, como o
+\textit{Flex}\footnote{\url{http://flex.sourceforge.net/}}, que auxiliam nessa
 tranformação do código fonte em \textit{tokens}, sendo essa bastante utilizada
 na construção de compiladores. Para a execução dessa atividade utiliza-se
 bastante de técnicas como expressões regulares para a identificação dos
@@ -135,10 +135,11 @@ visualização da estrutura do código, como pode ser visto na Figura
 Muitas ferramentas de análise estática de segurança de código fonte realizam as
 suas análises diretamente na sua \textit{Parse Tree} já que essa está bem
 próximo ao código que foi escrito, mas para realizar análises mais complexas
-pode ser inconveniente \cite{chess&west2007}, sendo necessário o desenvolvimento
-de uma \textit{Abstract Syntax Tree} (\textit{AST}). Na \textit{AST} vários
-detelhes relacionado a gramática são abstraídos a fim de facilitar a análise da
-mesma, a Figura \ref{fig:ast} nos mostra um exemplo dessa estrutura de dados.
+pode ser inconveniente, sendo necessário o desenvolvimento de uma
+\textit{Abstract Syntax Tree} (\textit{AST}) \cite{chess&west2007}. Na
+\textit{AST} vários detelhes relacionado a gramática são abstraídos a fim de
+facilitar a análise da mesma, a Figura \ref{fig:ast} nos mostra um exemplo dessa
+estrutura de dados.
 
 \begin{figure}[h]
   \centering
@@ -159,7 +160,7 @@ estática e os compiladores começam a se diferenciar.
 Para algumas ferramentas de análise estática são necessárias algumas formas de
 representação intermediária do código, como gráficos de fluxo do programa, fluxo
 dos dados do programa e chamadas de métodos ou funções. Dependo do que a
-ferramenta se propõe a fazer a elaboração desse tipo de representação é
+ferramenta se propõe a fazer, a elaboração desse tipo de representação é
 essencial.
 
 \subsection{Realização da Análise}
@@ -194,7 +195,7 @@ processo de análise quando for necessário.
 Com a realização da análise do código fonte concluída os resultados devem ser
 aresentados para o usuário de maneira adequada para que o mesmo possa conseguir
 utilizar aquela informação para a tomada de alguma decisão. Em geral,
-ferramentas que desejam chegar ao mercado e não apenas o público acadêmico devem
+ferramentas que desejam chegar ao mercado, e não apenas o público acadêmico, devem
 permitir que os usuários agrupem e ordenem os resultados, eliminem resultados
 indesejados e a ferramenta deve explicar a significância dos resultados
 \cite{chess&west2007}.
@@ -239,3 +240,9 @@ melhores do que ferramentas apenas heurísticas ou \textit{sound}, e se utilizam
 de técnicas já mencionadas neste capítulo como acompanhamento do fluxo de dados
 e controle de fluxo de execução \cite{paul:2001}.
 
+Na seção \ref{metodologia:testehipoteses} foram análisadas algumas ferramentas
+de análise estática de código fonte, sendo selecionada a ferramenta
+\textit{Cppcheck}, que apesar de ser uma ferramenta \textit{sound} foi a que
+melhor se adaptou ao contexto da pesquisa. Em situações reais percebe-se que o
+desenvolvimento de uma ferramenta completa é algo ainda a ser melhor trabalho,
+ainda se apresentando como uma referência de ferramenta ideal e não algo palpável.

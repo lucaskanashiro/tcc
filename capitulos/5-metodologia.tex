@@ -222,11 +222,12 @@ deste estudo foi o
 \textit{Cppcheck}\footnote{\url{http://cppcheck.sourceforge.net/}}.  A parte
 inicial da pesquisa se deu com a ferramenta \textit{Clang Static
 Analyzer}\footnote{\url{http://clang-analyzer.llvm.org/}}(um submódulo do
-compilador \textit{Clang}), esta ferramenta é bem completa e consegue capturar
-bem as ameaças de vulnerabilidade de código fonte, entretanto, ela faz uma
-análise inter-procedural do código, o que necessita da compilação do mesmo.
-Infelizmente, o projeto \textit{Linux Kernel} ainda não suporta a sua total
-compilação utilizando outro compilador a não ser o
+compilador \textit{Clang}), esta ferramenta é bastante robusta e consegue capturar
+bem as ameaças de vulnerabilidade de código fonte que a mesma se propõe, sendo
+essa uma ferramenta que está focada em si tornar uma ferramenta completa.
+Entretanto, ela faz uma análise inter-procedural do código, o que necessita da
+compilação do mesmo.  Infelizmente, o projeto \textit{Linux Kernel} ainda não
+suporta a sua total compilação utilizando outro compilador a não ser o
 GCC\footnote{\url{https://gcc.gnu.org/}}. Existe um projeto chamado
 \textit{LLVMLinux
 Project}\footnote{\url{http://llvm.linuxfoundation.org/index.php/Main_Page}} que
@@ -1123,11 +1124,11 @@ satisfatória. Entretanto, como foi explicado nas seções \ref{definicaomodelos
 aos dados e menor será o erro associado ao conjunto de treinamento. A estratégia
 de utilizar um modelo não paramétrico foi justamente para evitar esse
 \textit{overfitting} dos dados, além disso, tentou-se manter o foco em modelos
-polinômiais de baixa complexidade, que são mais fáceis de serem incorporados no
-dia-a-dia do desenvolvimento de software.
+polinômiais de baixa complexidade, que julgou-se mais fácil de serem
+incorporados no dia-a-dia do desenvolvimento de software.
 
 Após a realização da comparação e seleção dos modelos para cada uma das métricas
-de ameças de vulnerabilidade de código fonte chegou-se a seguinte função para
+de ameças de vulnerabilidade de código fonte, chegou-se a seguinte função para
 cada uma das métricas trabalhadas:
 
 \begin{align*}
@@ -1143,6 +1144,11 @@ cada uma das métricas trabalhadas:
                       &-& (1.639652e^{-6}) * modules \\
                       &+& 0.02287291
 \end{align*}
+
+Lembrando que as fórmulas matemáticas apresentadas acima representam os modelos
+desenvolvidos na seção \ref{difinicaomodelos}, ambos sendo desenvovlidos a
+partir de uma regressão polinomial de terceiro grau das métricas obtidas a
+partir do código fonte do projeto \textit{Linux Kernel}.
 
 Para apresentar os modelos definidos foram elaboradas as Tabelas
 \ref{tab:cwe476} e \ref{tab:cwe457} que apresentam os valores das referidas
@@ -1184,7 +1190,7 @@ Para selecionar o ponto que foi predito foi feita a média da diferença entre o
 módulos dos outros pontos selecionados, que coincidentemente foi o mesmo para
 ambas as métricas, apesar dos pontos conhecidos selecionados serem diferentes.
 Como pode-se ver na Tabela \ref{tab:cwe476}, a métrica relacionada a taxa da
-CWE476 teve um pico na versão 2.6.39 e depois começou a cair, mas a partir do
+CWE476 teve um pico na versão 2.6.39 e depois começou a diminuir, mas a partir do
 momento que o número de módulos voltar a crescer ela tende a crescer novamente,
 e em determinado ponto deve atingir um novo pico e voltar a diminuir o seu
 valor. Com a métrica relacionado a taxa da CWE457 já é diferente, pelo o que foi
@@ -1245,8 +1251,6 @@ referência construído a partir do projeto \textit{Linux Kernel}.
  \label{tab:exemplos}
 \end{table}
 
-
-% CWE476 -> apenas a partir de 10105 módulos o valor da métrica fica positivo
 
 Como apresentado na Tabela \ref{tab:exemplos} a predição para valores da
 métricas relacionada a taxa da CWE457 parece algo razoável e dentro do esperado,
@@ -1316,12 +1320,17 @@ sistema operacional, mas sim vários outras coisas como ABI (\textit{Application
 Binary Interface}), \textit{frameworks}, suas próprias ferramentas de
 desenvolvimento entre outras coisas. 
 
-Para validar os resultados obtidos pelos modelos de predição será necessário a
-realização de uma análise estática nos projetos aqui mencionados e tentar
-confrontar o valor real com o predito pelos modelos, entretanto, isso não faz
-parte do escopo deste trabalho. Logo, conclui-se que o modelo de predição
+Logo, pode-se sinalizar nessa primeira análise que o modelo de predição
 referente a variáveis não inicializadas por módulo (CWE457) apresenta valores
 adequados de predição tanto para projetos com um menor número de módulos quanto
 para maiores, já o modelo de predição referente a referência a ponteiros nulos
 por módulo (CWE476) traz valores de predição aceitáveis para a métrica apenas
-para projetos que possuem mais de 10100 módulos.
+para projetos que possuem mais de 10100 módulos. 
+
+Portanto, com os modelos desenvolvidos foi possível realizar a predição das
+métricas em questão para projetos do mesmo porte da referência selecionada
+(\textit{Linux Kernel}), sendo esses a principal contribuição desta pesquisa. Os
+resultados obtidos foram satisfatórios tendo em vista que foi possível realizar
+as predições das métricas de ameaças de vulnerabilidade de código fonte
+propostas, sendo esse o objetivo maior deste trabalho.
+

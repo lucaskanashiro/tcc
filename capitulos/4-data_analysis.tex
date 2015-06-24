@@ -42,6 +42,28 @@ exploração dos dados antes da definição do modelo, deixando os dados
 apresentarem as suas estruturas e qual possível modelo melhor se adequa àqueles
 dados.
 
+\section{Análise dos dados}
+
+No início da análise exploratório de qualquer tipo de dados é importante
+entendê-los, verificar possíveis correlações entre os mesmos e se necessário
+derivar novas características dos dados que auxiliem na exploração dos mesmos.
+
+Para isso pode-se utilizar de algumas técnicas como o coeficiente de correlação
+de Pearson, sendo essa uma técnica da estatística descritiva, que visa medir a
+direção e grau com que duas variáveis, de tipo quantitativo, se associam
+linearmente \cite{rossman:1996}. Uma técnica que pode-se utilizar do método de
+correlação de Pearson é a contrução de uma matriz de correlação, onde todos os
+dados são confrontados para tentar encontrar algum tipo de dependência linear
+entre os mesmos. 
+
+Com essas informações em mãos pode-se realizar por exemplo uma engenharia de
+características, sendo engenharia de características a utilização de
+características existentes para gerar novas características que aumentem o valor
+da base de dados original, utilizando conhecimento dos dados ou do domínio em
+questão \cite{brink:2014}. Além disso, pode-se remover características
+dispensáveis do conjunto de dados, que possam ser redundantes com outras
+características por exemplo.
+
 \section{Técnica de Visualização dos Dados}\label{4-plot}
 
 Para a realização dessa análise exploratória dos dados antes da definição de um
@@ -64,7 +86,7 @@ inferior esquerdo o \textit{Q-Q Plot}.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.8\textwidth]
+  \includegraphics[width=1.0\textwidth]
       {figuras/4-plot}
       \caption{Exemplo \textit{4-Plot}}
   \label{fig:4-plot}
@@ -83,6 +105,7 @@ aleatoriedade dos dados, onde são plotados seguindo a ordem do conjunto de dado
 o seu valor diretamente antecessor pelo valor atual, dessa forma, se os dados da
 distriubição forem realmente aleatórios os pontos deverem ficar espalhados pelo
 gráfico, caso siga algum tipo de padrão, a hipótese é negada.
+
 
 \section{Identificação de \textit{Outliers}}
 
@@ -182,5 +205,13 @@ valor estimado e o valor real dos dados, ponderados pelo número de termos
 \end{align*}
 
 Na equação acima, o valor de \textit{y} representa o valor estimado,
-y chapéu o valor real e \textit{n} o número total de elementos dentro do
+\textit{y} chapéu o valor real e \textit{n} o número total de elementos dentro do
 conjunto de dados.
+
+
+
+Neste capítulo foram apresentados de forma objetiva apenas as técnica e
+conceitos utilizados neste trabalho, não explorando os diferentes métodos e tipos de
+abordagem disponíveis, apesar desse ramo da estatística ser amplo e haver diferentes formas
+de abordar um mesmo problema. Isso foi feito a fim de facilitar a leitura e
+entendimento do que foi feito, seguindo o fluxo da pesquisa realizada.
