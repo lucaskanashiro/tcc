@@ -238,7 +238,7 @@ cujo qual não fosse necessária a compilação do código fonte, sendo esse o
 \textit{Cppcheck}, que apesar de não realizar uma análise inter-procedural, ele
 se propõe a não emitir uma grande quantidade de falsos positivos, chamada
 ferramenta \textit{sound}, podendo ser entendido mais na Seção
-\ref{sec:clasificacaoferramentas}.
+\ref{sec:classificacaoferramentas}.
 
 \item[Análise estática do código fonte]
 
@@ -636,12 +636,12 @@ seguir foram:
 \end{enumerate}
 
 Foi utilizado o método de \citeonline{tukey:1977} apresentado na Seção
-\ref{tukey}, para a identificação dos \textit{outliers}. Utilizou-se de um
+\ref{outliers}, para a identificação dos \textit{outliers}. Utilizou-se de um
 método não paramétrico que traçasse uma curva suave baseado no
 \textit{scatterplot} apenas como referência pois o mesmo não nos dá uma função
 matemática como saída, apesar dos resultados do mesmo ser bastante satisfatório.
 O método não paramétrico utilizado foi o \textit{LOESS} (\textit{Locally
- Weighted Regression}), como foi explicado na Seção \ref{loess}, o mesmo tem
+ Weighted Regression}), como foi explicado na Seção \ref{def:models}, o mesmo tem
  como um dos seus pontos fortes a análise de uma série temporal, como a que
  estamos trabalhando, valores de métricas de uma série de versões do projeto
  \textit{Linux Kernel}.
@@ -659,7 +659,7 @@ foram construídos modelos com polinômios de diferentes graus baseado na curva
 dada pelo método não paramétrico. Os modelos gerados serão comparados na Seção
 \ref{comparacaomodelos}.
 
-\section{Definição de modelo para a CWE476 - Referência de Ponteiros Nulos}
+\section{Definição de modelo para CWE476 - Referência a Ponteiros Nulos}
 
 Na tentativa de identificar possíveis \textit{outliers} utilizando o método de
 \citeonline{tukey:1977}, foi contruído o gráfico \textit{boxplot} (Figura
@@ -753,7 +753,7 @@ Figura \ref{fig:cwe476-cubic}. O erro residual padrão para esse modelo foi
 \end{figure}
 
 
-\section{Definição de modelo para a CWE457 - Variável não Inicializada}
+\section{Definição de modelo para CWE457 - Variável não Inicializada}
 
 Na busca por possíveis \textit{outliers} foi contruído o gráfico
 \textit{boxplot} que pode ser visto na Figura \ref{fig:cwe457-boxplot}. No caso
@@ -875,7 +875,7 @@ desenvolvidos, podendo existir modelos melhores para cada uma das métricas.
 Pensou-se em realizar uma Análise de Variância (\textit{ANOVA}) para tentar
 auxiliar na comparação entre os modelos, mas não foi possível já que o conjunto
 de dados das taxas das CWE476 e CWE457 por módulo não respeitam as suposições a
-cerca da \textit{ANOVA} apresentadas na Seção \ref{anova}, como pode ser visto
+cerca da \textit{ANOVA} apresentadas na Seção \ref{valmodels}, como pode ser visto
 durante a análise exploratória dos dados nas seções \ref{eda:cwe457} e
 \ref{eda:cwe476}.
 
@@ -945,7 +945,7 @@ dados que o mesmo deveria predizer em uma situação real. Nesta pesquisa foi
 utilizado um \textit{K} = 10, já que segundo \citeonline{kohavi:1995} uma
 validação cruzada \textit{ten-fold} pode ser mais eficiente até que uma
 validação cruzada \textit{leave-one-out}, mais detalhes sobre o assunto pode ser
-visto na Seção \ref{validacaocruzada}. Os gráficos apresentados nas figuras
+visto na Seção \ref{valmodels}. Os gráficos apresentados nas figuras
 \ref{fig:cwe476-k-fold-quadratic} e \ref{fig:cwe476-k-fold-cubic} nos mostra um
 resumo do método aplicado.
 
@@ -975,7 +975,7 @@ Pode-se ver que em ambos os gráficos vários pontos ficaram distantes da reta,
 mostrando que existe um erro associado a predição. Na Tabela
 \ref{tab:cwe476-emq} são apresentados os erros médios quadráticos de cada um dos
 modelos aqui avaliados, a definição de erro médio quadrático pode ser encontrada
-na Seção \ref{emq}.
+na Seção \ref{valmodels}.
 
 \begin{table}[h]
  \centering
@@ -1026,7 +1026,7 @@ valores trabalhados neste estudo.
 Visualmente também pode-se ver que provavelmente o erro residual desses modelos
 são bem menores do que os análisados na Seção \ref{comparacaocwe476}. Na Tabela
 \ref{tab:cwe457-erros} são apresentados os erros residuais padrão de cada um dos
-modelos, mais sobre erro residual padrão pode ser visto na Seção \ref{erp}.
+modelos, mais sobre erro residual padrão pode ser visto na Seção \ref{valmodels}.
 
 \begin{table}[h]
  \centering
@@ -1146,7 +1146,7 @@ cada uma das métricas trabalhadas:
 \end{align*}
 
 Lembrando que as fórmulas matemáticas apresentadas acima representam os modelos
-desenvolvidos na seção \ref{difinicaomodelos}, ambos sendo desenvovlidos a
+desenvolvidos na seção \ref{definicaomodelos}, ambos sendo desenvovlidos a
 partir de uma regressão polinomial de terceiro grau das métricas obtidas a
 partir do código fonte do projeto \textit{Linux Kernel}.
 

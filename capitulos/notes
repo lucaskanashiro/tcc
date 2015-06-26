@@ -3,9 +3,15 @@ ameaças de vulnerabilidade de código fonte
 
 \chapter{Análise Estática de Código Fonte} \label{chap:metricas}
 
-Apresentar análise estática do ponto de vista do design e segurança:
-apresentar métricas de design, de vulnerabilidade e discutir uma possível
-correlação.
+Apresentar por alto outros estudo de correlação de métricas de design
+
+CWE, métricas
+
+Discutido seleção das métricas no capítulo de metodologia
+
+%Apresentar análise estática do ponto de vista do design e segurança:
+%apresentar métricas de design, de vulnerabilidade e discutir uma possível
+%correlação.
 
 \subchapter{Ferramentas de Análise Estática de Código Fonte}
 

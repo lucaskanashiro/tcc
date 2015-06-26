@@ -62,7 +62,10 @@ características existentes para gerar novas características que aumentem o val
 da base de dados original, utilizando conhecimento dos dados ou do domínio em
 questão \cite{brink:2014}. Além disso, pode-se remover características
 dispensáveis do conjunto de dados, que possam ser redundantes com outras
-características por exemplo.
+características por exemplo. Em suma, engenharia de característica é o processo
+de transformar dados nunca trabalhados em características que melhor representam
+o problema atacado para o modelo preditivo, resultando em uma precisão de modelo
+melhorada nos dados escondidos \cite{brownlee:2014}.
 
 \section{Técnica de Visualização dos Dados}\label{4-plot}
 
@@ -107,7 +110,7 @@ distriubição forem realmente aleatórios os pontos deverem ficar espalhados pe
 gráfico, caso siga algum tipo de padrão, a hipótese é negada.
 
 
-\section{Identificação de \textit{Outliers}}
+\section{Identificação de \textit{Outliers}}\label{outliers}
 
 Um passo importante para atingir um modelo que se adeque bem aos seus dados é a
 identificação e remoção dos possíveis \textit{outliers}. Um método bastante
@@ -130,7 +133,7 @@ limitam a caixa, valores que extrapolem isso são considerados \textit{outliers}
   \label{fig:boxplot}
 \end{figure}
 
-\section{Definição de Modelos}
+\section{Definição de Modelos}\label{defmodels}
 
 Após o entendimento de algumas características inerentes aos dados e
 identificação e remoção de \textit{outliers}, necessita-se definir um modelos
@@ -157,7 +160,7 @@ polinomial um dos mais conhecidos. A regressão polinomial implementada por boa
 parte das ferramentas geralmente é feita através do método dos mínimos
 quadrados, que visa diminuir o erro gerado pelo modelo ao máximo.
 
-\section{Validação de Modelos}
+\section{Validação de Modelos}\label{valmodels}
 
 Para a validação de modelos construídos pode-se utilizar várias técnicas, aqui
 serão apresentadas a \textit{ANOVA} e validação cruzada \textit{K-Fold}. A
@@ -206,7 +209,9 @@ valor estimado e o valor real dos dados, ponderados pelo número de termos
 
 Na equação acima, o valor de \textit{y} representa o valor estimado,
 \textit{y} chapéu o valor real e \textit{n} o número total de elementos dentro do
-conjunto de dados.
+conjunto de dados. Outro métrica que também pode ser utilizada é o erro residual
+padrão que nada mais é do que o desvio padão do erro residual, que é a diferença
+entre o valor real e o predito.
 
 
 
