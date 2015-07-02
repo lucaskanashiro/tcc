@@ -1,43 +1,116 @@
 \chapter{Conclusão} \label{chap:conclusao}
 
-Como pode-se observar nas análises realizadas sobre valores de métricas de
-vulnerabilidade de código fonte, uma análise quantitativa não seria relevante
-para o momento e sim uma análise qualitativa, a fim de entender o comportamento
-e natureza dessas métricas. Na tentativa de realização de uma análise
-quantitativa dentro do contexto do estudo de caso, foram negadas algumas
-hipóteses e outra hipótese preferiu-se não testa-la. Dentre as hipóteses
-apresentadas na subseção \ref{subsec:hipoteses}, as hipóteses \emph{H1} e \emph{H2}
-foram negadas e a \emph{H3} não foi testada, as justificativas do porque dessas
-decisões está na seção \ref{subsec:teste_hipotese}, onde foi descrito o teste
-das hipóteses no estudo de caso realizado.
+Na primeira etapa deste trabalho foi realizado um estudo qualitativo das
+métricas de ameaças de vulnerabilidade de código fonte, onde foram analisados um
+total de dez projetos de software livre, a fim de entender o comportamento das
+métricas em questão. Ao final, pode-se definir um subconjunto de métricas mais
+frequentes e responder algumas das hipóteses apresentadas na Seção
+\ref{sec:objetivos}. Na realização desse estudo foi possível identificar
+métricas de ameaças de vulnerabilidade mais recorrentes, sendo elas: referência
+a ponteiros nulos, variáveis não inicializadas e vazamento de memória, um resumo
+das métricas calculadas de cada um dos projetos pode ser visto no Apêndice
+\ref{anex:analise_qualitativa}. Além disso, foi respondida a hipótese levantada
+na primeira parte deste trabalho, sendo essa a hipótese \textit{H1}. A hipótese
+\textit{H1} afirma que as métricas de ameaças de vulnerabilidade de código fonte
+não podem ser acompanhadas da mesma forma que as métricas de \textit{design}.
+Após uma análise dos dados das métricas obtidos pode-se perceber que boa parte
+dos valores das métricas de ameaças de vulnerabilidades são nulos, como pode-se
+ver no Apêndice \ref{anex:percentis}, diferente das métricas de \textit{design},
+o que altera a forma de acompanhamento das mesmas, isso é explicado até pela
+natureza distinta das diferentes classes de métricas. Logo, não se pode negar a
+hipótese \textit{H1}.
 
-Na realização da análise qualitativa dos valores das métricas de vulnerabilidade
-de código fonte foi possível identificar métricas de vulnerabilidade mais
-recorrentes, sendo algumas delas: DNP, AN, ROGU e AUV. Também foi possível
-levantar uma nova hipótese a ser testada, onde em projetos de software com
-propósitos similares podem também acompanhar suas métricas de vulnerabilidade de
-código fonte de maneira semelhante.
+Na segunda etapa deste trabalho foi feito um trabalho estatístico para
+determinar modelos de predição para as métricas de ameaças de vulnerabilidade de
+código fonte mais recorrentes. Para isso, foi usada uma abordagem de análise
+exploratória de dados, onde nela se definiu o conjunto de dados referentes as
+métricas que foram trabalhados, nesta etapa foi decidido a não definição de um
+modelo de predição para a métrica relacionada a vazamento de memória (CWE401)
+como foi explicado na Seção \ref{metodologia:eda}. Após a análise exploratória
+dos dados ter sido realizada não pode-se negar a hipótese \textit{H2}, que
+afirma que os valores das métricas de ameaças de vunerabilidade se comportam
+como uma distribuição estatística de cauda longa, não sendo similar a uma
+distribuição normal, a análise realizada pode ser vista na Seção
+\ref{metodologia:eda}. Com as informações obtidas através da análise pode-se
+realizar a definição de modelos de predição para as métricas de ameaças de
+vulnerabilidade de código fonte relacionadas a referência de ponteiros nulos e
+variáveis não inicializadas (CWE476 e CWE457), na Seção \ref{definicaomodelos}
+pode-se ver o processo de definição, validação e seleção dos modelos
+desenvolvidos, que apresentaram resultados satisfatórios apesar de possuírem uma
+baixa complexidade (polinômio cúbico), como pode-se ver nos exemplos de uso
+apresentados na Seção \ref{exemplosdeuso}. E com isso também não foi possível
+negar a hipótese \textit{H3}, onde foi afirmado que pode-se monitorar métricas
+de ameaças de vulnerabilidade através de um modelo baseado em uma função
+polinomial simples, de baixa complexidade.
 
-A pesquisa limitou-se a uma revisão bibliográfica, um estudo de caso com análise 
-quantitativa de um projeto de software e uma análise qualitativa de dez
-projetos. Para a consolidação das análises espera-se aumentar a quantidade de
-projetos analisados, a fim de ter um resultado mais consistente.
+Tendo sido analisadas as três hipóteses inicialmente levantadas para responder a
+questão-problema deste trabalho, sendo ela: 
 
-Possíveis limitações podem ser encontradas com relação a extração das métricas
-de vulnerabilidade de código fonte, tais limitações devido a possíveis falsos
-positivos e negativos, entretanto, seriam limitações da ferramenta \emph{Clang}.
-Lembrando que a extração e coleta das métricas de vulnerabilidade não são foco
-deste trabalho, apenas a forma de interpretação e acompanhamento das mesmas.
+\begin{center}
+  \textit{É possível o desenvolvimento de modelos preditivos de referência, de
+  baixa complexidade, para acompanhamento e monitoramente de métricas de ameaças
+de vulnerabilidade de código fonte em projetos de software?}
+\end{center}
 
-Tendo em vista o tema deste trabalho, será adicionado ao mesmo um novo tipo de
-métrica de código fonte, sendo elas as
-métricas de anotação para softwares implementados com a linguagem de programação
-Java. Essas métricas introduzem um novo conceito de métricas de código fonte,
-específicas para linguagem Java. O objetivo será o mesmo das métricas de
-vulnerabilidade de código fonte, tentar determinar uma melhor forma para
-interpretar e acompanhar métricas advindas dessa origem.
+Conclui-se que o desenvolvimento de modelos preditivos de referência, de baixa
+complexidade, para métricas de ameaças de vulnerabilidade de código fonte é
+possível quando se possui um projeto de referência que possibilite a obtenção de
+uma base de dados considerável referente a valores das mesmas. Como foi
+discutido na Seção \ref{consolidacaoresultados}, quanto mais complexo for o
+polinômio referente ao modelo, melhor o mesmo se adaptará aos dados reduzindo o
+erro dentro do grupo de treinamento, entretanto, como o objetivo dos modelos
+definidos neste trabalho é predizer esses valores para outros projetos de
+software, o mesmo deve ter uma certa flexibilidade, evitando o
+\textit{overfitting}. Além disso, modelos menos complexos tendem a gastar uma
+menor quantidade de tempo para realizarem as suas predições, o que pode auxiliar a
+inserção do mesmo no ciclo de desenvolvimento de software, tornando o processo
+de obtenção de valores de referência dessas métricas mais rápido, facilitando o
+monitoramento das mesmas em projetos de software.
 
-Após o entendimento das métricas estudadas, espera-se 
-modelar o problema seguindo uma abordagem de aprendizado de
-máquina, com o intuito de conseguir encontrar padrões existentes.
 
+\section{Limitações do Trabalho}
+
+Uma possível limitação deste trabalho foi a identificação de \textit{outliers}
+dentro do conjunto de dados das métricas trabalhadas, apresentada na Capítulo
+\ref{definicaomodelos}. Nesse caso, um método simples e conhecido foi puramente
+aplicado para a identificação de \textit{outliers}, não sendo encontrada nenhuma
+evidência de que os valores realmente representavam algum evento fora do normal.
+
+Como foi possível concluir na Seção \ref{exemplosdeuso}, os modelos de predição
+definidos neste trabalho não conseguem realizar predições aceitáveis para
+projetos de software de diferentes tamanhos, sendo tamanho o número absoluto de
+módulos. Os mesmos funcionam bem para projetos de software de mesmo porte do
+projeto de referência selecionado, sendo esse o projeto \textit{Linux Kernel}.
+Apesar dessa limitação, o modelo referente a variáveis não inicializadas também
+apresentou resultados aceitáveis para projetos menores.
+
+A principal limitação deste trabalho foi a não validação dos valores de
+referência obtidos através dos modelos preditivos desenvolvidos com os reais
+valores das métricas em diferentes projetos de software. Na Seção
+\ref{exemplosdeuso} foram apresentados alguns valores de referência para alguns
+projetos de software livre, entretanto, os mesmos não foram validados com os
+reais valores das métricas que poderiam ser extraídos através de uma ferramenta
+de análise estática de segurança de código. Esse seria um bom teste para os
+modelos desenvolvidos, apesar de já terem sido validados através de uma
+validação cruzada.
+
+\section{Trabalhos Futuros}
+
+Como trabalho futuro deve-se validar os valores de referência preditos pelos
+modelos desenvolvidos com os valores das métricas extraídas através de análise
+estática e comparar o desempenho dos modelos. Para auxiliar no acompanhamento
+das métricas de ameaças de vulnerabilidades de código fonte em projetos menores,
+com menor número de módulos, é interessante replicar este trabalho tomando como
+referência um projeto desse porte.
+
+Este trabalho também pode ser expandido a fim de definir modelos de predição
+para outras métricas de ameaças de vulnerabilidade de código fonte, aumentando o
+abrangência desses modelos e facilitando a inserção dessa classe de métricas no
+ciclo de desenvolvimento de software.
+
+Outro trabalho interessante seria tentar definir modelos de predição de métricas de
+ameaças de vulnerabilidade baseado em métricas de \textit{design}, ou seja, as
+entradas do modelo seriam métricas de \textit{design} e como saída teriamos
+valores de referência para métricas de ameaças de vulnerabilidade. Isso pode ser
+vislumbrado já que, como foi apresentado no início deste trabalho, existem
+trabalhos que tentam relacionar essas diferentes classes de métricas.
