@@ -4,7 +4,7 @@ A análise estática examina o código fonte do programa e as razões sobre todo
 comportamento possíveis que possam surgir em tempo de execução
 \cite{ernst:2005}. Ou seja, é uma análise realizada sem a necessidade de
 execução do código fonte desenvolvido, não necessitando de suas dependências e
-outras peculiaridades para realiza-la. Além disso, análise estática pode nos apresentar
+outras peculiaridades para realizá-la. Além disso, análise estática pode nos apresentar
 características inerentes ao código fonte, podendo as mesmas serem relacioandas
 ao \textit{design} do código, nos apresentando informações como complexidade dos
 métodos e tamanho por exemplo.
@@ -16,6 +16,15 @@ o grau em que o software possui um determinado atributo que afeta sua qualidade
 \cite{ieee:1061}. Entretanto, também existem análises estáticas que tem como
 objetivo a identificação de não conformidades com o estilo do código por exemplo,
 que podem não ter uma métrica de software como saída do processo.
+
+Usualmente, análise estática de código fonte remete, a maioria das pessoas, uma
+análise do \textit{design} do código, da complexidade ou tamanho do mesmo,
+entretanto, essa é uma visão que vem mudando devido os requisitos não funcionais
+relacionados a segurança do software ganharem cada vez mais importância em
+virtude do contexto atual. Onde cada vez mais são desenvolvidas pesquisas acerca
+do análise estática voltada para a segurança do código, onde esse tipo de
+requisito pode ser tornar quantificável, com o intuito de facilitar a inserção
+dessa classe de métricas no ciclo de desenvolvimento de software.
 
 Vários estudos vêm sendo realizados acerca da análise de código fonte e
 definição de métricas além da sua relação com ameaças ou falhas em programas,
@@ -31,8 +40,8 @@ software, permitindo que equipes de desenvolvimento encontrem possíveis
 vulnerabilidades durante o ciclo de desenvolvimento, reduzindo o custo de
 futuras manutenções corretivas.
 
-Serão apresentadas na seção \ref{cwe} a taxonomia e classificação das
-vulnerabilidades já conhecidas, e na seção \ref{metricasvulnerabilidade} serão
+Serão apresentadas na Seção \ref{cwe} a taxonomia e classificação das
+vulnerabilidades já conhecidas, e na Seção \ref{metricasvulnerabilidade} serão
 explicadas algumas das métricas de ameaças de vulnerabilidade mais comuns em
 projetos de software, sendo apresentadas as selecionadas para a realização deste
 trabalho.
@@ -95,7 +104,7 @@ caso, as vulnerabilidades foram agrupadas em sete classes, sendo elas:
 \end{enumerate}
 
 Vários outros estudos foram derivados a partir do \textit{RISOS}, entretanto, o
-que acontece na prática essas taxonomias estão em desuso e a tendência atual é a
+que acontece é que essas taxonomias estão em desuso e a tendência atual é a
 adoção de esquemas de classificação de vulnerabilidades, ou seja, o que acontece
 na prática não repeita as propriedades de uma taxonomia.
 
@@ -124,16 +133,17 @@ comunidade, já as CWEs estão relacionadas a fraquezas de software, apresentand
 códigos e práticas de programação que podem se tornar futuras vulnerabilidades
 do software.
 
-As métricas apresentadas na seção \ref{metricasvulnerabilidade} foram definidas
+As métricas apresentadas na Seção \ref{metricasvulnerabilidade} foram definidas
 baseadas nas CWEs mais recorrentes em projetos de software livre, sendo esse um
-indicativo que devem ser monitoradas em um projeto se software.
+indicativo que devem ser monitoradas em um projeto se software, conforme
+discutido no Apêndice \ref{anex:analise_qualitativa}, referente a primeira etapa
+deste trabalho.
 
 \section{Métricas de Ameaças de Vulnerabilidade de Código Fonte}\label{metricasvulnerabilidade}
 
 As métricas de ameaças de vulneabilidade de código fonte apresentadas nesta
 seção foram baseadas no estudo realizado na primeira parte desta pesquisa,
-pode-se obter mais informação sobre o estudo realizado no capítulo
-\ref{metodologia}.
+detalhes sobre essas decisões são discutidos no Capítulo \ref{metodologia}.
 
 As principais ameaças de vulnerabilidade encontradas em projetos de software
 livre foram: referência a ponteiros nulos, variáveis não inicializadas e
@@ -150,7 +160,7 @@ número total de módulos, dando uma taxa de cada uma das ameaças de
 vulnerabilidade por módulo, podendo o valor da métrica variar entre 0.0 e 1.0.
 
 Aprofundando mais em cada uma das ameaças de vulnerabilidade a fim de
-compreendê-las, serão apresentadas uma a uma a seguir, nas seções \ref{cwe476},
+compreendê-las, serão apresentadas uma a uma a seguir, nas Seções \ref{cwe476},
 \ref{cwe457} e \ref{cwe401}.
 
 \subsection{CWE476 - Referência a Ponteiros Nulos}\label{cwe476}
@@ -158,8 +168,8 @@ compreendê-las, serão apresentadas uma a uma a seguir, nas seções \ref{cwe47
 A ameaça de vulnerabilidade de referência a ponteiros nulos acontece quando
 a aplicação tenta acessar o conteúdo da região de memória que o ponteiro deveria estar
 apontando, entretanto, o ponteiro está nulo, devido a algum estado inesperado do
-programa. Tipicamente esse tipo de ocorrência aborta a execução do programa.
-Essa tipo de ameaça de vulnerabilidade pode ocorrer desde um pequeno erro de
+programa. Tipicamente, esse tipo de ocorrência aborta a execução do programa.
+Esse tipo de ameaça de vulnerabilidade pode ocorrer desde um pequeno erro de
 programação, esquecendo de validar algum ponteiro antes de acessá-lo, até
 complexas condições de corrida, onde existam dois processos paralelos que acessam o mesmo
 ponteiro, e um libere a região de memória antes do outro finalizar a utilização
@@ -183,7 +193,7 @@ void main() {
 } 
 \end{lstlisting}
 
-O exemplo apresentado se apresenta como uma ameaça de vulnerabildade, pois o
+O exemplo do Código \ref{codigoCWE476} apresenta uma ameaça de vulnerabildade, pois o
 conteúdo para onde o ponteiro aponta pode aparentemente sempre vir certo,
 entretanto, em algum momento, com algumas entradas específicas o ponteiro
 retornado pode ser nulo, caracterizando uma ameaça de vulnerabilidade de código
@@ -323,3 +333,13 @@ Esse tipo de ameaça de vulnerabilidade assim como a apresentada na seção
 \ref{cwe476}, só é possível em programas escritos em linguagens de programação
 que dê liberdade para o seu próprio gerenciamento de memória, como as linguagens
 \textit{C} e \textit{C++}.
+
+
+
+Com base nas métricas de ameaças de vulnerabilidade de código fonte aqui
+apresentadas, foi realizada uma análise ao decorrer do tempo das versões do
+projeto \textit{Linux Kernel}, a fim de definir modelos de predição de
+referência para essas métricas que auxiliem a monitoramento das mesmas no ciclo
+de desenvolvimento de software.
+
+

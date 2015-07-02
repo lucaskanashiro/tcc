@@ -15,62 +15,64 @@ utilizam de maneira inadequada, não agregando valor ao processo de desenvolvime
 de software; ou apenas não utilizam, mesmo que sejam importantes para o processo de
 desenvolvimento.
 
-Muitas vezes, as métricas de código fonte se encaixam bem nessa situação, não são 
-utilizadas dentro do processo de desenvolvimento porque não se sabe o que deve ser
-feito com as mesmas e que decisões tomar. Quando utilizadas, são utilizadas apenas
-as métricas de código fonte mais conhecidas, como as 
-métricas orientadas a objetos de \citeonline{chidamber&kemerer2002}, isso ocorre 
-porque são métricas já consolidadas
-e possuem várias diretrizes de como utiliza-las de maneira adequada. Outras classes 
-de métricas de código fonte, como as métricas de vulnerabilidade de código fonte 
-por exemplo, não são tão utilizadas no dia-a-dia do desenvolvimento de software, 
-devido a falta de conhecimento de como interpreta-las e monitora-las.
+Muitas vezes, as métricas de código fonte se encaixam bem nessa situação, não
+são utilizadas dentro do processo de desenvolvimento porque não se sabe o que
+deve ser feito com as mesmas e que decisões tomar. Quando utilizadas, são
+utilizadas apenas as métricas de \textit{design} de código fonte mais
+conhecidas, como as métricas orientadas a objetos de
+\citeonline{chidamber&kemerer2002}, isso ocorre porque são métricas já
+consolidadas e possuem várias diretrizes de como utiliza-las de maneira
+adequada. 
 
-É nesse contexto que se encaixa este trabalho, onde pessoas não utilizam ou utilizam
-de maneira inadequada métricas de código fonte por falta de orientação de como 
-interpreta-las e utiliza-las de maneira que agregue valor ao produto/negócio.
-Dessa forma, o desenvolvimento de modelos preditivos para essa classe de métrica
-facilitaria o seu entendimento e serviria de referência para tomadas de
-decisões.
+Neste trabalho, nós argumentamos que outras classes de métricas de código fonte,
+como as métricas de ameaças de vulnerabilidade, por exemplo, não são tão
+utilizadas no desenvolvimento de software, devido a falta de conhecimento de
+como interpretá-las e monitorá-las. Nesse contexto ao investigar como monitorar
+métricas de ameaças de vulnerabilidade de código fonte, de modo que ela possa
+ser utilizada e interpretada de maneira que agregue valor ao produto/negócio,
+estamos propondo modelos preditivos para essa classe de métrica.
 
 \section{Justificativa}
 
-Sabendo que existe o problema dentro da Engenharia de Software de não saber como
-interpretar e monitorar métricas de código fonte além das mais conhecidas, que são 
-as métricas de \textit{design} de código fonte, espera-se conseguir auxiliar os 
-Engenheiros de Software com este trabalho. Tentando mostrar a melhor forma de 
-interpretar e acompanhar esses diferentes tipos de métricas que estão emergindo
+Sabendo que existe o problema dentro da Engenharia de Software de interpretação
+e monitoramento de métricas de código fonte além das mais conhecidas, que são 
+as métricas de \textit{design}, espera-se conseguir auxiliar os 
+Engenheiros de Software com este trabalho, tentando apresentar uma forma de
+acompanhar e monitorar essas diferentes métricas que estão emergindo
 nos últimos tempos, muitos não as utilizam devido a falta de conhecimento sobre
-o que fazer com essas informações advindas dessas novas métricas.
+o que fazer com essas informações advindas dessas classes de métricas.
 
-Relacionado as métricas de vulnerabilidade de código fonte que é a primeira
-classe de métricas de código fonte trabalhada neste trabalho, existe a
-questão da segurança dos softwares, que está bastante em voga nos últimos
-tempos, o que reforça a necessidade de inserção de métricas de vulnerabilidade
-de código fonte dentro do ciclo de desenvolvimento de software. O encontro
-dessas vulnerabilidades ainda dentro do ciclo de desenvolvimento facilita a
-correção das mesmas, além de evitar custos de possíveis futuras manutenções
-corretivas. Mas para isso, é necessário saber interpretar esses valores
-e acompanhar no decorrer do ciclo de desenvolvimento.
+Relacionado as métricas de ameaças de vulnerabilidade de código fonte existe a
+questão da segurança dos softwares, que está em voga nos últimos tempos,
+vem aumentando cada vez mais a busca por requisitos não funcionais relacionados a
+segurança do software desenvolvido, o que reforça a necessidade de inserção de
+métricas de ameaças de vulnerabilidade de código fonte dentro do ciclo de
+desenvolvimento de software, a fim de quantificar alguns aspectos do software
+antes não mensurados. Como foi mencionado anteriormente, não consegue se
+controlar alguma aspecto do desenvolvimento do software enquanto não se pode
+medi-lo. O encontro dessas ameaças de vulnerabilidades ainda dentro do ciclo de
+desenvolvimento facilita a correção das mesmas, além de evitar custos de
+possíveis futuras manutenções corretivas. Mas para isso, é necessário saber como
+monitorá-las e acompanhá-las no decorrer do ciclo de desenvolvimento.
 
-Existem várias iniciativas de pesquisas relacionadas a como associar
+Existem algumas iniciativas de pesquisas relacionadas a como associar
 características de \textit{design} do código fonte com vulnerabilidades, como
 nos trabalhos de \citeonline{arthur&carlos2014} e
-\citeonline{alshammari2009}; entretanto, não
-existem muitas iniciativas no mundo acadêmico de como interpretar e acompanhar
-os valores dessas métricas de ameaças de vulnerabilidade de código fonte, sendo
-essa uma oportunidade ímpar de pesquisa.
+\citeonline{alshammari2009}. Entretanto, isso não se mostra suficiente para a
+inserção dessas métricas no ciclo de desenvolvimento de software. Além disso, é
+necessário encontrar uma forma mais objetiva par auxiliar Engenheiros de
+Software no monitoramento das métricas de ameaças de vulnerabilidade de código
+fonte, sendo esses um dos possíveis motivos para a sua não utilização.
 
 Segundo um artigo divulgado pelo \textit{NIST} (\textit{National Institute of
-Standards and Technology}), desenvolvido por \citeonline{jansen2009}, o tema
-deste trabalho está totalmente alinhado com os pensamentos da agência norte
-americana, onde a coleta de dados de projetos existentes e a análise dos mesmos
-podem indicar padrões e informações importantes para a medição da segurança de
-software, sendo essa apontada como uma possível área de pesquisa.
+Standards and Technology}), desenvolvido por \citeonline{jansen2009}, a coleta
+de dados de projetos existentes e a análise dos mesmos podem indicar padrões e
+informações importantes para a medição da segurança de software, sendo essa
+apontada como uma possível área de pesquisa. Isso corrobora com a ideia deste
+trabalho, onde foram definidos modelos preditivos de referência para algumas
+métricas de ameaças de vulnerabilidade de código fonte baseado em um software de
+referência, analisando temporalmente as suas versões.
 
-Dentre outras coisas, este trabalho também servirá de insumo para próximos
-trabalhos, não só devido aos resultados obtidos, mas também a metodologia
-utilizada..
 
 \section{Objetivos} \label{sec:objetivos}
 
@@ -89,15 +91,33 @@ Em resumo, o principal objetivo de pesquisa deste trabalho é responder a
 seguinte questão-problema:
 
 \begin{center}
-  \textit{É possível o desenvolvimento de um modelo preditivo de referência de
-  baixa complexidade para acompanhamento e monitoramente de métricas de ameaças
+  \textit{É possível o desenvolvimento de um modelo preditivo de referência, de
+  baixa complexidade, para acompanhamento e monitoramente de métricas de ameaças
 de vulnerabilidade de código fonte em projetos de software?}
 \end{center}
 
+Para responder essa questão-problema foram levantadas as seguintes hipóteses
+a serem respondidas:
 
-\section{Metodologia}
+\begin{itemize}
+  \item \textit{H1}: As métricas de ameaças de vulnerabilidade de código fonte
+  podem ser observadas de maneira similar às métricas de \textit{design} de código
+  fonte.
 
-A metodologia que foi adotada para atingir o objetivo deste trabalho foi:
+  \item \textit{H2}: A média dos valores das métricas de ameaças de vulnerabilidade de
+  código fonte, geralmente, não é representativa para o acompanhamento das mesmas.
+
+  \item \textit{H3}: Os valores das métricas de ameaças de vulnerabilidade de
+    código fonte se comportam como distribuições estatísticas de cauda longa, e
+    não distribuições estatísticas normalizáveis.
+
+  \item \textit{H4}: A definição de um modelo baseado em uma função polinomial
+   simples possibilita o monitoramento e acompanhamento das métricas de ameaças
+   de vulnerabilidade de código fonte.
+\end{itemize}
+
+Para se discutir sobre as hipóteses apresentadas foram realizados os seguintes
+passos:
 
 \begin{enumerate}
   \item Levantamento bibliográfico
