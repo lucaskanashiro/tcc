@@ -15,17 +15,13 @@ seguinte:
 Na primeira parte do trabalho foram levantadas algumas hipóteses com relação ao
 monitoramento das métricas de ameaças de vulnerabilidades de código fonte,
 levando em consideração trabalhos já realizados sobre métricas de orientação a
-objetos e de tamanho, como o trabalho de \citeonline{meirelles2013}. As hipóteses
-foram as seguintes:
+objetos e de tamanho, como o trabalho de \citeonline{meirelles2013}. A hipótese
+foi a seguinte:
 
 \begin{itemize}
   \item \textit{H1}: As métricas de ameaças de vulnerabilidade de código fonte
-  podem ser observadas de maneira similar às métricas de \textit{design} de código
+  não podem ser observadas de maneira similar às métricas de \textit{design} de código
   fonte.
-
-  \item \textit{H2}: A média dos valores das métricas de ameaças de vulnerabilidade de
-  código fonte, geralmente, não é representativa para o acompanhamento das mesmas.
-
 \end{itemize}
 
 Ao final da primeira parte da pesquisa foram respondidas as hipóteses levantadas
@@ -37,9 +33,13 @@ projeto. Dessa forma, as métricas de ameaças de vulnerabilidade não se
 assemelham com métricas de \textit{design} de código, pois as métricas de
 \textit{design} de código não costumam ter valoração nula na maioria dos casos
 devido a sua própria natureza, logo, ambas não podem ser observadas de maneira
-similar, negando a hipótese \textit{H1}. Além disso, em um conjunto de valores
-em que a grande maioria é zero não se pode considerar a média dos mesmos
-representativa, o que confirma a hipótese \textit{H2}.
+similar, o que não nos faz negar a hipótese \textit{H1}. Além disso, foi
+realizada uma análise dos percentis das métricas, que pode ser visto no Apêndice
+\ref{anex:percentis}, assim como foi realizada para as métricas de
+\textit{design} em \citeonline{meirelles2013}, e percebeu-se que ambas diferem,
+o que corrobora com a decisão tomada. Sendo que os percentis são medidas que
+dividem uma amostra ordenada, em ordem crescente, em cem partes, cada uma com
+uma porcentagem de dados aproximadamente igual \cite{martins2013}.
 
 Foi realizado um estudo qualitativo das métricas em questão, foram analisados
 outros dez projetos, que podem ser vistos no apêndice
@@ -101,9 +101,9 @@ vulnerabilidade de código fonte aqui trabalhadas, a questão de pesquisa
 redefinida é:
 
 \begin{center}
-  \textit{Existe uma função matemática que possibilite a definição de um modelo de
-  predição para o monitoramento de métricas de ameaças de vulnerabilidades de
-  código fonte?}
+  \textit{É possível o desenvolvimento de modelos preditivos de referência, de
+  baixa complexidade, para acompanhamento e monitoramente de métricas de ameaças
+de vulnerabilidade de código fonte em projetos de software?}
 \end{center}
 
 Tendo essa questão de pesquisa em mente o objetivo deste trabalho é encontrar
@@ -112,19 +112,19 @@ métricas. E para encontrar esse meio de realizar esse monitoramente e
 acompanhamento foram levantadas seguintes as hipóteses:
 
 \begin{itemize}\label{hipoteses2}
-  \item \textit{H3}: Os valores das métricas de ameaças de vulnerabilidade de
+  \item \textit{H2}: Os valores das métricas de ameaças de vulnerabilidade de
     código fonte se comportam como distribuições estatísticas de cauda longa, e
     não distribuições estatísticas normalizáveis.
 
-  \item \textit{H4}: A definição de um modelo baseado em uma função polinomial
+  \item \textit{H3}: A definição de um modelo baseado em uma função polinomial
    simples possibilita o monitoramento e acompanhamento das métricas de ameaças
    de vulnerabilidade de código fonte.
 \end{itemize}
 
 Através de uma análise exploratória dos dados espera-se responder a hipótese
-\textit{H3}, onde será possível ter uma visão geral dos dados. E através da
+\textit{H2}, onde será possível ter uma visão geral dos dados. E através da
 definição e validação de modelos estatísticos será possível responder a hipótese
-\textit{H4}.
+\textit{H3}.
 
 Com o intuito de responder as hipóteses levantas, foi definido um fluxo de
 atividades para sistematizar esta pesquisa. A Figura \ref{fig:processo}
@@ -368,8 +368,7 @@ de vulnerabilidade pelo número de módulos para a melhor visualização dos dad
   \centering
   \includegraphics[width=1.0\textwidth]
       {figuras/scatterplot.eps}
-      \caption{\textit{Scatterplot} das taxas de ameaças de vulnerabilidade por
-      módulo pelo número total de módulos}
+      \caption{\textit{Scatterplot} das taxas de CWE pelo número total de módulos}
   \label{fig:scatterplot}
 \end{figure}
 
@@ -535,13 +534,12 @@ cenário anterior.
   \label{fig:cwe457-hist}
 \end{figure}
 
-Mais uma vez é confirmanda a negação da hipótese \textit{H2}, onde a média dos
-valores dessas métricas seria representativa. O gráfico \textit{Q-Q Plot} nos
-auxilia a ver de maneira mais clara a não conformidade com a distribuição normal
-através da Figura \ref{fig:cwe457-qq-plot}. Esse gráfico nos mostra que a
-distribuição dos dados da CWE457 está mais próxima de uma normal do que a
-CWE476, entretanto, pode-se dizer que a normal também não é representativa nesse
-caso, pois existe uma cauda longa próxima aos maiores quantis.
+O gráfico \textit{Q-Q Plot} nos auxilia a ver de maneira mais clara a não
+conformidade com a distribuição normal através da Figura
+\ref{fig:cwe457-qq-plot}. Esse gráfico nos mostra que a distribuição dos dados
+da CWE457 está mais próxima de uma normal do que a CWE476, entretanto, pode-se
+dizer que a normal também não é representativa nesse caso, pois existe uma cauda
+longa próxima aos maiores quantis.
 
 \begin{figure}[h]
   \centering
@@ -587,16 +585,16 @@ confronta-los para identificar qual o melhor modelo.
 
 Após a realização do teste das hipóteses levantadas no início da pesquisa (lista
 \ref{hipoteses2}) se tem insumo para chegar em algumas conclusões. A hipótese
-\textit{H3} não foi negada, já que como pode-se ver nos histogramas e gráficos
+\textit{H2} não foi negada, já que como pode-se ver nos histogramas e gráficos
 \textit{Q-Q plot}, apresentados na Seção \ref{metodologia:eda}, que a distribuição das taxas
 de ameaças de vulnerabilidade de código fonte trabalhadas seguem uma
 distribuição estatística de cauda longa, e não uma simples distribuição normal
-onde a média dos valores é representativa.  Sendo esse um ponto que já havia
+onde a média dos valores é representativa. Sendo esse um ponto que já havia
 sido discutido no início deste capítulo e que foi corroborado após o trabalho
 realizado.
 
 Tendo isso em vista, foram definidos modelos polinomiais para tentar testar a
-hipótese \textit{H4} na Seção \ref{definicaomodelos}.
+hipótese \textit{H3} na Seção \ref{definicaomodelos}.
 
 
 
@@ -641,7 +639,7 @@ método não paramétrico que traçasse uma curva suave baseado no
 \textit{scatterplot} apenas como referência pois o mesmo não nos dá uma função
 matemática como saída, apesar dos resultados do mesmo ser bastante satisfatório.
 O método não paramétrico utilizado foi o \textit{LOESS} (\textit{Locally
- Weighted Regression}), como foi explicado na Seção \ref{def:models}, o mesmo tem
+ Weighted Regression}), como foi explicado na Seção \ref{defmodels}, o mesmo tem
  como um dos seus pontos fortes a análise de uma série temporal, como a que
  estamos trabalhando, valores de métricas de uma série de versões do projeto
  \textit{Linux Kernel}.
@@ -688,8 +686,7 @@ residual padrão o desvio padrão da diferença entre o valor real e o predito.
   \centering
   \includegraphics[width=1.0\textwidth]
       {figuras/cwe476-loess.eps}
-      \caption{Curva suavizada gerada pelo método \textit{LOESS} sobre o
-      conjunto de dados da taxa da CWE476 por módulo}
+      \caption{Curva gerada pelo método \textit{LOESS} sobre os dados da taxa da CWE476}
   \label{fig:cwe476-loess}
 \end{figure}
 
@@ -723,8 +720,7 @@ Figura \ref{fig:cwe476-quadratic}. O erro residual padrão para esse modelo foi
   \centering
   \includegraphics[width=1.0\textwidth]
       {figuras/cwe476-quadratic.eps}
-      \caption{Curva de predição do modelo quadrático sobre o \textit{scatterplot}
-      dos dados da CWE476}
+      \caption{Curva de predição do modelo quadrático dos dados da CWE476}
   \label{fig:cwe476-quadratic}
 \end{figure}
 
@@ -747,8 +743,7 @@ Figura \ref{fig:cwe476-cubic}. O erro residual padrão para esse modelo foi
   \centering
   \includegraphics[width=1.0\textwidth]
       {figuras/cwe476-cubic.eps}
-      \caption{Curva de predição do modelo cúbico sobre o \textit{scatterplot}
-      dos dados da CWE476}
+      \caption{Curva de predição do modelo cúbico dos dados da CWE476}
   \label{fig:cwe476-cubic}
 \end{figure}
 
@@ -782,8 +777,7 @@ diferença entre o valor real e o predito.
   \centering
   \includegraphics[width=1.0\textwidth]
       {figuras/cwe457-loess.eps}
-      \caption{Curva suavizada gerada pelo método \textit{LOESS} sobre o
-      conjunto de dados da taxa da CWE457 por módulo}
+      \caption{Curva gerada pelo método \textit{LOESS} sobre os dados da taxa da CWE457}
   \label{fig:cwe457-loess}
 \end{figure}
 
@@ -813,8 +807,7 @@ Figura \ref{fig:cwe457-quadratic}. O erro residual padrão para esse modelo foi
   \centering
   \includegraphics[width=1.0\textwidth]
       {figuras/cwe457-quadratic.eps}
-      \caption{Curva de predição do modelo quadrático sobre o \textit{scatterplot}
-      dos dados da CWE457}
+      \caption{Curva de predição do modelo quadrático dos dados da CWE457}
   \label{fig:cwe457-quadratic}
 \end{figure}
 
@@ -837,28 +830,9 @@ Figura \ref{fig:cwe457-cubic}. O erro residual padrão para esse modelo foi
   \centering
   \includegraphics[width=1.0\textwidth]
       {figuras/cwe457-cubic.eps}
-      \caption{Curva de predição do modelo cúbico sobre o \textit{scatterplot}
-      dos dados da CWE457}
+      \caption{Curva de predição do modelo cúbico dos dados da CWE457}
   \label{fig:cwe457-cubic}
 \end{figure}
-
-Na Tabela \ref{tab:cwe457-erros} são resumidos os erros de cada um dos modelos
-definidos a partir do conjunto de dados da CWE457.
-
-\begin{table}[h]
- \centering
- \begin{tabular}{cc}
-  \hline
-  \rowcolor[HTML]{EFEFEF} 
-  {Modelo} & {Erro residual padrão} \\ \hline
-  {LOESS}  & 0.0003126                  \\ \hline
-  Quadrático   & 0.0003629                  \\ \hline
-  Cúbico       & 0.0003211                \\ \hline 
- \end{tabular}
- \caption{Resumo do erro residual padrão dos modelos contruídos para as taxas da
- CWE457}
- \label{tab:cwe457-erros}
-\end{table}
 
 
 
@@ -898,8 +872,7 @@ como os modelos estão realizando as suas respectivas predições.
   \centering
   \includegraphics[width=1.0\textwidth]
       {figuras/cwe476-all-models.eps}
-      \caption{Curva de predição de todos os modelos sobre o \textit{scatterplot}
-      dos dados da CWE476}
+      \caption{Curva de predição dos modelos dos dados da CWE476}
   \label{fig:cwe476-all-models}
 \end{figure}
 
@@ -933,7 +906,7 @@ mais próximo do desejável.
   Quadrático   & 0.0009653                  \\ \hline
   Cúbico       & 0.0008400                \\ \hline 
  \end{tabular}
- \caption{Resumo do erro residual padrão dos modelos contruídos para as taxas da
+ \caption{Resumo do ERP dos modelos contruídos para as taxas da
  CWE476}
  \label{tab:cwe476-erros}
 \end{table}
@@ -953,7 +926,7 @@ resumo do método aplicado.
   \centering
   \includegraphics[width=1.0\textwidth]
       {figuras/cwe476-k-fold-quadratic.eps}
-      \caption{Validação cruzada \textit{Ten-fold} utilizando o modelo
+      \caption{Validação cruzada \textit{Ten-fold} do modelo
       quadrático da taxa da CWE476}
   \label{fig:cwe476-k-fold-quadratic}
 \end{figure}
@@ -962,7 +935,7 @@ resumo do método aplicado.
   \centering
   \includegraphics[width=1.0\textwidth]
       {figuras/cwe476-k-fold-cubic.eps}
-      \caption{Validação cruzada \textit{Ten-fold} utilizando o modelo
+      \caption{Validação cruzada \textit{Ten-fold} do modelo
       cúbico da taxa da CWE476}
   \label{fig:cwe476-k-fold-cubic}
 \end{figure}
@@ -986,9 +959,8 @@ na Seção \ref{valmodels}.
   Quadrático   & 0.000000958                  \\ \hline
   Cúbico       & 0.000000862                 \\ \hline
  \end{tabular}
- \caption{Resumo do erro residual quadrático dos modelos contruídos para as taxas da
- CWE476 através da validação cruzada.}
- \label{tab:cwe476-erros}
+ \caption{EMQ dos modelos das taxas da CWE476 através da validação cruzada.}
+ \label{tab:cwe476-emq}
 \end{table}
 
 Pode-se ver que mais uma vez o modelo cúbico se sobressaiu ao modelo quadrático,
@@ -1010,8 +982,7 @@ dados. Esse gráfico pode ser visto na Figura \ref{fig:cwe457-all-models}.
   \centering
   \includegraphics[width=1.0\textwidth]
       {figuras/cwe457-all-models.eps}
-      \caption{Curva de predição de todos os modelos sobre o \textit{scatterplot}
-      dos dados da CWE457}
+      \caption{Curva de predição dos modelos dos dados da CWE457}
   \label{fig:cwe457-all-models}
 \end{figure}
 
@@ -1038,8 +1009,7 @@ modelos, mais sobre erro residual padrão pode ser visto na Seção \ref{valmode
   Quadrático   & 0.0003674                  \\ \hline
   Cúbico       & 0.0003388                 \\ \hline
  \end{tabular}
- \caption{Resumo do erro residual padrão dos modelos contruídos para as taxas da
- CWE457}
+ \caption{Resumo do ERP dos modelos contruídos para as taxas da CWE457}
  \label{tab:cwe457-erros}
 \end{table}
 
@@ -1061,7 +1031,7 @@ resumo dos testes realizados.
   \centering
   \includegraphics[width=1.0\textwidth]
       {figuras/cwe457-k-fold-quadratic.eps}
-      \caption{Validação cruzada \textit{Ten-fold} utilizando o modelo
+      \caption{Validação cruzada \textit{Ten-fold} do modelo
       quadrático da taxa da CWE457}
   \label{fig:cwe457-k-fold-quadratic}
 \end{figure}
@@ -1070,13 +1040,13 @@ resumo dos testes realizados.
   \centering
   \includegraphics[width=1.0\textwidth]
       {figuras/cwe457-k-fold-cubic.eps}
-      \caption{Validação cruzada \textit{Ten-fold} utilizando o modelo
+      \caption{Validação cruzada \textit{Ten-fold} do modelo
       cúbico da taxa da CWE457}
   \label{fig:cwe457-k-fold-cubic}
 \end{figure}
 
 Definições acerca do método \textit{K-fold} de validação cruzada podem ser
-encontradas na Seção \ref{k-fold}. A Tabela \ref{tab:cwe457-emq} apresenta os
+encontradas na Seção \ref{valmodels}. A Tabela \ref{tab:cwe457-emq} apresenta os
 erros médios quadráticos obtidos através da validação cruzada.
 
 \begin{table}[h]
@@ -1088,8 +1058,7 @@ erros médios quadráticos obtidos através da validação cruzada.
   Quadrático   & 0.000000137 \\ \hline
   Cúbico       & 0.000000112 \\ \hline
  \end{tabular}
- \caption{Resumo do erro residual quadrático dos modelos contruídos para as taxas da
- CWE457 através da validação cruzada.}
+ \caption{EMQ dos modelos das taxas da CWE457 através da validação cruzada.}
  \label{tab:cwe457-emq}
 \end{table}
 
@@ -1111,9 +1080,9 @@ a predição dos valores das métricas em questão, o modelo cúbico foi selecio
 devido a maior aderência ao modelo de referência escolhido.
 
 
-\section{Consolidação dos Resultados}
+\section{Consolidação dos Resultados}\label{consolidacaoresultados}
 
-Com o que se diz respeito a hipótese \textit{H4}, foram definidos dois modelos e
+Com o que se diz respeito a hipótese \textit{H3}, foram definidos dois modelos e
 selecionado um para cada uma das métricas de ameaças de vulnerabilidade de
 código fonte. Essa hipótese também não foi negada, já que como foi apresentado
 na comparação entre os modelos (Seção \ref{comparacaomodelos}), os mesmos se
@@ -1246,8 +1215,7 @@ referência construído a partir do projeto \textit{Linux Kernel}.
   Ruby-2.1            & 547     & -0.02666550
   & 0.02199268                                             \\ \hline
  \end{tabular}
- \caption{Predição de métricas em projetos de software livre com menor número
- de módulos.}
+ \caption{Predição de métricas em projetos de software livre pequenos.}
  \label{tab:exemplos}
 \end{table}
 
@@ -1297,8 +1265,7 @@ projetos de software livre com uma maior quantidade de números de módulos.
   Android             & 49431   & 0.0160103100
   & 0.0006387576                                          \\ \hline
  \end{tabular}
- \caption{Predição de métricas em projetos de software livre com maior número
- de módulos.}
+ \caption{Predição de métricas em projetos de software livre maiores.}
  \label{tab:exemplos2}
 \end{table}
 
