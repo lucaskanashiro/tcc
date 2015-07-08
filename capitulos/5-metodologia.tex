@@ -1,6 +1,6 @@
 \chapter{Metodologia}\label{metodologia}
 
-Neste capítulo pretende-se apresentar toda a metodologia utilizada durante a
+Neste capítulo será apresentada toda a metodologia utilizada durante a
 pesquisa realizada, podendo ser um norte para a reprodução da mesma em trabalhos
 futuros. Inicialmente, a questão de pesquisa a ser respodida com este trabalho era a
 seguinte:
@@ -20,7 +20,7 @@ foi a seguinte:
 
 \begin{itemize}
   \item \textit{H1}: As métricas de ameaças de vulnerabilidade de código fonte
-  não podem ser observadas de maneira similar às métricas de \textit{design} de código
+  podem ser observadas de maneira similar às métricas de \textit{design} de código
   fonte.
 \end{itemize}
 
@@ -33,7 +33,7 @@ projeto. Dessa forma, as métricas de ameaças de vulnerabilidade não se
 assemelham com métricas de \textit{design} de código, pois as métricas de
 \textit{design} de código não costumam ter valoração nula na maioria dos casos
 devido a sua própria natureza, logo, ambas não podem ser observadas de maneira
-similar, o que não nos faz negar a hipótese \textit{H1}. Além disso, foi
+similar, o que nos faz negar a hipótese \textit{H1}. Além disso, foi
 realizada uma análise dos percentis das métricas, que pode ser visto no Apêndice
 \ref{anex:percentis}, assim como foi realizada para as métricas de
 \textit{design} em \citeonline{meirelles2013}, e percebeu-se que ambas diferem,
@@ -89,12 +89,13 @@ vulnerabilidade de código fonte não foi abordado nesse trabalho.
 
 Entretanto, não se encontrou um trabalho que tentasse definir algum modelo
 estatístico para monitorar e controlar métricas de ameaças de vulnerabilidade de
-código fonte dentro do ciclo de desenvolvimento de um software.
+código fonte dentro do ciclo de desenvolvimento de um software, sendo modelos
+esses a principal contribuição deste trabalho.
 
 
 
 
-\section{Planejamento da Pesquisa}\label{metodologia:planejamentopesquisa}
+\section{Projeto da Pesquisa}\label{metodologia:planejamentopesquisa}
 
 Com o objetivo de definir modelos de predição para as métricas de ameaças de
 vulnerabilidade de código fonte aqui trabalhadas, a questão de pesquisa
@@ -500,7 +501,7 @@ antecessores, nos mostrando que este conjunto de dados não é aleatório. Saben
 que a variação dos dados não é constante como o que acontece em um polinômio de
 primeiro graus, foi realizada uma regressão para polinômios de diferentes graus
 maiores do que um para tentar encontrar um que melhor se adeque, conforme será
-apresentado na Seção \ref{definicaomodelos}.
+apresentado no Capítulo \ref{definicaomodelos}.
 
 
 \subsubsection{CWE457 - Variável não Inicializada}\label{eda:cwe457}
@@ -594,7 +595,8 @@ sido discutido no início deste capítulo e que foi corroborado após o trabalho
 realizado.
 
 Tendo isso em vista, foram definidos modelos polinomiais para tentar testar a
-hipótese \textit{H3} na Seção \ref{definicaomodelos}.
+hipótese \textit{H3} no Capítulo \ref{definicaomodelos}, como principal
+resultado deste trabalho.
 
 
 
@@ -839,7 +841,7 @@ Figura \ref{fig:cwe457-cubic}. O erro residual padrão para esse modelo foi
 
 \section{Comparação e Escolha dos Modelos}\label{comparacaomodelos}
 
-Na Seção \ref{definicaomodelos} foram definidos dois modelos para cada uma das
+Neste capítulo foram definidos dois modelos para cada uma das
 métricas de ameaças de vulnerabilidade de código fonte, nesta Seção esses
 modelos serão comparados, baseado no erro na predição do modelo e no método
 \textit{K-fold} de validação cruzada, e então serão selecionados os melhores
@@ -1088,13 +1090,13 @@ código fonte. Essa hipótese também não foi negada, já que como foi apresent
 na comparação entre os modelos (Seção \ref{comparacaomodelos}), os mesmos se
 apresentaram bem diante de situações reais de análise, logo, atingindo o
 objetivo de acompanhar, monitorar e predizer valores das métricas de maneira
-satisfatória. Entretanto, como foi explicado nas seções \ref{definicaomodelos} e
-\ref{comparacaomodelos}, quanto maior o grau do polinômio melhor ele se adaptará
-aos dados e menor será o erro associado ao conjunto de treinamento. A estratégia
-de utilizar um modelo não paramétrico foi justamente para evitar esse
-\textit{overfitting} dos dados, além disso, tentou-se manter o foco em modelos
-polinômiais de baixa complexidade, que julgou-se mais fácil de serem
-incorporados no dia-a-dia do desenvolvimento de software.
+satisfatória. Entretanto, como foi explicado neste capítulo, quanto maior o grau
+do polinômio melhor ele se adaptará aos dados e menor será o erro associado ao
+conjunto de treinamento. A estratégia de utilizar um modelo não paramétrico foi
+justamente para evitar esse \textit{overfitting} dos dados, além disso,
+tentou-se manter o foco em modelos polinômiais de baixa complexidade, que
+julgou-se mais fácil de serem incorporados no dia-a-dia do desenvolvimento de
+software.
 
 Após a realização da comparação e seleção dos modelos para cada uma das métricas
 de ameças de vulnerabilidade de código fonte, chegou-se a seguinte função para
@@ -1115,7 +1117,7 @@ cada uma das métricas trabalhadas:
 \end{align*}
 
 Lembrando que as fórmulas matemáticas apresentadas acima representam os modelos
-desenvolvidos na seção \ref{definicaomodelos}, ambos sendo desenvolvidos a
+desenvolvidos no início do capítulo, ambos sendo desenvolvidos a
 partir de uma regressão polinomial de terceiro grau das métricas obtidas a
 partir do código fonte do projeto \textit{Linux Kernel}.
 
