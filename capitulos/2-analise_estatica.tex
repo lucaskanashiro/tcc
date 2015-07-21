@@ -1,12 +1,12 @@
-\chapter{Análise Estática de Código Fonte} \label{chap:analiseestatica}
+\chapter{Análise Estática de Código-fonte} \label{chap:analiseestatica}
 
-A análise estática examina o código fonte do programa e as razões sobre todos os
-comportamento possíveis que possam surgir em tempo de execução
+A análise estática examina o código-fonte do programa e as razões sobre todos os
+comportamentos possíveis que possam surgir em tempo de execução
 \cite{ernst:2005}. Ou seja, é uma análise realizada sem a necessidade de
-execução do código fonte desenvolvido, não necessitando de suas dependências e
+execução do código-fonte desenvolvido, não necessitando de suas dependências e
 outras peculiaridades para realizá-la. Além disso, análise estática pode nos apresentar
-características inerentes ao código fonte, podendo as mesmas serem relacionadas
-ao \textit{design} do código, nos apresentando informações como complexidade dos
+características inerentes ao código-fonte, podendo as mesmas serem relacionadas
+ao \textit{design} do código, apresentando-nos informações como complexidade dos
 métodos e tamanho por exemplo.
 
 Em geral, ao final de um processo de análise estática se tem alguma métrica de
@@ -17,25 +17,25 @@ o grau em que o software possui um determinado atributo que afeta sua qualidade
 objetivo a identificação de não conformidades com o estilo do código por exemplo,
 que podem não ter uma métrica de software como saída do processo.
 
-Usualmente, análise estática de código fonte remete, a maioria das pessoas, uma
-análise do \textit{design} do código, da complexidade ou tamanho do mesmo,
-entretanto, essa é uma visão que vem mudando devido os requisitos não funcionais
-relacionados a segurança do software ganharem cada vez mais importância em
-virtude do contexto atual. Onde cada vez mais são desenvolvidas pesquisas acerca
-do análise estática voltada para a segurança do código, onde esse tipo de
-requisito pode ser tornar quantificável, com o intuito de facilitar a inserção
-dessa classe de métricas no ciclo de desenvolvimento de software.
+Usualmente, análise estática de código-fonte remete à uma análise do
+\textit{design} do código, da complexidade ou tamanho do mesmo, entretanto, essa
+é uma visão que vem mudando devido aos requisitos não funcionais relacionados à
+segurança do software ganharem cada vez mais importância em virtude do contexto
+atual. Onde cada vez mais são desenvolvidas pesquisas acerca da análise estática
+voltada para a segurança do código, tentando tornar esse tipo de requisito
+quantificável e facilitar a inserção dessa classe de métricas no ciclo de
+desenvolvimento de software.
 
-Vários estudos vêm sendo realizados acerca da análise de código fonte e
-definição de métricas além da sua relação com ameaças ou falhas em programas,
-sendo que um conjunto de ameças de vulnerabilidade pode-se tornar uma
-vulnerabilidade dependendo do estado do sistema e abrir brechas para atacantes,
-como em \citeonline{ferzund:2009,misra:2003,nagappan:2006,arthur&carlos2014}.
+Vários estudos vêm sendo realizados acerca da análise de código-fonte e
+definição de métricas, além da sua relação com ameaças ou falhas em programas.
+Sendo que um conjunto de ameças de vulnerabilidade pode ou não se tornar uma
+vulnerabilidade dependendo do estado do sistema e abrir brechas para atacantes.
+Como por exemplo em \citeonline{ferzund:2009,misra:2003,nagappan:2006,arthur&carlos2014}.
 Isso demostra que cada vez mais existe a preocupação em volta da segurança e
 ameaças de vulnerabilidade de software, e pensando em desenvolver e manter
 software de uma maneira mais segura, necessita-se um melhor entendimento das
 ameaças de vulnerabilidade e as vulnerabilidades conhecidas. Lembrando que a
-análise estática de código fonte é um forte aliado para garantir a segurança de
+análise estática de código-fonte é um forte aliado para garantir a segurança de
 software, permitindo que equipes de desenvolvimento encontrem possíveis
 vulnerabilidades durante o ciclo de desenvolvimento, reduzindo o custo de
 futuras manutenções corretivas.
@@ -54,17 +54,17 @@ trabalhos foram desenvolvidos acerca da classsificação das vulnerabilidades
 existentes, tentou-se definir uma taxonomia para as mesmas. Taxonomia é o
 processo científico de categorizar entidades, ou seja, organizá-las em grupos
 \cite{gregio:2005}. Dividindo as vulnerabilidades em grupos passa a ser mais
-fácil o entendimento de cada um deles e seus conteúdos, as características dos
-grupos, chamadas características taxonômicas ou atributos, devem satisfazer as
+fácil o entendimento de cada um delas e seus conteúdos. As características dos
+grupos, chamadas características taxonômicas ou atributos, devem satisfazer às
 seguinte propriedades segundo \citeonline{krsul:1998}: 
 
 \begin{itemize}
-  \item \textbf{Objetividade}: A caracterıstica deve ser identificada a partir
-    do conhecimento objetivo e nao do conhecimento subjetivo.  O atributo
+  \item \textbf{Objetividade}: A característica deve ser identificada a partir
+    do conhecimento objetivo e não do conhecimento subjetivo. O atributo
     mensurado deve ser claramente observado.
 
   \item \textbf{Determinismo}: Deve haver um processo claro que pode ser seguido
-    para se extrair a caracterıstica.
+    para se extrair a característica.
 
   \item \textbf{Repetibilidade}: Várias pessoas, independentemente, extraindo a
     mesma característica do objeto devem concordar com o valor observado.
@@ -97,7 +97,7 @@ caso, as vulnerabilidades foram agrupadas em sete classes, sendo elas:
   \item Validação incompleta dos parâmetros
   \item Validação inconsistente dos parâmetros
   \item Compartilhamento implícito de privilégios ou dados confidenciais
-  \item Validação assícrona ou serialização inadequada
+  \item Validação assíncrona ou serialização inadequada
   \item Autorização ou autenticação ou identificação inadequadas
   \item Violação de proibição ou limite
   \item Erro explorável de lógica
@@ -126,7 +126,7 @@ serviços de medição dessas vulnerabilidades, sendo assim foram desenvolvidas 
 CWEs \cite{arthur&carlos2014}. A CWE\footnote{\url{https://cwe.mitre.org/}}
 (\textit{Common Weakness Enumeration}) é uma lista formal de vulnerabilidades
 comuns de software, tendo como objetivo estabelecer uma linguagem comum para
-descrever ameaças de vulnerabilidade de software no \textit{desing}, arquitetura
+descrever ameaças de vulnerabilidade de software no \textit{design}, arquitetura
 ou no código \cite{arthur&carlos2014}.  A principal diferença entre as CVEs e
 CWEs é que as CVEs são vulnerabilidades que já ocorreram e são conhecidas pela
 comunidade, já as CWEs estão relacionadas a fraquezas de software, apresentando
@@ -139,9 +139,9 @@ indicativo que devem ser monitoradas em um projeto se software, conforme
 discutido no Apêndice \ref{anex:analise_qualitativa}, referente a primeira etapa
 deste trabalho.
 
-\section{Métricas de Ameaças de Vulnerabilidade de Código Fonte}\label{metricasvulnerabilidade}
+\section{Métricas de Ameaças de Vulnerabilidade de Código-fonte}\label{metricasvulnerabilidade}
 
-As métricas de ameaças de vulneabilidade de código fonte apresentadas nesta
+As métricas de ameaças de vulneabilidade de código-fonte apresentadas nesta
 seção foram baseadas no estudo realizado na primeira parte desta pesquisa,
 detalhes sobre essas decisões são discutidos no Capítulo \ref{metodologia}.
 
@@ -154,7 +154,7 @@ CWE457\footnote{\url{https://cwe.mitre.org/data/definitions/457.html}} referente
 a variáveis não inicializadas e a
 CWE401\footnote{\url{https://cwe.mitre.org/data/definitions/401.html}} referente
 ao vazamento de memória. A definição das métricas relacionadas a cada uma das
-ameaças de vulneabilidade de código fonte foi bem simples, sendo obtida a partir
+ameaças de vulneabilidade de código-fonte foi bem simples, sendo obtida a partir
 do somatório da quantidade de ameaças encontradas no projeto dividido pelo
 número total de módulos, dando uma taxa de cada uma das ameaças de
 vulnerabilidade por módulo, podendo o valor da métrica variar entre 0.0 e 1.0.
@@ -166,7 +166,7 @@ compreendê-las, serão apresentadas uma a uma a seguir, nas Seções \ref{cwe47
 \subsection{CWE476 - Referência a Ponteiros Nulos}\label{cwe476}
 
 A ameaça de vulnerabilidade de referência a ponteiros nulos acontece quando
-a aplicação tenta acessar o conteúdo da região de memória que o ponteiro deveria estar
+a aplicação tenta acessar o conteúdo da região de memória a que o ponteiro deveria estar
 apontando, entretanto, o ponteiro está nulo, devido a algum estado inesperado do
 programa. Tipicamente, esse tipo de ocorrência aborta a execução do programa.
 Esse tipo de ameaça de vulnerabilidade pode ocorrer desde um pequeno erro de
@@ -229,11 +229,11 @@ chamada de sistema sem validar os seus parâmetros.
 
 \subsection{CWE457 - Variáveis não Inicializadas}\label{cwe457}
 
-A ameaça de vulnerabilidade de código fonte relacionada a variáveis não
+A ameaça de vulnerabilidade de código-fonte relacionada a variáveis não
 inicializadas ocorre quando o programa faz uso de uma variável que ainda não foi
 inicializada pelo mesmo, tendo que lidar com certas coisas que pode levar o
 pragrama para um estado imprevisível. Em algumas linguagens como \textit{C}, as
-variáveis quando são declaradas não são inicializadas por \textit{default}, e
+variáveis quando são declaradas não são inicializadas, e
 quando isso aconte o conteúdo daquela variável passa a ser algo que estava
 anteriormente naquela região de memória alocada, nesse caso, um atacante pode de
 alguma forma conseguir escrever algo nessa região de memória inicializando a
@@ -243,7 +243,7 @@ da implementação do programa, pode indicar um erro de tipo de variável em tem
 de execução, abortando o programa.
 
 No Código \ref{codigocwe457} é exemplificado essa ameaça de vulnerabilidade de
-código fonte, onde se inicializa a variável apenas se o retorno de uma função é
+código-fonte, onde se inicializa a variável apenas se o retorno de uma função é
 verdadeiro. Nessa situação, quando o retorno for falso a variável não será
 inicializada, entretanto, ainda será acessada, ocasionando um erro no programa.
 
@@ -262,7 +262,7 @@ void main() {
 No melhor caso, se a variável não for inicializada o programa irá abortar,
 entretanto, um atacante pode ter escrito algum código ou dado malicioso na
 região de memória onde se localiza a pilha de variáveis do programa, podendo ter
-inicializado a variável com algo maliciosa, e essa variável será chamada
+inicializado a variável com algo malicioso, e essa variável será chamada
 levando o programa a um estado imprevisível. Uma possível solução para esse
 problema pode ser inicializar a variável com algum valor \textit{default} que a
 variável não possa assumir, e ao chamar o método que manipula a variável
@@ -288,13 +288,13 @@ void main() {
 
 A ameaça de vulnerabilidade de vazamento de memória ocorre quando o programa não
 consegue gerenciar a liberação de memória após a sua utilização de maneira
-aceitável, consumindo toda a memória alocada para a pilha do programa aos
+aceitável, consumindo toda a memória alocada para o \textit{HEAP} do programa aos
 poucos, até não restar mais. Esse tipo de erro acaba encerrando o programa em
 algum momento inesperado, o que pode acabar gerando algum tipo de perda de dados
 por exemplo.
 
 No Código \ref{codigoCWE401} é exemplificado a ameaça de vulnerabilidade de
-código fonte, onde uma função aloca memória para as variáveis e quando a função
+código-fonte, onde uma função aloca memória para as variáveis e quando a função
 de liberação de memória é chamada, a mesma esquece de desalocar a região de
 memória de uma das variáveis. Isso não seria um problema muito grande se não
 houvesse várias requisições a essas funções, onde em algum ponto não restará
@@ -323,7 +323,7 @@ void main()
 
 Esse pequeno erro de programação apresentado pode levar o programa a ser
 encerrado no meio da sua execução, nesse caso a solução é bastante simple,
-apenas remover o segundo \textit{malloc()} da função \textit{connect()}. Porém,
+basta remover o segundo \textit{malloc()} da função \textit{connect()}. Porém,
 podem haver casos mais críticos de vazamento de memória, onde possa haver algum
 tipo de vulnerabilidade no programa que permita um atacante puxar algum gatilho
 para que haja vazamento de memória, dessa forma podendo caracterizar um ataque
@@ -336,7 +336,7 @@ que dê liberdade para o seu próprio gerenciamento de memória, como as linguag
 
 
 
-Com base nas métricas de ameaças de vulnerabilidade de código fonte aqui
+Com base nas métricas de ameaças de vulnerabilidade de código-fonte aqui
 apresentadas, foi realizada uma análise ao decorrer do tempo das versões do
 projeto \textit{Linux Kernel}, a fim de definir modelos de predição de
 referência para essas métricas que auxiliem a monitoramento das mesmas no ciclo

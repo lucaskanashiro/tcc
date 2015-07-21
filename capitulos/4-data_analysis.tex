@@ -8,7 +8,7 @@ e mais acurada, e todo o maquinário e resultados estatísticos que se aplicam a
 dados \cite{tukey:1961}. A análise exploratória de dados traz uma variedade de
 técnicas para, por exemplo, encontrar características escondidas dos dados,
 extrair variáveis importantes e detectar anomalias e \textit{outliers}, sendo
-\textit{outlier} um número que é muito maior ou menor que o resto dos números em
+\textit{outlier} um número que é muito maior ou menor que o restante dos números em
 uma dada série de números \cite{hawkins80}. Segundo \citeonline{wasiak:2012},
 o principal objetivo da abordagem de análise exploratória de dados é adiar as
 premissas habituais sobre que tipo de modelo os dados seguem com uma abordagem
@@ -31,8 +31,8 @@ comparados.
 
 Como pode-se ver na sequência de atividades apresentadas na Figura
 \ref{fig:analysis_comparacao}, os métodos clássico e bayesiano tendem a definir
-um modelo para os dados antes de realizar qualquer tipo de análise, a análise é
-feita apenas após a definição do modelo, esse tipo de abordagem pode levar a
+um modelo para os dados antes de realizar qualquer tipo de análise, sendo essa
+feita apenas após a definição do modelo. Esse tipo de abordagem pode levar à
 elaboração de modelos não satisfatórios e isso só será identificado após a
 análise desse modelo construído. Esse tipo de erro torna o processo de definição
 de um modelos bastante custoso, onde deverá ser realizado o processo de análise
@@ -44,15 +44,15 @@ dados.
 
 \section{Análise dos dados}
 
-No início da análise exploratório de qualquer tipo de dados é importante
+No início da análise exploratória de qualquer tipo de dados é importante
 entendê-los, verificar possíveis correlações entre os mesmos e se necessário
 derivar novas características dos dados que auxiliem na exploração dos mesmos.
 
 Para isso pode-se utilizar de algumas técnicas como o coeficiente de correlação
 de Pearson, sendo essa uma técnica da estatística descritiva, que visa medir a
 direção e grau com que duas variáveis, de tipo quantitativo, se associam
-linearmente \cite{rossman:1996}. Uma técnica que pode-se utilizar do método de
-correlação de Pearson é a contrução de uma matriz de correlação, onde todos os
+linearmente \cite{rossman:1996}. Uma técnica que se pode utilizar do método de
+correlação de Pearson é a construção de uma matriz de correlação, onde todos os
 dados são confrontados para tentar encontrar algum tipo de dependência linear
 entre os mesmos. 
 
@@ -71,21 +71,21 @@ melhorada nos dados escondidos \cite{brownlee:2014}.
 
 Para a realização dessa análise exploratória dos dados antes da definição de um
 modelo são utilizados vários tipos de técnicas gráficas, tornando-as muito
-importantes dentro do processo. Uma técnica simples e que reuni um grupo de
+importantes dentro do processo. Uma técnica simples e que reune um grupo de
 gráficos para trazer uma visão geral sobre os dados trabalhados é a
 \textit{4-Plot} trazido pelo
 \textit{Handbook}\footnote{\url{http://www.itl.nist.gov/div898/handbook/eda/section3/eda3332.htm}}
 sobre análise exploratória desenvolvido pelo \textit{NIST} (\textit{National
-Institute of Standards and Technology}), essa técnica nos possibilita entender
+Institute of Standards and Technology}). Essa técnica nos possibilita entender
 desde se a distribuição dos dados segue uma distribuição normal até a sua
 aleatoriedade. Identificar esses tipos de características revelam informações
 importantes para a definição de um modelo que satisfaça determinado conjunto de
-dados, ou pelo menos elimar opção indesejadas. Os tipos de representação gráfica
-apresentado por essa abordagem \textit{4-Plot} são histograma, \textit{Q-Q
+dados, ou pelo menos eliminar opção indesejadas. Os tipos de representação gráfica
+apresentados por essa abordagem \textit{4-Plot} são histograma, \textit{Q-Q
 Plot}, \textit{Run Sequence} e \textit{Lag Plot}, como pode ser visto na Figura
-\ref{fig:4-plot}, sendo os gráficos superior esquerdo o \textit{Run Sequence},
-superior diretor o \textit{Lag Plot}, inferior esquerdo o histograma e o
-inferior esquerdo o \textit{Q-Q Plot}.
+\ref{fig:4-plot}, sendo o gráfico inferior esquerdo o \textit{Run Sequence},
+inferior direito o \textit{Lag Plot}, superior esquerdo o histograma e o
+superior direito o \textit{Q-Q Plot}.
 
 \begin{figure}[h]
   \centering
@@ -106,7 +106,7 @@ apresentando possíveis deslocamentos, para isso é plotado um índice increment
 pelo valor variável dependente. Já o gráfico \textit{Lag Plot} tenta mostrar a
 aleatoriedade dos dados, onde são plotados seguindo a ordem do conjunto de dados
 o seu valor diretamente antecessor pelo valor atual, dessa forma, se os dados da
-distriubição forem realmente aleatórios os pontos deverem ficar espalhados pelo
+distribuição forem realmente aleatórios os pontos deverem ficar espalhados pelo
 gráfico, caso siga algum tipo de padrão, a hipótese é negada.
 
 
@@ -136,10 +136,10 @@ limitam a caixa, valores que extrapolem isso são considerados \textit{outliers}
 \section{Definição de Modelos}\label{defmodels}
 
 Após o entendimento de algumas características inerentes aos dados e
-identificação e remoção de \textit{outliers}, necessita-se definir um modelos
+identificação e remoção de \textit{outliers}, necessita-se definir um modelo
 que se adapte ao conjunto de dados com uma certa flexibilidade, ou seja,
-evitando o \textit{overfitting}, que seria o modelo se justar demais aos dados
-ao ponte do mesmo não conseguir extrapolar para outros valores. Para a definição
+evitando o \textit{overfitting}, que seria o modelo se ajustar demais aos dados
+ao ponto de o mesmo não conseguir inferir outros valores. Para a definição
 de um modelo pode-se utilizar métodos paramétricos ou não paramétricos
 dependendo das informações que se tem em mão e que foram extraídas do conjunto
 de dados. Um modelo não paramétrico bastante robusto e simples de utilizar é o
@@ -149,7 +149,7 @@ principais: exploração dos dados, diagnosticar métodos não paramétricos e p
 uma superfície suave utilizando um regressão não paramétrica. Com isso, esse
 método pode nortear a definição de um possível modelo paramétrico. Basicamente
 esse modelo realiza várias pequenas regressões no conjunto de dados, conhecido
-como janelamento, definindo pesos para cada uma dos pontos vizinhos dependendo da
+como janelamento. Ele define pesos para cada uma dos pontos vizinhos dependendo da
 função que se utiliza, em geral, se utiliza uma função tricúbica
 \cite{cleveland:1988}. Essas várias regressões acabam resultando em um modelo
 que apresenta uma curva de predição bastante suave, sendo um ponto a se
@@ -158,13 +158,16 @@ uma fórmula matemática que represente o modelo. Outra forma de se definir um
 modelo é a partir da utilização de um método paramétrico, sendo a regressão
 polinomial um dos mais conhecidos. A regressão polinomial implementada por boa
 parte das ferramentas geralmente é feita através do método dos mínimos
-quadrados, que visa diminuir o erro gerado pelo modelo ao máximo.
+quadrados. O método dos mínimos quadrados tem como objetivo encontrar um modelo
+cuja ``energia do erro'' seja a menor possível. Tenta-se, dessa forma, minimizar
+o valor médio quadrático do erro entre valores obtidos pelo modelo e o dado
+coletado na observação.
 
 \section{Validação de Modelos}\label{valmodels}
 
 Para a validação de modelos construídos pode-se utilizar várias técnicas, aqui
 serão apresentadas a \textit{ANOVA} e validação cruzada \textit{K-Fold}. A
-Análise de Variância, mais conhecida como \textit{ANOVA}, visa análisar a
+Análise de Variância, mais conhecida como \textit{ANOVA}, visa analisar a
 variância entre o resultado obtido pelo modelo e o valor real, também sendo
 utilizada para comparação de modelos, onde é possível verificar a variância
 quando se adiciona algum elemento novo ao modelo. Para a utilização da
@@ -177,7 +180,7 @@ consegue responder todas essas suposições listadas.
 Outra técnica que pode auxiliar na validação de um modelo é a técnica de
 validação cruzada \textit{K-Fold}, que consiste em dividir o seu conjunto de
 dados em \textit{K} grupos, onde um deles é usado para o teste do modelo e
-os outros para o treinamento do mesmo, a acurácia dos resultados pode então ser
+os outros para o treinamento do mesmo. A acurácia dos resultados pode então ser
 medida por meio da comparação dos resultados obtidos com os esperados
 \cite{tassia:2011}. O passo-a-passo dessa técnica, segundo
 \citeonline{tassia:2011}, pode ser visto a seguir:
@@ -197,20 +200,20 @@ medida por meio da comparação dos resultados obtidos com os esperados
 
 Esse tipo de validação cruzada consegue nos mostrar como que o modelo se
 comportaria em uma situação real de predição, onde os valores que devem ser
-preditos não fazem parte do conjunto de treinamento. Como é conhecido os valores
+preditos não fazem parte do conjunto de treinamento. Como são conhecidos os valores
 reais desses pontos, o erro de predição do modelo pode ser calculado, usando por
 exemplo o erro médio quadrático, que nada mais é do que a diferença entre o
 valor estimado e o valor real dos dados, ponderados pelo número de termos
 \cite{caetano:2012}, como pode ser visto na equação a seguir:
 
 \begin{align*}
-  EMQ = \sum (y - \hat{y}) / n
+  EMQ = \sum (y - \hat{y})^{2} / n
 \end{align*}
 
 Na equação acima, o valor de \textit{y} representa o valor estimado,
 \textit{y} chapéu o valor real e \textit{n} o número total de elementos dentro do
-conjunto de dados. Outro métrica que também pode ser utilizada é o erro residual
-padrão que nada mais é do que o desvio padão do erro residual, que é a diferença
+conjunto de dados. Outra métrica que também pode ser utilizada é o erro residual
+padrão que nada mais é do que o desvio padrão do erro residual, que é a diferença
 entre o valor real e o predito.
 
 
@@ -218,7 +221,5 @@ entre o valor real e o predito.
 Neste capítulo foram apresentados de forma objetiva apenas as técnica e
 conceitos utilizados neste trabalho, não explorando os diferentes métodos e tipos de
 abordagem disponíveis, apesar desse ramo da estatística ser amplo e haver diferentes formas
-de abordar um mesmo problema. Isso foi feito a fim de facilitar a leitura e
-entendimento do que foi feito, seguindo o fluxo da pesquisa realizada. Na
-sequência deste trabalho temos a aplicação das técnicas e conceitos apresentados
-neste capítulo.
+de abordar um mesmo problema. Na sequência deste trabalho temos a aplicação das
+técnicas e conceitos apresentados neste capítulo.

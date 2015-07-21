@@ -1,42 +1,42 @@
-\chapter{Ferramentas de Análise Estática de Código Fonte}\label{chap:ferramentas}
+\chapter{Ferramentas de Análise Estática de Código-fonte}\label{chap:ferramentas}
 
-A realização da análise estática de código fonte de maneira manual, ou seja, sem
+A realização da análise estática de código-fonte de maneira manual, ou seja, sem
 o auxílio de uma ferramenta que automatize esse processo, é bastante custosa e
-praticamente impraticável, já que seria necessário um especialista passar em
+impraticável, já que seria necessário um especialista passar em
 cada arquivo fonte realizando as análises necessárias. Sendo assim, seria
 praticamente impossível a inserção dessa prática no ciclo de desenvolvimento de
 qualquer software, tendo em vista que o custo seria gigantesco, salvo alguns
 casos específicos onde esse tipo de atividade se faz necessária. Com isso em
-mente, as ferramentas de análise estática de código fonte são essenciais para
+mente, as ferramentas de análise estática de código-fonte são essenciais para
 que se torne viável a utilização da mesma no desenvolvimento de software.
 
 Visando automatizar o processo de análise estática, as ferramentas varrem
-arquivos e diretórios em busca do código fonte, analisam-os e apresentam
+arquivos e diretórios em busca do código-fonte, analisam-os e apresentam
 métricas para o usuário, de maneira quantitativa ou qualitativa. Muitas dessas
 ferramentas são bem complexas e para realizar esse processo de análise do
-código fonte realizam várias etapas intermediárias. Entretanto, existem
-ferramentas que visam analisar o código fonte de maneira mais simples, menos
+código-fonte realizam várias etapas intermediárias. Entretanto, existem
+ferramentas que visam analisar o código-fonte de maneira mais simples, menos
 complexa, onde será menos custoso computacionalmente, para que possa dar uma
 resposta mais rápida para o usuário.
 
-As ferramentas de análise estática de código fonte, em geral, se assemelham
+As ferramentas de análise estática de código-fonte, em geral, se assemelham
 bastante com a estrutura de um compilador, onde se faz uma análise do código
 fonte, se controi um modelo/estrutura desse código, realiza uma análise sobre
 essa estrutura e apresenta os resultados para o usuário. Segundo
 \citeonline{chess&west2007}, os problemas enfrentados por grande parte das
-ferramentas de análise estática de código fonte se assemelham aos enfrentados na
+ferramentas de análise estática de código-fonte se assemelham aos enfrentados na
 contrução de compiladores e na otimização dos mesmos. Tendo em vista que este
-trabalho tem um foco em segurança de código fonte, na Seção
+trabalho tem um foco em segurança de código-fonte, na Seção
 \ref{sec:ferramentasseguranca} é apresentada a estrutura da maioria das
 ferramentas que realizam análise estática voltada para a segurança do código
 fonte.
 
 
-\section{Ferramentas de Análise Estática de Segurança de Código Fonte}
+\section{Ferramentas de Análise Estática de Segurança de Código-fonte}
 \label{sec:ferramentasseguranca}
 
 Para se entender o funcionamento de uma ferramenta de análise estática de
-segurança de código fonte genérica é apresentado um diagrama de blocos na Figura
+segurança de código-fonte genérica é apresentado um diagrama de blocos na Figura
 \ref{fig:diagrama_ferramenta_seguranca}, onde \citeonline{chess&west2007}
 resumem essa sistemática.
 
@@ -49,12 +49,12 @@ resumem essa sistemática.
 \end{figure}
 
 Como apresentado na Figura \ref{fig:diagrama_ferramenta_seguranca}, essas
-ferramentas possuem um código fonte como entrada, constroem um modelo baseado
-nesse código fonte, realizam uma análise nesse modelo construído baseado em um
+ferramentas possuem um código-fonte como entrada, constroem um modelo baseado
+nesse código-fonte, realizam uma análise nesse modelo construído baseado em um
 conhecimento prévio em segurança de código e finalmente apresentam os resultados
 para o usuário. Esse fluxo é similar ao que foi apresentado no início deste
-capítulo, logo, o funcionamento das ferramentas de análise de código fonte em
-geral seguem a mesma estrutura, simplesmente, alterando a forma que é realizada
+capítulo, logo, o funcionamento das ferramentas de análise de código-fonte em
+geral seguem a mesma estrutura. Simplesmente alterando a forma que é realizada
 a análise em si, onde vai variar dependendo do objetivo da análise estática.
 
 Nas seções a seguir serão apresentados em mais detalhes cada um dos blocos
@@ -63,8 +63,8 @@ representados na Figura \ref{fig:diagrama_ferramenta_seguranca}.
 
 \subsection{Construção do Modelo}
 
-A fase de construção de um modelos baseado no código fonte de entrada é
-praticamente identica ao que é realizado por um compilador. São elaboradas as
+A fase de construção de um modelos baseado no código-fonte de entrada é
+praticamente idêntica ao que é realizado por um compilador. São elaboradas as
 seguintes atividades sequencialmente:
 
 \begin{itemize}
@@ -73,15 +73,15 @@ seguintes atividades sequencialmente:
 \item Análise semântica
 \end{itemize}
 
-Na análise léxica, todo o código fonte é transformado em uma série de
+Na análise léxica, todo o código-fonte é transformado em uma série de
 \textit{tokens}, descartando partes não importantes do código, como espaços em
 branco e comentários \cite{chess&west2007}. Existem algumas ferramentas, como o
 \textit{Flex}\footnote{\url{http://flex.sourceforge.net/}}, que auxiliam nessa
-tranformação do código fonte em \textit{tokens}, sendo essa bastante utilizada
+tranformação do código-fonte em \textit{tokens}, sendo essa bastante utilizada
 na construção de compiladores. Para a execução dessa atividade utiliza-se
 bastante de técnicas como expressões regulares para a identificação dos
 \textit{tokens} desejados. O Código \ref{flex} exemplifica como pode ser feita uma
-análise ĺéxica bastante simples com a ferramenta \textit{Flex}.
+análise léxica bastante simples com a ferramenta \textit{Flex}.
 
 \begin{lstlisting}[caption={Análise léxica simples com a ferramenta \textit{Flex}}, label=flex]
   [ \t\n]+          { //ignorando espaços em branco }
@@ -96,7 +96,7 @@ Na fase de \textit{parsing} ou análise sintática, o \textit{stream} de
 \textit{tokens} recebidos da análise léxica é manipulado tentando enquadrá-lo a
 gramática de contexto livre (\textit{context free-grammar} ou simplesmente
 \textit{CFG}) que é definida. A gramática de contexto livre nada mais é do que
-um conjunto de \textit{production} (regras) que descrevem os símbolos daquela
+um conjunto de \textit{productions} (regras) que descrevem os símbolos daquela
 linguagem \cite{chess&west2007}. A ferramenta
 \textit{GNU Bison}\footnote{\url{https://www.gnu.org/software/bison/}} é
 bastante utilizada para a definição dessa gramática de contexto livre, sendo
@@ -131,7 +131,7 @@ visualização da estrutura do código, como pode ser visto na Figura
   \label{fig:parse_tree}
 \end{figure}
 
-Muitas ferramentas de análise estática de segurança de código fonte realizam as
+Muitas ferramentas de análise estática de segurança de código-fonte realizam as
 suas análises diretamente na sua \textit{Parse Tree} já que essa está bem
 próximo ao código que foi escrito, mas para realizar análises mais complexas
 pode ser inconveniente, sendo necessário o desenvolvimento de uma
@@ -166,13 +166,13 @@ essencial.
 
 Após a contrução do modelo apresentada anteriormente, inicia-se a fase de
 análise desse modelo, que como foi dito no início desta seção depende de
-conhecimentos relacionado a segurança de código fonte. Devido a essa análise ser
-diferente dependendo do objetivo da ferramenta e o intuito deste capítulo é
+conhecimentos relacionados à segurança de código-fonte. Devido a essa análise ser
+diferente dependendo do objetivo da ferramenta, e sendo o intuito deste capítulo
 apenas uma visão geral do funcionamento das mesmas, não foi aprofundado esse
 assunto, apenas serão apresentados os diferentes tipos de análise que podem ser
 realizadas.
 
-Existem basicamente dois tipos de análise que podem ser realiadas, sendo elas
+Existem basicamente dois tipos de análise que podem ser realizadas, sendo elas
 análise intraprocedural (local) ou interprocedural (global). Como o próprio nome
 já diz, a análise intraprocedural ou local é a análise realizada apenas no contexto
 daquele procedimento ou função, ou seja, não será levado em considerção nada que
@@ -185,13 +185,13 @@ de todas as funções e durante a análise global esse sumário é consultado,
 facilitando o processo.
 
 Segundo \citeonline{chess&west2007}, a flexibilidade das ferramentas para a
-definição de regras para a realização da análise do código fonte é essencial
+definição de regras para a realização da análise do código-fonte é essencial
 para que o usuário tenha o controle e a liberdade para definir seu próprio
 processo de análise quando for necessário.
 
 \subsection{Apresentação dos Resultados}
 
-Com a realização da análise do código fonte concluída os resultados devem ser
+Com a realização da análise do código-fonte concluída os resultados devem ser
 aresentados para o usuário de maneira adequada para que o mesmo possa conseguir
 utilizar aquela informação para a tomada de alguma decisão. Em geral,
 ferramentas que desejam chegar ao mercado, e não apenas o público acadêmico, devem
@@ -200,9 +200,9 @@ indesejados e a ferramenta deve explicar a significância dos resultados
 \cite{chess&west2007}.
 
 As ferramentas mais utilizadas no mercado para a realização de análise estática
-de segurança de código fonte são integradas a alguma \textit{IDE}
+de segurança de código-fonte são integradas a alguma \textit{IDE}
 (\textit{Integrated Development Environment}), o que facilita para o
-desenvolvedor utiliza-la, sendo os \textit{reports} das ferramentas apresentados
+desenvolvedor utilizá-la, sendo os \textit{reports} das ferramentas apresentados
 na maioria das vezes diretamente no código e sendo autoexplicativos, inclusive
 apresentando métodos para a validação da possível vulnerabilidade e qual seria
 uma possível correção.
@@ -211,7 +211,7 @@ uma possível correção.
 \subsection{Classificação das Ferramentas}\label{sec:classificacaoferramentas}
 
 Além de entender sobre o funcionamento das ferramentas de análise estática de
-segurança de código fonte, é importante saber como as mesmas são classificadas.
+segurança de código-fonte, é importante saber como as mesmas são classificadas.
 Segundo \citeonline{paul:2001}, as ferramentas podem ser classificadas baseado
 em como elas realizam as suas análises, podendo ser uma análise \textit{sound},
 heurística ou completa.
@@ -223,7 +223,7 @@ tipo de ferramenta é a ferramenta ideal, pois sempre garantir que o que ela est
 dizendo é verdade não assegura que todas as vulnerabilidades do código foram
 encontradas. A principal característica desse tipo de ferramenta é a baixa taxa
 de falsos positivos, entretanto, a taxa de falsos negativos pode ser grande, que
-seria o caso de haver vulnerabilidade no código fonte e a mesma não indicar-la.
+seria o caso de haver vulnerabilidade no código-fonte e a mesma não indicar-la.
 
 Agora quando a análise é feita baseada nas regras que podem ser automaticamente
 derivadas do código através de \textit{machine learning} do código existente a
@@ -240,7 +240,7 @@ de técnicas já mencionadas neste capítulo como acompanhamento do fluxo de dad
 e controle de fluxo de execução \cite{paul:2001}.
 
 Na Seção \ref{metodologia:testehipoteses} foram análisadas algumas ferramentas
-de análise estática de código fonte, sendo selecionada a ferramenta
+de análise estática de código-fonte, sendo selecionada a ferramenta
 \textit{Cppcheck}, que apesar de tentar se apresentar como uma ferramenta
 \textit{sound} foi a que melhor se adaptou ao contexto da pesquisa. Em situações
 reais percebe-se que o desenvolvimento de uma ferramenta completa é algo ainda

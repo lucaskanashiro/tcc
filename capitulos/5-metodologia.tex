@@ -7,26 +7,26 @@ seguinte:
 
 \begin{center}
   \textit{Como podemos monitorar e acompanhar métricas de ameaças de
-    vulnerabilidade de código fonte dentro do ciclo de desenvolvimento de
+    vulnerabilidade de código-fonte dentro do ciclo de desenvolvimento de
     software?
 }
 \end{center}
 
 Na primeira parte do trabalho foram levantadas algumas hipóteses com relação ao
-monitoramento das métricas de ameaças de vulnerabilidades de código fonte,
+monitoramento das métricas de ameaças de vulnerabilidades de código-fonte,
 levando em consideração trabalhos já realizados sobre métricas de orientação a
 objetos e de tamanho, como o trabalho de \citeonline{meirelles2013}. A hipótese
 foi a seguinte:
 
 \begin{itemize}
-  \item \textit{H1}: As métricas de ameaças de vulnerabilidade de código fonte
+  \item \textit{H1}: As métricas de ameaças de vulnerabilidade de código-fonte
   podem ser observadas de maneira similar às métricas de \textit{design} de código
   fonte.
 \end{itemize}
 
 Ao final da primeira parte da pesquisa foram respondidas as hipóteses levantadas
 inicialmente. Através da análise das métricas de ameaças de vulnerabilidade de
-código fonte extraídas do projeto \textit{Linux Kernel} pode-se perceber que boa
+código-fonte extraídas do projeto \textit{Linux Kernel} pode-se perceber que boa
 parte dos valores das métricas eram nulos (zero), o que faz sentido, já que
 espera-se que não exista ameaças de vulnerabilidades em todos os módulos do
 projeto. Dessa forma, as métricas de ameaças de vulnerabilidade não se
@@ -45,7 +45,8 @@ Foi realizado um estudo qualitativo das métricas em questão, foram analisados
 outros dez projetos, que podem ser vistos no apêndice
 \ref{anex:analise_qualitativa}. Após uma análise mais detalhada dos valores das
 métricas dos projetos chegou-se a um subconjunto mais frequente das mesmas em
-projetos de software livre, sendo elas:
+projetos de software livre, ou seja, as ameaças de vulnerabilidade mais
+encontradas nesses projetos, sendo elas:
 
 \begin{itemize}\label{principais_vuln}
   \item Referência a ponteiros nulos (CWE 476)
@@ -55,8 +56,8 @@ projetos de software livre, sendo elas:
 
 Esses cenários de vulnerabilidades identificados na primeira etapa da pesquisa
 serviram de insumo para a continuação da mesma, que será apresentada no decorrer
-deste capítulo, para saber mais sobre as CWEs (\textit{Common Weaknesses
-Enumaration}) leia a Seção \ref{cwe}.
+deste capítulo. Uma discussão mais detalhada sobre as CWEs (\textit{Common Weaknesses
+Enumaration}) pode ser vista na Seção \ref{cwe}.
 
 Apesar de obter algumas respostas nesse início de pesquisa outras questões
 foram levantadas, direcionando a pesquisa para a definição de modelos de
@@ -81,15 +82,15 @@ apresentada uma solução para como monitorar os mesmos.
 No trabalho realizado pelo \textit{National Institute of Standards and
 Technology} (NIST) \cite{nist_effect_static_analysis:2007} foi feito um estudo
 inicial tentando identificar se a inserção de uma ferramenta de análise estática
-de vulnerabilidades de código fonte dentro do ciclo de desenvolvimento de um
+de vulnerabilidades de código-fonte dentro do ciclo de desenvolvimento de um
 software aumenta a segurança do mesmo. E a conclusão desse trabalho foi que não
 necessariamente a utilização dessas ferramentas melhora a segurança do
 software. A definição de modelos para o monitoramento dessas ameaças de
-vulnerabilidade de código fonte não foi abordado nesse trabalho.
+vulnerabilidade de código-fonte não foi abordado nesse trabalho.
 
 Entretanto, não se encontrou um trabalho que tentasse definir algum modelo
 estatístico para monitorar e controlar métricas de ameaças de vulnerabilidade de
-código fonte dentro do ciclo de desenvolvimento de um software, sendo modelos
+código-fonte dentro do ciclo de desenvolvimento de um software, sendo modelos
 esses a principal contribuição deste trabalho.
 
 
@@ -98,28 +99,29 @@ esses a principal contribuição deste trabalho.
 \section{Projeto da Pesquisa}\label{metodologia:planejamentopesquisa}
 
 Com o objetivo de definir modelos de predição para as métricas de ameaças de
-vulnerabilidade de código fonte aqui trabalhadas, a questão de pesquisa
+vulnerabilidade de código-fonte aqui trabalhadas, a questão de pesquisa
 redefinida é:
 
 \begin{center}
   \textit{É possível o desenvolvimento de modelos preditivos de referência, de
   baixa complexidade, para acompanhamento e monitoramente de métricas de ameaças
-de vulnerabilidade de código fonte em projetos de software?}
+de vulnerabilidade de código-fonte em projetos de software?}
 \end{center}
 
 Tendo essa questão de pesquisa em mente o objetivo deste trabalho é encontrar
 uma função matemática que viabilize o monitoramento e acompanhamento dessa classe de
 métricas. E para encontrar esse meio de realizar esse monitoramente e
-acompanhamento foram levantadas seguintes as hipóteses:
+acompanhamento das métricas de ameaças de vulnerabilidade de código-fonte foram
+levantadas seguintes as hipóteses:
 
 \begin{itemize}\label{hipoteses2}
   \item \textit{H2}: Os valores das métricas de ameaças de vulnerabilidade de
-    código fonte se comportam como distribuições estatísticas de cauda longa, e
+    código-fonte se comportam como distribuições estatísticas de cauda longa, e
     não distribuições estatísticas normalizáveis.
 
   \item \textit{H3}: A definição de um modelo baseado em uma função polinomial
-   simples possibilita o monitoramento e acompanhamento das métricas de ameaças
-   de vulnerabilidade de código fonte.
+   possibilita o monitoramento e acompanhamento das métricas de ameaças
+   de vulnerabilidade de código-fonte.
 \end{itemize}
 
 Através de uma análise exploratória dos dados espera-se responder a hipótese
@@ -129,7 +131,7 @@ definição e validação de modelos estatísticos será possível responder a h
 
 Com o intuito de responder as hipóteses levantas, foi definido um fluxo de
 atividades para sistematizar esta pesquisa. A Figura \ref{fig:processo}
-apresentada a seguir, ilustra o processo com o fluxo de atividades que foram
+ilustra o processo com o fluxo de atividades que foram
 desenvolvidas, a fim de uma melhor compreensão do trabalho realizado.
 
 \begin{figure}[h]
@@ -148,16 +150,16 @@ Detalhamento das atividades apresentadas na Figura \ref{fig:processo}:
   sobre o mesmo. O projeto deve ser um projeto já consolidado e com várias
   versões para que possa ser feita uma análise através do tempo.
 
-  \item \textbf{Obter código fonte}: Obter código fonte das versões disponíveis
+  \item \textbf{Obter código-fonte}: Obter código-fonte das versões disponíveis
   do projeto selecionado, para que possa ser realizada a análise estática. A
-  obtenção do código fonte deve ser feita de forma automatizada.
+  obtenção do código-fonte deve ser feita de forma automatizada.
 
   \item \textbf{Selecionar ferramenta de análise estática}: Analisando os pontos
   fortes e fracos das ferramentas disponíveis, selecionar a ferramenta que
   melhor se adeque ao contexto em questão.
 
   \item \textbf{Realizar análise estática}: Realizar a análise estática sobre o
-  código fonte obtido com a ferramenta selecionado de maneira automatizada.
+  código-fonte obtido com a ferramenta selecionado de maneira automatizada.
 
   \item \textbf{Tratamento dos dados}: Ajustar o formato de saída da ferramenta
   utilizada para um arquivo CSV (\textit{Common Separated Values}) se a
@@ -171,8 +173,8 @@ Detalhamento das atividades apresentadas na Figura \ref{fig:processo}:
 
   \item \textbf{Definir e validar modelos derivados dos dados}: Encontrar
   modelos estatísticos (funções matemáticas) para monitoramento, acompanhamento e
-  previsão das métricas de ameaças de vulnerabilidade de código fonte. Validar
-  os modelos com dados cujo os quais não foram contruídos.
+  previsão das métricas de ameaças de vulnerabilidade de código-fonte. Validar
+  os modelos com dados que não foram empregados na construção do mesmo.
 
   \item \textbf{Realizar conclusões}: Comparar os modelos definidos e validados
   e indicar qual seria o melhor modelo para o monitoramento, acompanhamento e
@@ -189,20 +191,22 @@ comunidade liderado por \textit{Linus Torvalds}. Devido o \textit{Linux Kernel}
 seguir um modelo \textit{Bazaar} de desenvolvimento
 \cite{cathedral_bazaar:1997}, a correção de \textit{bugs}, possíveis ameaças de
 vulnerabilidade, se dá de maneira muito mais rápida, o que torna interessante a
-análise dessa nova classe de métricas em um software bastante consolidado. Sendo
-esse o primeiro projeto a explorar a rede de colaboração de software livre nos
-moldes atuais \cite{cathedral_bazaar:1997}, tornando-se uma referência.
-Partiu-se do \textit{Linux Kernel} para se estudar sobre práticas de
-desenvolvimento de software e a própria engenharia de software, e agora será
-dado o primeiro passo com relação a definição de um modelo estatístico que
-auxilie no monitoramento de métricas de ameaças de vulnerabilidade de código
-fonte.
+análise dessa nova classe de métricas em um software bastante consolidado.
+Segundo \textit{Linus Torvalds}, com uma grande quantidade de testadores beta e
+co-desenvolvedores, qualquer problema vai ser identificado rápido e a solução
+será óbvia para alguém. Sendo esse o primeiro projeto a explorar a rede de
+colaboração de software livre nos moldes atuais \cite{cathedral_bazaar:1997},
+tornando-se uma referência.  Partiu-se do \textit{Linux Kernel} para se estudar
+sobre práticas de desenvolvimento de software e a própria engenharia de
+software, e agora será dado o primeiro passo com relação a definição de um
+modelo estatístico que auxilie no monitoramento de métricas de ameaças de
+vulnerabilidade de código fonte.
 
 \begin{description}
 
-\item[Obtenção do código fonte]
+\item[Obtenção do código-fonte]
 
-O código fonte do projeto \textit{Linux Kernel} foi obtido no espelho
+O código-fonte do projeto \textit{Linux Kernel} foi obtido no espelho
 (\textit{mirror}) do Github\footnote{\url{https://github.com/torvalds/linux}}
 do repositório oficial Git do
 projeto\footnote{\url{https://git.kernel.org/cgit/}}.  Fez-se uma cópia local
@@ -218,14 +222,14 @@ estudo.
 
 \item[Seleção da ferramenta de análise estática]
 
-A ferramenta de análise estática de código fonte selecionada para a realização
+A ferramenta de análise estática de código-fonte selecionada para a realização
 deste estudo foi o
 \textit{Cppcheck}\footnote{\url{http://cppcheck.sourceforge.net/}}.  A parte
 inicial da pesquisa se deu com a ferramenta \textit{Clang Static
 Analyzer}\footnote{\url{http://clang-analyzer.llvm.org/}}(um submódulo do
 compilador \textit{Clang}), esta ferramenta é bastante robusta e consegue capturar
-bem as ameaças de vulnerabilidade de código fonte que a mesma se propõe, sendo
-essa uma ferramenta que está focada em si tornar uma ferramenta completa.
+bem as ameaças de vulnerabilidade de código-fonte que a mesma se propõe, sendo
+essa uma ferramenta que está focada em se tornar uma ferramenta completa.
 Entretanto, ela faz uma análise inter-procedural do código, o que necessita da
 compilação do mesmo.  Infelizmente, o projeto \textit{Linux Kernel} ainda não
 suporta a sua total compilação utilizando outro compilador a não ser o
@@ -235,19 +239,19 @@ Project}\footnote{\url{http://llvm.linuxfoundation.org/index.php/Main_Page}} que
 está tentando fazer com que o \textit{Linux Kernel} possa ser compilado com o
 \textit{Clang}, mas esse trabalho ainda está em andamento. Logo, decidiu-se
 abandonar o \textit{Clang Static Analyzer} e encontrar uma analisador estático
-cujo qual não fosse necessária a compilação do código fonte, sendo esse o
+cujo qual não fosse necessária a compilação do código-fonte, sendo esse o
 \textit{Cppcheck}, que apesar de não realizar uma análise inter-procedural, ele
 se propõe a não emitir uma grande quantidade de falsos positivos, chamada
 ferramenta \textit{sound}, podendo ser entendido mais na Seção
 \ref{sec:classificacaoferramentas}.
 
-\item[Análise estática do código fonte]
+\item[Análise estática do código-fonte]
 
-Após a seleção da ferramenta a ser utilizada, extrair do código fonte as
-ameaças de vulnerabilidade foi relativamente simples. O código fonte referente a
+Após a seleção da ferramenta a ser utilizada, extrair do código-fonte as
+ameaças de vulnerabilidade foi relativamente simples. O código-fonte referente a
 todas as \textit{tags} foi armazenado em um mesmo diretório, sendo o
 \textit{Cppcheck} capaz de percorrer recursivamente o diretório a procura de
-arquivos de código fonte C e C++ para realizar a análise, foi necessário apenas
+arquivos de código-fonte C e C++ para realizar a análise, foi necessário apenas
 executar a ferramenta nesse diretório. Foram feitas algumas configurações para a
 geração de um arquivo de saída para cada uma das \textit{tags}. O arquivo de
 saída de todas as análises realizadas estão disponíveis no
@@ -258,40 +262,37 @@ repositório.\footnote{\url{https://github.com/lucaskanashiro/linux-analysis/tre
 \subsection{Descrição dos dados e Engenharia de Características}
 
 Levando em consideração as principais ameaças de vulnerabilidades levantadas na
-primeira parte da pesquisa, que podem ser vistas na lista \ref{principais_vuln},
-a saída da ferramenta foi tratada a fim de filtrar por essas ameaças de
-vulnerabilidades, além de criar um arquivo \textit{CSV} com esses dados. O
-tratamento dos dados e geração do arquivo \textit{CSV} foram feitos através dos
-scripts disponíveis no
+primeira parte da pesquisa, a saída da ferramenta foi tratada a fim de filtrar
+essas ameaças de vulnerabilidades, além de criar um arquivo \textit{CSV} com
+esses dados. O tratamento dos dados e geração do arquivo \textit{CSV} foram
+feitos através dos scripts disponíveis no
 repositório\footnote{\url{https://github.com/lucaskanashiro/linux-analysis}},
 assim como o próprio arquivo \textit{CSV} gerado. A Tabela \ref{tab:csv}
 apresenta a estrutura do arquivo \textit{CSV} gerado.
 
 \begin{table}[h]
 \centering
-\begin{tabular}{ccccc}
+\begin{tabular}{cccc}
 \hline
 \rowcolor[HTML]{EFEFEF} 
-{\textbf Version} & {\textbf CWE476} & {\textbf CWE457} & {\textbf CWE401} &
-{\textbf Modules} \\ \hline
-linux-vXXX    & XXX          & XXX          & XXX          & XXX     \\ \hline
+{\textbf CWE476} & {\textbf CWE457} & {\textbf CWE401} &
+{\textbf Módulos} \\ \hline
+XXX          & XXX          & XXX          & XXX     \\ \hline
 \end{tabular}
 \caption{Estrutura do arquivo \textit{CSV} gerado.}
 \label{tab:csv}
 \end{table}
 
-A coluna ``Version'' contém a versão do \textit{Linux Kernel} analisada, as
-colunas ``CWE476'', ``CWE457'' e ``CWE401'' referem-se a quantidade total de cada uma
-das ameaças de vulnerabilidades em toda a versão em questão, e a coluna
-``Modules'' representa a quantidade total de módulos daquela versão. A seguir são
-apresentados os tipos de cada um dos dados:
+As colunas ``CWE476'', ``CWE457'' e ``CWE401'' referem-se a quantidade total de
+cada uma das ameaças de vulnerabilidades em toda a versão em questão, e a coluna
+``Módulos'' representa a quantidade total de módulos daquela versão. A seguir
+são apresentados os tipos de cada um dos dados:
 
 \begin{itemize}
-  \item \textbf{Version}: Texto
   \item \textbf{CWE476}: Inteiro >= 0
   \item \textbf{CWE457}: Inteiro >= 0
   \item \textbf{CWE401}: Inteiro >= 0
-  \item \textbf{Modules}: Inteiro > 0
+  \item \textbf{Módulos}: Inteiro > 0
 \end{itemize}
 
 Uma análise levando em consideração apenas esses dados não seria interessante,
@@ -309,11 +310,11 @@ Tabela \ref{tab:data_frame}.
 \begin{table}[h]
 \centering
 %\resizebox{\textwidth}{!}{%
-\begin{tabular}{cccccccc}
+\begin{tabular}{ccccccc}
 \hline
 \rowcolor[HTML]{EFEFEF} 
-{Version} & {Modules} & {tax\_CWE476} & {tax\_CWE457} & {tax\_CWE401} \\ \hline
-linux-vXXX    & XXX           & XXX              & XXX              & XXX  \\
+{Módulos} & {tax\_CWE476} & {tax\_CWE457} & {tax\_CWE401} \\ \hline
+XXX           & XXX              & XXX              & XXX  \\
 \hline
 \end{tabular}
 %}
@@ -337,13 +338,14 @@ correlação do dados coletados.
 
 \begin{table}[h]
 \centering
-\begin{tabular}{ccccl}
- & \cellcolor[HTML]{EFEFEF}{Modules} & \cellcolor[HTML]{EFEFEF}{tax\_CWE476} & \cellcolor[HTML]{EFEFEF}{tax\_CWE457} & \multicolumn{1}{c}{\cellcolor[HTML]{EFEFEF}{tax\_CWE401}} \\
-\cellcolor[HTML]{EFEFEF}{Modules} & 1 & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} &  \\
-\cellcolor[HTML]{EFEFEF}{tax\_CWE476} & - 0.2263097 & 1 & \multicolumn{1}{l}{} &  \\
-\cellcolor[HTML]{EFEFEF}{tax\_CWE457} & - 0.8493021 & 0.01902783 & 1 &  \\
-\cellcolor[HTML]{EFEFEF}{tax\_CWE401} & - 0.513645 & - 0.1286109 & 0.5671033 & \multicolumn{1}{c}{1}
-\end{tabular}
+\resizebox{\textwidth}{!}{\begin{tabular}{cccl}
+ & \cellcolor[HTML]{EFEFEF}{Referência a ponteiros nulos} &
+ \cellcolor[HTML]{EFEFEF}{Variáveis não inicializadas} &
+ \multicolumn{1}{c}{\cellcolor[HTML]{EFEFEF}{Vazamento de memória}} \\
+\cellcolor[HTML]{EFEFEF}{Referência a ponteiros nulos} & 1 & \multicolumn{1}{l}{} &  \\
+\cellcolor[HTML]{EFEFEF}{Variáveis não inicializadas} & 0.01902783 & 1 &  \\
+\cellcolor[HTML]{EFEFEF}{Vazamento de memória} & - 0.1286109 & 0.5671033 & \multicolumn{1}{c}{1}
+\end{tabular}}
 \caption{Matriz de correlação.}
 \label{tab:correlacao}
 \end{table}
@@ -354,7 +356,7 @@ proporcionais a quantidade de módulos. Ou seja, quanto menor a quantidade de
 módulos, provavelmente um software ainda imaturo, maior a quantidade de ameaças
 de vulnerabilidade, assim como um software mais maduro tende a ter um maior
 número de módulos com uma menor quantidade de ameaças de vulnerabilidade de
-código fonte. As ameaças de vulnerabilidade em geral não possuem correlação, a
+código-fonte. As ameaças de vulnerabilidade em geral não possuem correlação, a
 exceção seria entre a CWE457(variáveis não inicializadas) e a CWE401(vazamento
 de memória), que segundo a matriz podem se correlacionar de maneira direta. Isso
 pode ser levado em consideração tendo em vista que quando se declara uma
@@ -362,22 +364,22 @@ variável e não a utiliza, existe uma boa chance da mesma cair em esquecimento 
 aquela região de memória não ser mais desalocada.
 
 Após entender um pouco mais sobre a corelação entre os dados, foi feito um
-\textit{scatterplot} (Figura \ref{fig:scatterplot}) de todas as taxas de ameaças
+\textit{plot} (Figura \ref{fig:scatterplot}) de todas as taxas de ameaças
 de vulnerabilidade pelo número de módulos para a melhor visualização dos dados.
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=1.0\textwidth]
       {figuras/scatterplot.eps}
-      \caption{\textit{Scatterplot} das taxas de CWE pelo número total de módulos}
+      \caption{\textit{Plot} das taxas de CWE pelo número total de módulos}
   \label{fig:scatterplot}
 \end{figure}
 
 As taxas, como esperado são números bem pequenos, já que o número total de
-ameaças de vulnerabilidade de código fonte são bem menores do que o número total
+ameaças de vulnerabilidade de código-fonte são bem menores do que o número total
 de módulos.
 
-Analisando o \textit{scatterplot} pode-se observar que, como foi percebido com a
+Analisando o gráfico pode-se observar que, como foi percebido com a
 análise da matriz de correlação, a taxa das ameaças de vulnerabilidade por módulo
 tendem a diminuir quando se aumenta o número de módulos, provavelmente o projeto
 de software está crescendo e tendo um processo de desenvolvimento mais maduro.
@@ -390,20 +392,20 @@ Como pode-se ver, a CWE401 (vazamento de mémoria) se mantém sem muitas variaç
 mesmo aumentando o número de módulos. Além disso ela possui valores bem abaixo
 em comparação com as outras taxas, o que nos mostra que um projeto de software
 em geral, independente da sua maturidade e tamanho, não consegue sobreviver se
-houver várias possíveis ocorrências de vazamento de memória, se isso ocorrer,
-facilmente o software pode estourar a pilha onde é alocada memória para as
-variáveis do programa. Devido a maior constância nas taxas dessa ameaça de
+houver várias possíveis ocorrências de vazamento de memória. Se isso ocorrer,
+facilmente o software pode estourar a região de memória alocada para o
+\textit{HEAP} do programa. Devido a maior constância nas taxas dessa ameaça de
 vulnerabilidade, não foi elaborado um modelo específico para ela, já que em
 geral os valores se mantém.
 
-Tendo isso em vista, as outras duas ameaças de vulnerabilidade de código fonte
+Tendo isso em vista, as outras duas ameaças de vulnerabilidade de código-fonte
 (CWE476 e CWE457) foram estudadas separadamente a fim de ao final ter um modelo
 para monitoramento e predição de cada uma.
 
 
 \subsubsection{CWE476 - Referência de Ponteiros Nulos}\label{eda:cwe476}
 
-Para analisar especificamente a ameaça de vulnerabilidade de código fonte em
+Para analisar especificamente a ameaça de vulnerabilidade de código-fonte em
 questão, serão utilizados alguns gráficos para entender a taxa referente a
 CWE476, para que se possa definir um modelo próximo ao real. Foram escolhidos
 alguns gráficos para realizar esta análise, baseado no 4 \textit{plots}
@@ -436,14 +438,13 @@ vulnerabilidade. Pode ser visto com mais detalhes na Figura
 
 Percebe-se que a distribuição referente a esta taxa não se assemelha
 a uma distribuição normal comum, já que a maior ocorrência está deslocada à
-esquerda, sendo essa similar a uma distribuição de cauda longa. O maior
-intervalo de ocorrência é o intervalo entre 0.0065 e 0.0070. Confirma também a
-hipótese respondida na primeira parte da pesquisa, onde a média dos valores não
-é representatica. O gráfico \textit{Q-Q plot} apresentado na Figura
-\ref{fig:cwe476-qq-plot} vem para corroborar com o que foi dito anteriormente,
-mostrando que o distribuição da taxa da CWE476 provavelmente não é uma
-distribuição normal, onde a média é representativa, mas sim uma de cauda
-longa.
+esquerda, sendo essa similar a uma distribuição de cauda longa. A moda é o
+intervalo entre 0.0065 e 0.0070. Confirma também a hipótese respondida na
+primeira parte da pesquisa, onde a média dos valores não é representativa. O
+gráfico \textit{Q-Q plot} apresentado na Figura \ref{fig:cwe476-qq-plot} vem
+para corroborar com o que foi dito anteriormente, mostrando que o distribuição
+da taxa da CWE476 provavelmente não é uma distribuição normal, onde a média é
+representativa, mas sim uma de cauda longa.
 
 \begin{figure}[h]
   \centering
@@ -478,9 +479,9 @@ Para um conjunto de dados que respeita a distribuição normal a variação é
 praticamente constante, neste caso apresentado na Figura
 \ref{fig:cwe476-run-sequence}, pode-se observar que a variação dos dados não é
 constante, e possui um pico próximo a versão 150 e depois volta a diminuir a
-taxa. Isso se deve a uma refatoração do código fonte do \textit{Linux Kernel}
+taxa. Isso se deve a uma refatoração do código-fonte do \textit{Linux Kernel}
 que se iniciou após a versão 2.6.29 (versão 150) até a versão 3.0 (versão 250),
-que possibilitou a redução de ameças de vulnerabilidade de código fonte.
+que possibilitou a redução de ameças de vulnerabilidade de código-fonte.
 
 Para encerrar a análise dos dados referentes a taxa da CWE476, é apresentado um
 \textit{Lag Plot} na Figura \ref{fig:cwe476-lag-plot}. Esse gráfico nos auxilia
@@ -499,7 +500,7 @@ dados, e no eixo x estão os antecessores dos dados do eixo y.
 Pela figura pode-se perceber que há uma relação linear entre os dados e os seus
 antecessores, nos mostrando que este conjunto de dados não é aleatório. Sabendo
 que a variação dos dados não é constante como o que acontece em um polinômio de
-primeiro graus, foi realizada uma regressão para polinômios de diferentes graus
+primeiro grau, foi realizada uma regressão para polinômios de diferentes graus
 maiores do que um para tentar encontrar um que melhor se adeque, conforme será
 apresentado no Capítulo \ref{definicaomodelos}.
 
@@ -508,9 +509,9 @@ apresentado no Capítulo \ref{definicaomodelos}.
 
 A abordagem utilizada para o cenário de ameaça de vulnerabilidade anterior
 também será aplicada no contexto de variáveis não inicializadas. Primeiramente,
-será apresentada o gráfico \textit{4 Plots}, visto na Figura
+será apresentado o gráfico \textit{4 Plots}, visto na Figura
 \ref{fig:cwe457-4-plot}. Em seguida serão destrinchados cada um dos referidos
-gráficos,
+gráficos.
 
 \begin{figure}[h]
   \centering
@@ -523,9 +524,8 @@ gráficos,
 Iniciando a análise pelo histograma, que pode ser visto com mais detalhes na
 Figura \ref{fig:cwe457-hist}. Assim como o histograma apresentado pela taxa da
 CWE476 (Figura \ref{fig:cwe476-hist}), esse aparenta respeitar uma distribuição
-estatística de cauda longa ao invés de uma normal. Pode-se ver que o intervalo
-de maio ocorrência é o intervalo entre 0.0065 e 0.0070, da mesma forma que o
-cenário anterior.
+estatística de cauda longa ao invés de uma normal. Pode-se ver que a moda é o
+intervalo entre 0.0065 e 0.0070, da mesma forma que o cenário anterior.
 
 \begin{figure}[h]
   \centering
@@ -588,15 +588,15 @@ Após a realização do teste das hipóteses levantadas no início da pesquisa (
 \ref{hipoteses2}) se tem insumo para chegar em algumas conclusões. A hipótese
 \textit{H2} não foi negada, já que como pode-se ver nos histogramas e gráficos
 \textit{Q-Q plot}, apresentados na Seção \ref{metodologia:eda}, que a distribuição das taxas
-de ameaças de vulnerabilidade de código fonte trabalhadas seguem uma
+de ameaças de vulnerabilidade de código-fonte trabalhadas seguem uma
 distribuição estatística de cauda longa, e não uma simples distribuição normal
 onde a média dos valores é representativa. Sendo esse um ponto que já havia
 sido discutido no início deste capítulo e que foi corroborado após o trabalho
 realizado.
 
-Tendo isso em vista, foram definidos modelos polinomiais para tentar testar a
-hipótese \textit{H3} no Capítulo \ref{definicaomodelos}, como principal
-resultado deste trabalho.
+Tendo isso em vista, no Capítulo \ref{definicaomodelos} é apresentado o
+resultado principal desse trabalho, que consistirá na definição de modelos
+polinomiais para testar a hipótese \textit{H3}
 
 
 
@@ -616,7 +616,7 @@ resultado deste trabalho.
 \chapter{Definição dos Modelos de Predição}\label{definicaomodelos}
 
 Como pode ser visto na Seção \ref{metodologia:eda}, as duas métricas de ameaças de
-vulnerabilidade de código fonte trabalhadas se comportaram de maneira similar.
+vulnerabilidade de código-fonte trabalhadas se comportaram de maneira similar.
 Mas como o intuito desta pesquisa é encontrar uma função matemática que
 possibilite o monitoramento e predição de cada uma das métricas, o modelo de
 ambas serão desenvolvidos separadamente, apesar de seguirem os mesmos métodos e
@@ -638,8 +638,8 @@ seguir foram:
 Foi utilizado o método de \citeonline{tukey:1977} apresentado na Seção
 \ref{outliers}, para a identificação dos \textit{outliers}. Utilizou-se de um
 método não paramétrico que traçasse uma curva suave baseado no
-\textit{scatterplot} apenas como referência pois o mesmo não nos dá uma função
-matemática como saída, apesar dos resultados do mesmo ser bastante satisfatório.
+\textit{scatterplot} apenas como referência. Já que o mesmo não nos dá uma função
+matemática como saída, apesar dos resultados serem bastante satisfatórios.
 O método não paramétrico utilizado foi o \textit{LOESS} (\textit{Locally
  Weighted Regression}), como foi explicado na Seção \ref{defmodels}, o mesmo tem
  como um dos seus pontos fortes a análise de uma série temporal, como a que
@@ -696,11 +696,15 @@ Analisando visualmente a curva gerada pelo método não paramétrico pode-se
 especular que provavelmente uma função quadrática poderia se adaptar bem ao
 conjunto de dados trabalhado e se aproximar da curva apresentada. Para validação
 do modelo acerca do conjunto de dados, foi desenvolvido em conjunto um modelo
-cúbico visando compara-los e chegar a um modelo que se aproxime do desejado e
-não seja tão custuso para calculá-lo. 
+cúbico visando compará-los e chegar a um modelo que se aproxime do desejado e
+não seja tão custoso para calculá-lo. 
 
-A regressão para um polinômio quadrático do conjunto de treinamento nos deu a
-seguinte equação:
+O conjunto de dados obtidos a partir da análise do projeto \textit{Linux Kernel}
+foi dividido entre conjunto de treinamento (65 \% dos dados) e teste (35\% dos
+dados). A variável dependente nesta regressão foi o número total de módulos.
+Geralmente o número de módulos cresce quanto maior a versão do software, até se
+atingir um ponto máximo, onde esse número começa a reduzir. A regressão para um
+polinômio quadrático do conjunto de treinamento nos deu a seguinte equação:
 
 %\begin{tcolorbox}
 
@@ -791,8 +795,12 @@ sobre a CWE476, onde foram testados um modelo quadrático e um cúbico, que,
 provavelmente, vão conseguir se ajustar a curva de referência, já que a mesma não
 possuí muitas nuâncias.
 
-A regressão para um polinômio quadrático do conjunto de treinamento nos deu a
-seguinte equação:
+O conjunto de dados obtidos a partir da análise do projeto \textit{Linux Kernel}
+foi dividido entre conjunto de treinamento (65 \% dos dados) e teste (35\% dos
+dados). A variável dependente nesta regressão foi o número total de módulos.
+Geralmente o número de módulos cresce quanto maior a versão do software, até se
+atingir um ponto máximo, onde esse número começa a reduzir. A regressão para um
+polinômio quadrático do conjunto de treinamento nos deu a seguinte equação:
 
 \begin{align*}
  tax\_CWE457(modules) &=& (5.440273e^{-12}) * modules^{2} \\
@@ -842,7 +850,7 @@ Figura \ref{fig:cwe457-cubic}. O erro residual padrão para esse modelo foi
 \section{Comparação e Escolha dos Modelos}\label{comparacaomodelos}
 
 Neste capítulo foram definidos dois modelos para cada uma das
-métricas de ameaças de vulnerabilidade de código fonte, nesta seção esses
+métricas de ameaças de vulnerabilidade de código-fonte, nesta seção esses
 modelos serão comparados, baseado no erro na predição do modelo e no método
 \textit{K-fold} de validação cruzada, e então serão selecionados os melhores
 modelos. Nesta seção foi feita uma comparação e escolha entre os modelos
@@ -856,10 +864,9 @@ durante a análise exploratória dos dados nas seções \ref{eda:cwe457} e
 \ref{eda:cwe476}.
 
 Observa-se que quanto maior o grau do polinômio melhor serão os resultados
-obtidos, entretanto, o objetivo deste trabalho é encontrar um modelo simples,
-que não seja muito custoso, onde o mesmo possa ser inserido sem muitos problemas
-no ciclo de desenvolvimento de software. Devido a isso foram selecionados
-modelos de baixo grau, onde a complexidade das funções obtidas são bem menores.
+obtidos, entretanto, o objetivo deste trabalho é encontrar um modelo que não
+seja muito custoso na realização de predições, onde o mesmo possa ser inserido
+sem muitos problemas no ciclo de desenvolvimento de software.
 
 Tendo isso em vista, foram analisados e comparados os modelos de cada uma das
 métricas separadamente, como pode ser visto a seguir.
@@ -892,7 +899,7 @@ Saindo da parte visual e partindo para o erro residual padrão, sendo o erro
 residual padrão o desvio padrão da diferença entre o valor real e o predito,
 gerado por cada um dos modelos, que podem ser vistos na Tabela
 \ref{tab:cwe476-erros}. Percebe-se que o erro referente ao modelo cúbico se
-aproxima bastante ao nosso modelo de referência (\textit{LOESS}). O erro
+aproxima bastante ao nosso modelo \textit{LOESS}. O erro
 associado ao modelo quadrático é aproximadamente 20,00\% maior do que o do
 modelo de referência, já o cúbico é aproximandamente 4,43\% maior. Logo, o erro
 entre os modelos quadrático e cúbico é de aproximadamente 15\%, sendo o cúbico
@@ -915,7 +922,7 @@ mais próximo do desejável.
 
 Para finalizar a comparação entre os modelos foi realizado uma validação cruzada
 utilizando o método \textit{K-fold} para analisar a performance de ambos o
-modelos em um conjunto de dados cujo qual não foi treinado, ou seja, contra
+modelos em um conjunto de dados em que não foram treinados, ou seja, contra
 dados que o mesmo deveria predizer em uma situação real. Nesta pesquisa foi
 utilizado um \textit{K} = 10, já que segundo \citeonline{kohavi:1995} uma
 validação cruzada \textit{ten-fold} pode ser mais eficiente até que uma
@@ -942,15 +949,15 @@ resumo do método aplicado.
   \label{fig:cwe476-k-fold-cubic}
 \end{figure}
 
-O gráficos apresentados possuem no eixo X os valores preditos pelo modelo em
+O gráfico apresentado possuem no eixo X os valores preditos pelo modelo em
 questão e no eixo Y o valor real. As retas traçadas representam o que seria o
 ideal, ou seja, o valor predito igual ao valor real, e cada um dos diferentes
 pontos apresentam o que foi gerado pelo modelo em cada um dos \textit{folds}.
 Pode-se ver que em ambos os gráficos vários pontos ficaram distantes da reta,
 mostrando que existe um erro associado a predição. Na Tabela
 \ref{tab:cwe476-emq} são apresentados os erros médios quadráticos de cada um dos
-modelos aqui avaliados, a definição de erro médio quadrático pode ser encontrada
-na Seção \ref{valmodels}.
+modelos aqui avaliados sobre o conjunto de teste. A definição de erro médio
+quadrático pode ser encontrada na Seção \ref{valmodels}.
 
 \begin{table}[h]
  \centering
@@ -972,13 +979,13 @@ sendo o erro médio quadrático associado ao modelo quadrático aproximadamente
 Levando em consideração todos os aspectos trabalhados na comparação dos dois
 modelos, o modelo cúbico se apresentou como um melhor modelo para o
 acompanhamento, monitoramento e predição da taxa da ameaça de vulnerabilidade de
-código fonte relacionada a referência de ponteiros nulos.
+código-fonte relacionada a referência de ponteiros nulos.
 
 \subsection{CWE457 - Variável não Inicializada}
 
-Para uma melhor visualização dos modelos construídos foi contruído um gráfico
+Para uma melhor visualização dos modelos construídos foi elaborado um gráfico
 contendo a curva de predição de todos eles sobre o \textit{scatterplot} dos
-dados. Esse gráfico pode ser visto na Figura \ref{fig:cwe457-all-models}.
+dados. Podendo o mesmo ser visto na Figura \ref{fig:cwe457-all-models}.
 
 \begin{figure}[h]
   \centering
@@ -990,11 +997,11 @@ dados. Esse gráfico pode ser visto na Figura \ref{fig:cwe457-all-models}.
 
 Todos os modelos apresentados na Figura \ref{fig:cwe457-all-models} ficaram bem
 próximos uns dos outros, diferente do ocorrido com os modelos referentes a
-CWE476. Entretanto, o modelo cúbico continua mais próximo do modelo de
-referência (\textit{LOESS}) nos limites mínimo e máximo em relação ao modelo
-quadrático, sendo similar a comparação dos modelos na Seção
-\ref{comparacaocwe476}, o que favorece predições de valores fora do intervalo de
-valores trabalhados neste estudo.
+CWE476. Entretanto, o modelo cúbico continua mais próximo do modelo
+\textit{LOESS} nos limites mínimo e máximo em relação ao modelo quadrático,
+sendo similar a comparação dos modelos na Seção \ref{comparacaocwe476}, o que
+favorece predições de valores fora do intervalo de valores trabalhados neste
+estudo.
 
 Visualmente também pode-se ver que provavelmente o erro residual desses modelos
 são bem menores do que os análisados na Seção \ref{comparacaocwe476}. Na Tabela
@@ -1073,7 +1080,7 @@ grande percentual.
 Apesar do modelo cúbico se apresentar mais vantajoso durante a comparação
 realizada, o modelo quadrático também se mostrou como uma boa solução para o
 acompanhamento, monitoramento e predição desta métrica de ameaça de
-vulnerabilidade de código fonte, já que a diferença no geral foi pequena. Logo,
+vulnerabilidade de código-fonte, já que a diferença no geral foi pequena. Logo,
 a seleção de qualquer um dos modelos seria uma boa escolha, o modelo quadrático
 tendo uma complexidade menor, e o modelo cúbico acompanhando de maneira
 mais adequado o modelo de referência nos limites apresentados, o que favorece a
@@ -1086,20 +1093,16 @@ devido a maior aderência ao modelo de referência escolhido.
 
 Com o que se diz respeito a hipótese \textit{H3}, foram definidos dois modelos e
 selecionado um para cada uma das métricas de ameaças de vulnerabilidade de
-código fonte. Essa hipótese também não foi negada, já que como foi apresentado
+código-fonte. Essa hipótese também não foi negada, já que como foi apresentado
 na comparação entre os modelos (Seção \ref{comparacaomodelos}), os mesmos se
 apresentaram bem diante de situações reais de análise, logo, atingindo o
 objetivo de acompanhar, monitorar e predizer valores das métricas de maneira
 satisfatória. Entretanto, como foi explicado neste capítulo, quanto maior o grau
 do polinômio melhor ele se adaptará aos dados e menor será o erro associado ao
-conjunto de treinamento. A estratégia de utilizar um modelo não paramétrico foi
-justamente para evitar esse \textit{overfitting} dos dados, além disso,
-tentou-se manter o foco em modelos polinômiais de baixa complexidade, que
-julgou-se mais fácil de serem incorporados no dia-a-dia do desenvolvimento de
-software.
+conjunto de treinamento.
 
 Após a realização da comparação e seleção dos modelos para cada uma das métricas
-de ameças de vulnerabilidade de código fonte, chegou-se a seguinte função para
+de ameças de vulnerabilidade de código-fonte, chegou-se a seguinte função para
 cada uma das métricas trabalhadas:
 
 \begin{align*}
@@ -1110,7 +1113,7 @@ cada uma das métricas trabalhadas:
 \end{align*}
 
 \begin{align*}
- tax\_CWE476(modules) &=& (-6.466983e^{-16}) * modules^{3} \\
+ tax\_CWE457(modules) &=& (-6.466983e^{-16}) * modules^{3} \\
                       &+& (5.603787e^{-11}) * modules^{2} \\
                       &-& (1.639652e^{-6}) * modules \\
                       &+& 0.02287291
@@ -1119,7 +1122,7 @@ cada uma das métricas trabalhadas:
 Lembrando que as fórmulas matemáticas apresentadas acima representam os modelos
 desenvolvidos no início do capítulo, ambos sendo desenvolvidos a
 partir de uma regressão polinomial de terceiro grau das métricas obtidas a
-partir do código fonte do projeto \textit{Linux Kernel}.
+partir do código-fonte do projeto \textit{Linux Kernel}.
 
 Para apresentar os modelos definidos foram elaboradas as Tabelas
 \ref{tab:cwe476} e \ref{tab:cwe457} que apresentam os valores das referidas
@@ -1164,9 +1167,10 @@ Como pode-se ver na Tabela \ref{tab:cwe476}, a métrica relacionada a taxa da
 CWE476 teve um pico na versão 2.6.39 e depois começou a diminuir, mas a partir do
 momento que o número de módulos voltar a crescer ela tende a crescer novamente,
 e em determinado ponto deve atingir um novo pico e voltar a diminuir o seu
-valor. Com a métrica relacionado a taxa da CWE457 já é diferente, pelo o que foi
+valor. Com a métrica relacionada a taxa da CWE457 já é diferente, pelo o que foi
 apresentado na Tabela \ref{tab:cwe457} a métrica tende a diminuir sempre com o
-decorrer do aumento do número de módulos.
+decorrer do aumento do número de módulos, sendo o número de módulos a variável
+independente.
 
 Para exemplificar o uso dos modelos desenvolvidos serão apresentados na Seção
 \ref{exemplosdeuso} alguns exemplos de uso do mesmo com alguns dos projetos de
@@ -1181,78 +1185,11 @@ projetos.
 
 Para dar alguns exemplos palpáveis do uso dos modelos desenvolvidos em um
 projeto de softwares livre foram realizadas predições das métricas das taxas das
-CWE476 e CWE457 em projetos trabalhados na primeira etapa do projeto. Foram
-selecionados 5 projetos de software, cujo quais são:
-
-\begin{itemize}
- \item Bash
- \item OpenSSH
- \item OpenSSL
- \item Python2.7
- \item Ruby-2.1
-\end{itemize}
-
-Para apresentar a utilização dos modelos, foram preditos os valores das métricas
-para esses projetos, sem necessariamente realizar uma análise estática sobre os
-mesmos. Dessa forma, na Tabela \ref{tab:exemplos} são apresentadas os valores
-das métricas em questão esperados para cada um dos projetos, baseado no modelo de
-referência construído a partir do projeto \textit{Linux Kernel}.
-
-\begin{table}[h]
- \centering
- \begin{tabular}{ccll}
-  \hline
-  \rowcolor[HTML]{EFEFEF} 
-  Projeto de Software & Módulos &
-  \multicolumn{1}{c}{\cellcolor[HTML]{EFEFEF}tax\_CWE476} &
-  \multicolumn{1}{c}{\cellcolor[HTML]{EFEFEF}tax\_CWE457} \\ \hline
-  Bash                & 369     & -0.02738566
-  & 0.02227548                                              \\ \hline
-  OpenSSH             & 364     & -0.02740602
-  & 0.02228347                                              \\ \hline
-  OpenSSL             & 1164    & -0.02423955
-  & 0.02103926                                              \\ \hline
-  Python2.7           & 808     & -0.02562603
-  & 0.02158432                                              \\ \hline
-  Ruby-2.1            & 547     & -0.02666550
-  & 0.02199268                                             \\ \hline
- \end{tabular}
- \caption{Predição de métricas em projetos de software livre pequenos.}
- \label{tab:exemplos}
-\end{table}
-
-
-Como apresentado na Tabela \ref{tab:exemplos} a predição para valores da
-métricas relacionada a taxa da CWE457 parece algo razoável e dentro do esperado,
-entretanto, não se pode dizer o mesmo dos valores da métrica referente a taxa da
-CWE476. Na elaboração desses exemplos de uso percebeu-se uma limitação do
-modelo de predição desenvolvido para a métrica relacionada a referência de
-ponteiros nulos (CWE476), onde o modelo não se apresentou de maneira adequada
-para a predição da métrica para projetos com quantidade de módulos muito menor
-do que foi contruído (a versão do \textit{Linux Kernel} com menor número de
-módulos possui 14123). Percebeu-se que o modelo desenvolvido apresenta valores
-negativos para a métrica em questão quando o número de módulos é menor do que
-10105, sendo que a métrica não aceita valores menores do que zero. Esse
-comportamento é justificado quando se observa o gráfico (Figura
-\ref{fig:cwe476-cubic}) que apresenta a linha de predição do modelo, pode-se ver
-que quanto menor o número de módulos a partir de 14234 a tendência do modelo é
-predizer valores menores, com uma taxa de queda do valor da métrica bastante
-acentuada. Logo, o modelo desenvolvido para a métrica referente a taxa da CWE476
-não se aplica para números de módulos pequenos, diferente da CWE457,
-provavelmete, conseguindo predizer valores para a métrica para projetos de
-software maiores do que 10100 módulos.
-
-Tendo em vista a limitação do modelo desenvolvido relacionado a métrica de taxa
-de CWE476 por módulo identificada para projetos com números de módulos menores
-do que os que o mesmo foi construído, resolveu-se testar os modelos com projetos
-de softwares livre maiores com o que se diz respeito ao número de módulos, a fim
-de validar a utilização dos modelos para esse tipo de projeto. Para isso foram
-selecionados dois novos projetos de software livre, sendo eles o
-\textit{FreeBSD} e o \textit{Android}, ambos inclusive tendo em comum com o
-\textit{Linux Kernel} o desenvolvimento de um núcleo de um sistema operacional.
-Foi desenvolvida a Tabela \ref{tab:exemplos2}, similar a anterior (Tabela
-\ref{tab:exemplos}), para tentarmos verificar o uso dos modelos de predição em
-projetos de software livre com uma maior quantidade de números de módulos.
+CWE476 e CWE457 em projetos de software livre. Para isso foram selecionados dois
+projetos, sendo eles o \textit{FreeBSD} e o \textit{Android}, ambos inclusive
+tendo em comum com o \textit{Linux Kernel} o desenvolvimento de um núcleo de um
+sistema operacional.  Foi desenvolvida a Tabela \ref{tab:exemplos2}, para
+tentarmos verificar o uso dos modelos de predição em projetos de software livre.
 
 \begin{table}[h]
  \centering
@@ -1289,17 +1226,10 @@ sistema operacional, mas sim vários outras coisas como ABI (\textit{Application
 Binary Interface}), \textit{frameworks}, suas próprias ferramentas de
 desenvolvimento entre outras coisas. 
 
-Logo, pode-se sinalizar nessa primeira análise que o modelo de predição
-referente a variáveis não inicializadas por módulo (CWE457) apresenta valores
-adequados de predição tanto para projetos com um menor número de módulos quanto
-para maiores, já o modelo de predição referente a referência a ponteiros nulos
-por módulo (CWE476) traz valores de predição aceitáveis para a métrica apenas
-para projetos que possuem mais de 10100 módulos. 
-
 Portanto, com os modelos desenvolvidos foi possível realizar a predição das
 métricas em questão para projetos do mesmo porte da referência selecionada
 (\textit{Linux Kernel}), sendo esses a principal contribuição desta pesquisa. Os
 resultados obtidos demostraram que foi possível realizar
-as predições das métricas de ameaças de vulnerabilidade de código fonte
+as predições das métricas de ameaças de vulnerabilidade de código-fonte
 propostas, sendo esse o objetivo maior deste trabalho.
 
