@@ -1233,3 +1233,39 @@ resultados obtidos demostraram que foi possível realizar
 as predições das métricas de ameaças de vulnerabilidade de código-fonte
 propostas, sendo esse o objetivo maior deste trabalho.
 
+
+\section{Evolução dos Modelos de Predição}
+
+Tendo em vista os modelos definidos e comparados no decorrer deste capítulo,
+decidiu-se apresentar uma outra abordagem, onde serão apresentadas curvas de
+erro de predição para modelos não lineares de diferentes graus. A partir da
+mesma base de dados utilizada anteriormente, foram definidos modelos de segundo
+até vigésimo grau. Tendo esses modelos, foi realizado o processo de validação
+cruzada \textit{K-fold}, com \textit{K} = 10. Com o erro de predição obtido
+através da validação cruzada foi plotado um gráfico para cada uma das métricas
+de ameaças de vulnerabilidade de código fonte trabalhadas neste capítulo. Sendo
+o eixo X o grau do modelo em questão, e o eixo Y o erro de predição do modelo.
+Como pode ser visto nas Figuras \ref{fig:cwe476_geral} e \ref{fig:cwe457_geral}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe476-geral.eps}
+      \caption{Erro de predição de modelos não lineares para a CWE476}
+  \label{fig:cwe476_geral}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=1.0\textwidth]
+      {figuras/cwe457-geral.eps}
+      \caption{Erro de predição de modelos não lineares para a CWE457}
+  \label{fig:cwe457_geral}
+\end{figure}
+
+
+Como pode-se ver nas figuras, e como foi discutido anteriormente, quanto maior o
+grau do modelo, menor será o erro de predição na maioria dos casos. Esta
+abordagem pode auxiliar na seleção de um modelo não linear para cada uma das
+métricas. Pode-se considerar o custo benefício da diminuição do erro de predição do
+modelo com a complexidade do mesmo, o que deve aumentar o tempo de predição.
